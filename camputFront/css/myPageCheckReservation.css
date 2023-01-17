@@ -1,0 +1,180 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.myPageCheckReservation{
+    position: relative;
+    width: 100%;
+    height: 1500px;
+}
+.top{
+    width: 100%;
+    padding: 1rem 0px;
+    font-weight: bolder;
+}
+.topContent-wrap{
+    display: flex;
+    padding: 0px 20px;
+    padding-left: 50px;
+    justify-content:space-between ; 
+}
+.Logo{
+    justify-content: flex-start;
+   width: 60px;
+   height: 60px;
+   background-image: url("/css/img/TeamProject.png");
+   background-size:contain ;
+   background-repeat: no-repeat;
+}
+.right-bar{
+    display: flex;
+    align-items: flex-end;
+}
+.right-bar ul{
+    display: flex;
+    align-items: baseline;
+    list-style: none;
+    align-items: center;
+}
+.right-bar ul li{
+    margin: 0px 2rem;
+    font-size: 18px;
+}
+.middle-warp{
+    position: absolute;
+    width: 100%;
+    height: 1400px;
+    background:rgb(248, 249, 250);
+}
+.middle{
+    position: relative;
+    width: 80%;
+    margin: auto;
+    margin-top: 150px;
+    height: 70%;
+    border-radius: 10%;
+    border: 0.1rem solid rgb(233, 236, 239);;
+    background-color: white;
+}
+
+.middleT{
+    display: flex;
+    flex-direction: row;
+    font-size: 30px;
+    font-weight: 700;
+    height: 30%;
+    
+}
+.memberimage_nickName{
+    margin: 70px 0px;
+    margin-left: 100px;
+}
+.memberImage{
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    border-radius: 100%;
+    margin-bottom: 20px;
+}
+.memberNickName{
+   text-align: center;
+}
+
+
+.middleInfoTop{
+    display: flex;
+    align-items: flex-end;
+    font-size:30px ;
+    padding: 20px;
+    padding-bottom: 50px;
+    padding-left: 140px;
+}
+
+.middleM{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 80%;
+}
+.sidebar-wrap{
+    display: flex;
+    align-content: space-between;
+}
+.sideBar{
+padding-left: 100px; 
+height: 700px;
+border-right:2px solid rgb(233, 236, 239);
+width: 150px;
+}
+.sideBar ul li{ 
+    list-style: none;
+    font-size: 20px;
+    font-weight: bolder;
+    padding-top: 50px;
+    padding-right: 30px;
+    
+}
+.sideBar ul li a{
+    color: black;
+    text-decoration: none;
+}
+.sideBar ul li a:hover{
+    color: rgb(201, 36, 36);
+}
+.memberRservationInfo a{
+    border-bottom:2px solid;
+}
+.middleInfo{
+    display:flex;
+    padding: 5px 20px;
+    width: 100%;
+}
+.reservationCampInfo{
+    border: 1px solid rgb(233, 236, 239) ;
+    border-radius: 5px;
+    width: 100%;
+    height: 40%;
+}
+.reservationCampdetailInfo{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    width: 97%;
+    height: 94%;
+    padding: 10px;
+}
+
+.reservationCampImage{
+    width: 40%;
+    height: 100%;
+    background-color:rgb(44, 231, 153);
+    ;
+    border-radius: 5px;
+}
+.reservationCampdetailInfo ul{
+ list-style: none;
+ width: 55%;
+ margin-top: 10px;
+ margin-left: 20px;
+ font-size: 14px;
+ font-weight: bolder;
+}
+.reservationCampdetailInfo ul .content{
+    height: 20%;
+    
+   }
+.reservationCampdetailInfo ul .title{
+    color:rgb(205, 205, 205) ;
+    
+   }
+
+
+.cancel{
+border: none;
+font-size: 15px;
+font-weight: 800;
+width: 100%;
+padding: 10px 20px;
+background-color: rgb(44, 231, 153);
+}
+

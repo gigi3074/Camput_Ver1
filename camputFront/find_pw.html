@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find_Pw</title>
+</head>
+<body>
+     <!-- 비밀번호 찾기 페이지 -->
+     <div class="wrap">
+
+        <div class="main">
+
+            <!-- 로고 -->
+            <div class="logo"><a href="#"></a></div>
+
+            <!-- 로그인 입력 -->
+            <div class="find_Info_Txt">
+                <h3>비밀번호 찾기</h3>
+                <p>회원정보를 입력해주세요</p>
+            </div>
+
+            <!-- 비밀번호 찾기 -->
+            <div class="noFind_Pw">
+
+                <form action="" method="post" class="">
+                    <!-- 아이디 인증 전 -->
+                    <div class="noId_Check">
+                        <input type="text" name="member_nickName" placeholder="아이디를 입력해주세요.">
+                        <button>아이디 인증</button>
+                    </div>
+                    <!-- 아이디 인증 후 -->
+                    <div class="id_Check">
+                        <input type="password" name="member_Pw" placeholder="변경할 비밀번호를 입력해주세요">
+                        <input type="password" name="member_Pw2" placeholder="비밀번호 확인">
+                    </div>
+                    <!-- 아이디, 비밀번호 찾기 & 회원가입 링크 -->
+                    <div class="loginSub"> 
+                        <a href="find_id.html">아이디 찾기</a>
+                        <a href="join.html">회원가입</a>
+                    </div>
+                    <input type="submit" value="비밀번호 변경">
+                </form>
+            </div>
+             <!-- 비밀번호 찾기 후 페이지 -->
+             <div class="find_Pw">
+                비번이 변경되었습니다.
+                <div class="find_Pw_Btn">
+                    <button><a href="login.html">로그인</a></button>
+                </div>
+        </div>
+
+    </div>
+</body>
+</html>
