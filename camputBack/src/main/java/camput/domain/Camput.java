@@ -74,4 +74,13 @@ public class Camput {
         this.facilities = facilities;
         this.campPrices=campPrices;
     }
+
+    public Camput addLike(){
+        this.memberLikeTotalCount+=1;
+        return this;
+    }
+    public Camput minusLike(){
+        this.memberLikeTotalCount-=1;
+        return this;
+    }
 }

@@ -1,9 +1,15 @@
 package camput;
+import camput.Dto.ReservationDto;
+import camput.Impl.CampBookedImpl;
+import camput.Impl.MemberBookedImpl;
+import camput.Service.CampCalenderService;
+import camput.Service.CamputService;
 import camput.domain.*;
 import camput.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
@@ -11,6 +17,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
+@Transactional
 @Component
 @Slf4j
 public class TestMember {
@@ -22,20 +29,15 @@ public class TestMember {
     private final MemberLikedRepository memberLikedRepository;
     private final CampAddressRepository campAddressRepository;
     private final CampImageFileRepository campImageFileRepository;
+    private final CampCalenderService campCalenderService;
+    private final CamputService camputService;
 
-    /*@PostConstruct
-=======
-
-   /* @PostConstruct
->>>>>>> teamUpdate
-    public void init(){
-=======
-
-
+    private final CampBookedImpl campBooked;
+    private final MemberBookedImpl memberBooked;
 
    /* @PostConstruct
     public void init() {
->>>>>>> teamUpdate
+
         MemberAddress address = MemberAddress.builder()
                 .extraAddress("")
                 .detailAddress("아파드 111호")
@@ -110,5 +112,6 @@ public class TestMember {
         MemberBooked save2 = memberBookedRepository.save(BCamp2);
         }
     }*/
+
 
 }

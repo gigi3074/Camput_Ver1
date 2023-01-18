@@ -84,8 +84,7 @@ class CampCalenderImplTest {
   /*      camputService.bookedCamp(member.getMemberLoginId(), "드림랜드오토캠핑장", reservation4);
         camputService.bookedCamp(member.getMemberLoginId(), "드림랜드오토캠핑장", reservation5);*/
 
-        em.flush();
-        em.clear();
+       
         log.info("start1");
         List<LocalDate> blockDays = campCalenderService.campBookedCalender("드림랜드오토캠핑장");
 

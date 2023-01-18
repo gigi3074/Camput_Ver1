@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MemberBookedRepository extends JpaRepository<MemberBooked,Long> {
     Page<MemberBooked> findByMember_Id(Long memberId, Pageable pageable);
+
 }

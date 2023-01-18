@@ -2,11 +2,11 @@ package camput.Impl;
 
 import camput.Dto.CampCommentDto;
 import camput.Dto.DetailPageDto;
+import camput.Dto.LikeDto;
 import camput.Dto.ReservationDto;
 import camput.Service.CamputService;
 import camput.domain.*;
-import camput.repository.CamputRepository;
-import camput.repository.CommentedRepository;
+import camput.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -24,16 +24,28 @@ public class CamputImpl implements CamputService {
 
     private final CamputRepository camputRepository;
     private final CommentedRepository commentedRepository;
+    private final MemberRepository memberRepository;
+    private final MemberLikedRepository memberLikedRepository;
     private final CampBookedImpl campBooked;
     private final MemberBookedImpl memberBooked;
 
+
     @Override
-    public DetailPageDto show(String campName){
+    public DetailPageDto show(String campName,String memberId){
         Camput camp = camputRepository.findByCampName(campName);
+        Member member = memberRepository.findByMemberLoginId(memberId);
+        MemberLiked like = memberLikedRepository.findByMemberAndLikedCampName(member, campName);
+        int resultLike =0;
+        if(like==null){
+            resultLike=0;
+        }else{
+            resultLike=1;
+        }
+        log.info("showCamp={}",camp.getCampName());
         List<CampCommentDto> campCommentDtos = getCampCommentDtos(camp);
         List<String> prices = getPrices(camp);
         String address = camp.getCampAddress().getSimpleAddr();
-        DetailPageDto campInfo = makeDetailPage(camp, campCommentDtos, prices, address);
+        DetailPageDto campInfo = makeDetailPage(camp, campCommentDtos, prices, address,resultLike);
         return campInfo;
     }
 
@@ -56,16 +68,21 @@ public class CamputImpl implements CamputService {
         return reservation;
     }
 
-    private static DetailPageDto makeDetailPage(Camput camp, List<CampCommentDto> campCommentDtos, List<String> prices, String address) {
+    private static DetailPageDto makeDetailPage(Camput camp, List<CampCommentDto> campCommentDtos, List<String> prices, String address,int resultLike) {
+        log.info("makeDetailPage");
         DetailPageDto campInfo = DetailPageDto.builder()
                 .campAddress(address)
                 .simpleIntro(camp.getLineIntro())
                 .detailIntro(camp.getIntro())
                 .campContents(campCommentDtos)
+                .campName(camp.getCampName())
+                .like(resultLike)
                 .image(camp.getCampImageFilesList().get(0).getCampOriginalUrl())
                 .campTotalAvg(camp.getTotalStarAvg())
+                .totalLike(camp.getMemberLikeTotalCount())
                 .prices(prices)
                 .build();
+
         return campInfo;
     }
 
@@ -80,9 +97,10 @@ public class CamputImpl implements CamputService {
     }
 
     private List<CampCommentDto> getCampCommentDtos(Camput camp) {
-        List<Commented> campComments = commentedRepository.findAllByCamput(camp.getId());
+        List<Commented> campComments= commentedRepository.findAllByCamput(camp);
         List<CampCommentDto> campCommentDtos = new ArrayList<>();
-        if(campComments!=null){
+        if(commentedRepository.findAllByCamput(camp)!=null){
+
             for (Commented campComment : campComments) {
                 CampCommentDto comment = CampCommentDto.builder()
                         .comment(campComment.getCommentedContent())
@@ -92,6 +110,8 @@ public class CamputImpl implements CamputService {
                         .build();
                 campCommentDtos.add(comment);
             }
+        }else{
+            return null;
         }
         return campCommentDtos;
     }

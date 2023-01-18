@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.tymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -300,6 +300,7 @@
             var detailPage = document.createElement('form');
             detailPage.setAttribute("action","/camput/detail/"+m.name);
             detailPage.setAttribute("method","get")
+            detailPage.setAttribute("value",m.name)
             var detailCampName= document.createElement('div');
             detailCampName.className='detailCampName';
 

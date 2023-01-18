@@ -28,4 +28,9 @@ public class CampLiked {
         this.memberLiked = memberLiked;
         this.camput = camput;
     }
+
+    public CampLiked addMemberLike(MemberLiked memberLiked){
+        this.memberLiked=memberLiked;
+        return this;
+    }
 }
