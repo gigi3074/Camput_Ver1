@@ -1,0 +1,44 @@
+@import url("reset.css");
+/* 라인 */
+@font-face { font-family: 'LINESeedKR-Bd'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2'); font-weight: 700; font-style: normal; }
+/* 티머니 */
+@font-face { font-family: 'TmoneyRoundWindExtraBold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff') format('woff'); font-weight: normal; font-style: normal; }
+*{font-family:'TmoneyRoundWindExtraBold';}
+
+.wrap{
+    margin: 0 auto; height: 100vh;
+    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+}
+.main{
+    width: 100%;margin: 0 auto;
+    display: flex;
+    flex-direction: column; align-items: center;
+}
+.logo{
+    background-image: url(/camputFront/img/logo01_2.png);
+    background-repeat: no-repeat; background-size: contain;
+    width: 30%; padding-bottom: 30%;
+    margin-top: 0%;
+}
+.find_Info_Txt{
+    text-align: center; color: #fff;
+    margin: 2% auto;
+}
+.find_Info_Txt h3{font-size: 2rem; margin-bottom: 2%;}
+.find_Info_Txt p{font-size: 1rem;}
+input{
+    padding: 5%; margin: 2% auto; width: 100%; font-size: 1.5rem; font-family: 'TmoneyRoundWindExtraBold';
+}
+
+.form-control{
+    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.4);
+    border-radius: 20px; border: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #ffa600;
+}
+.chekBtn{
+    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.4);
+    border-radius: 20px; border: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #ffa600;
+}

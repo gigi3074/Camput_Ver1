@@ -1,4 +1,64 @@
-.sec_cal {
+@import url("/camputFront/css/reset.css");
+/* 라인 */
+@font-face { font-family: 'LINESeedKR-Bd'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2'); font-weight: 700; font-style: normal; }
+/* 티머니 */
+@font-face { font-family: 'TmoneyRoundWindExtraBold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff') format('woff'); font-weight: normal; font-style: normal; }
+*{font-family:'TmoneyRoundWindExtraBold';}
+/* 화면 구성 */
+.wrap
+{height: 100%; width: 100%;
+    overflow-y:scroll;
+    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+}
+/* 스크롤제거 */
+body{
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+}
+::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지 */
+}
+/* 메뉴바 */
+header{
+    position: fixed;
+    top: 0;left: 0;right: 0;z-index: 6;
+    height: 15%; width: 100%;
+    background-color: rgba( 255, 255, 255, 0.1);
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.Logo{
+    margin-left: 5%;
+    width: 10%; padding-bottom: 7%;
+    background-image: url("/camputFront/img/logo01_2.png");
+    background-size:contain ;
+    background-repeat: no-repeat;
+}
+/* 메뉴 */
+.nav{
+    width: 20%;
+    margin-right: 5%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 5%;
+    font-size: 1.2vw;
+}
+.menuBtn{
+    width: 100%;
+    display: inline-flex;
+}
+.menuBtn li{width: 100%; font-size: 2vw;}
+.menuBtn .menu{position: relative;}
+.menu li{position: absolute; width:100%; height: 100%; right: 80%;}
+.menu .qandA{top: 200%;}
+/* 사이드 메뉴 */
+.miniMenu{display: none;}
+.miniMenu li{text-align: right;}
+/*--------------------------------상단 동일 구역 ---------------------------*/
+
+/* .sec_cal {
     width: 360px;
     margin: 0 auto;
     font-family: "NotoSansR";
@@ -107,10 +167,8 @@
 
 .sec_cal .cal_wrap .day.disable {
     color: #ddd;
-<<<<<<< HEAD
-=======
 }
-
+ */
 
 
 /*///////////////////////////////////////////////////////////////////////////////////////////////
@@ -171,13 +229,9 @@
     border-color: #ed2a61;
 }
 
-.sec_cal .cal_nav .go-prevend::before {
-    transform: rotate(-135deg);
-}
+.sec_cal .cal_nav .go-prevend::before {transform: rotate(-135deg);}
 
-.sec_cal .cal_nav .go-nextend::before {
-    transform: rotate(45deg);
-}
+.sec_cal .cal_nav .go-nextend::before {transform: rotate(45deg);}
 
 .sec_cal .cal_wrap {
     padding-top: 40px;
@@ -192,9 +246,7 @@
     border-bottom: 1px solid #ddd;
 }
 
-.sec_cal .cal_wrap::after {
-    top: 368px;
-}
+.sec_cal .cal_wrap::after {top: 368px;}
 
 .sec_cal .cal_wrap .day {
     display:flex;
@@ -216,15 +268,193 @@
     height: 290px;
 }
 
-.sec_cal .cal_wrap .day:nth-child(7n -1) {
-    color: #3c6ffa;
+.sec_cal .cal_wrap .day:nth-child(7n -1) {color: #3c6ffa;}
+.sec_cal .cal_wrap .day:nth-child(7n) {color: #ed2a61;}
+.sec_cal .cal_wrap .day.disable {color: #ddd;}
+
+/*-------------------------------- css 작업 ---------------------------*/
+.innercon{
+    width: 80%; height: 100vh;
+    margin: 25vh auto;
+}
+.camp_main{
+    display: flex;
+    margin: 1% 0;
+}
+.camp_main .cmap_img{width: 50%;}
+.camp_main .cmap_img .main_img{
+    width: 80%; margin: 10%;
+    box-sizing: border-box; overflow: hidden;
+}
+.main_img img{
+    width: 100%; height: 100%;
+    object-fit:contain;
+}
+.camp_main .camp_txt{
+    width: 50%; font-size: 1.3vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    padding-left: 2%;
+}
+.camp_main .camp_txt .camp_title{font-size: 5vw;}
+.camp_main .camp_txt .camp_addr{font-size: 2vw;}
+.camp_main .camp_txt p{font-size: 2vw;}
+.camp_main .camp_txt .capm_owner{font-size: 1.3vw;}
+.camp_main .camp_txt .likeCount{font-size: 2vw;}
+/* 하트 */
+.likeButton{
+    border: 0;
+    background-color: unset;
+    font-size: 2.5vh;
+    padding-left: 5%;
+}
+.likeButton i{
+    color: transparent;
+    text-shadow: 0 0 1px rgba(255,255,255,.7), 0 0 0 rgb(0, 0, 0);
+}
+.likeButton i:hover {text-shadow: 0 0 0 #ea0;}
+.likeButton i.done {color: #BF2604;text-shadow: 0;}
+.likeButton i.done:hover {color: transparent;text-shadow: 0 0 0 #777;}
+
+/* 메인 타이틀 */
+.roomInfo_Booking{width: 100%;}
+.roomInfo_Booking .main_title_btn{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%; margin-top: 10%;
+    background-color: rgba(255, 255, 255, 0.6 );
+    border-radius: 10px;
+}
+.go{
+    border: 0;
+    background-color: unset;
+    font-size: 2vw;
+    padding: 1% 0 1% 5%;
+    font-family:'TmoneyRoundWindExtraBold';
+}
+.main_title_info{display: none;}
+.detail_info{
+    padding: 3%; width: 100%; height: 100%;
+    font-size: 2vw;
+    background-color: #fff;
+}
+.slideBtn{
+    border: 0;
+    background-color: unset;
+    font-size: 2vw;
+    padding-left: 5%;
+    font-family:'TmoneyRoundWindExtraBold';
+}
+.openBooking{
+    /* display: none;           */
+    width: 100%; height: 90vh;
+    border-radius: 20px;
+    padding: 10px;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    background-color: rgba(255, 255, 255, 0.6 );
+    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.4);
 }
 
-.sec_cal .cal_wrap .day:nth-child(7n) {
-    color: #ed2a61;
+/* 달력 */
+.reservationCalendar{
+    display: flex;
 }
 
-.sec_cal .cal_wrap .day.disable {
+/* 리뷰 */
+.newReBtn button{
+    padding: 1%; margin: 2% auto; width: 20%; font-size: 2vw; font-family: 'TmoneyRoundWindExtraBold';
+    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.4);
+    border-radius: 10px; border: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #ffa600;
+}
+/* 리뷰 글쓰기 창 */
+/* 모달 창 관련 css */
+#modal {
+    position: absolute;left:0;top: 0;
+    width: 100%; height: 150vh;
+    /* display: none; */
+    background-color:rgba(0, 0, 0, 0.5);
+}
+.newReview {
+    position: absolute;left: 5%;top: 5%;
+    width: 90%; height: 80%;
+    margin: 1% auto;
+    padding: 5% 0;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #000;
+    border: 2px solid #000;
+    border-radius: 30px;
+}
+
+table{width: 70%; margin: 5% auto; padding: 1%;}
+table tr td:first-child{padding: 2%; margin-left: 5%; width: 18%;}
+table input{height: 1.5em;}
+.tab_title{
+    text-align: center; font-size: 1.5em; font-weight: bold;
+    background-color: #BF2604; 
+}
+.tab_title td{color: #fff;}
+/* 별점 */
+.star_line{width: 100%;}
+.star_line td:nth-child(2){}
+.star {
+    position: relative;
+    font-size: 2em;
     color: #ddd;
->>>>>>> myUpdate
+}
+
+.star input {
+    width: 100%; height: 100%; position: absolute;
+    left: 0; opacity: 0; cursor: pointer;
+}
+
+.star span {
+    width: 0;position: absolute;left: 0;
+    color: #FFCF00;overflow: hidden;
+    pointer-events: none;
+}
+
+
+/* 리뷰사진 */
+.re_potoarea td:nth-child(2){
+    display: flex;
+    align-items: flex-end;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+.re_poto{
+    border: 1px solid #333; width: 80px; height: 80px;
+    overflow: hidden;
+}
+#blah{box-sizing: border-box; object-fit: scale-down;}
+input[type=file]{display: none;}
+.re_poto_btn{
+    padding: 5px 10px;background-color:#BF2604;
+    border: 1px solid #BF2604;
+    border-radius: 4px; 
+    cursor: pointer;
+}
+.re_poto_btn i {
+    color: white;
+}
+
+/* 버튼 */
+.new_post_btn{
+    text-align: center; height: 70px;
+}
+.new_post_btn input{
+    height: 100%;
+    border: 1px solid #BF2604;
+    border-radius: 5px;
+    background-color: #BF2604;
+    color: #fff;
+    font-size: 1em;
+    padding: 1%;
 }

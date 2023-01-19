@@ -1,3 +1,14 @@
+// 메뉴
+$(function(){
+    // 각각 목록 내려오기
+    $(".menuBtn>li").mouseover(function(){
+        $(this).children(".miniMenu").stop().slideDown();
+    });
+    $(".menuBtn>li").mouseout(function(){
+        $(this).children(".miniMenu").stop().slideUp();
+    });
+}) // last
+
 let menuEvent =$(".campSideInfo"); 
 
 menuEvent.hover(function(){
@@ -94,10 +105,10 @@ function checkVisible( element, check = 'above' ) {
 let check = true;
 function filter(){
     if(check){
-       $('.categoryInput').show(); 
+       $('.filterBox').show(); 
        check=false;
     }else{
-        $('.categoryInput').hide(); 
+        $('.filterBox').hide(); 
         check=true;
     }
     

@@ -1,241 +1,234 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    <!-- css -->
+    <link rel="stylesheet" href="/camputFront/campDetail.css">
+    <!--    스크립트 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="camputDetail.js"></script>
-<link rel="stylesheet" href="campDetail.css">
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="camputDetail.js"></script>
-<link rel="stylesheet" href="campDetail.css">
->>>>>>> jeonBranch
-<<<<<<< HEAD
-=======
-
-=======
-<<<<<<< HEAD
-=======
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="camputDetail.js"></script>
-<link rel="stylesheet" href="campDetail.css">
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
->>>>>>> teamUpdate
->>>>>>> myUpdate
-<<<<<<< HEAD
-=======
->>>>>>> 4bea7a4b9edbc953aa0cb5a121a5a8a28ce4d58f
-=======
->>>>>>> Stashed changes
->>>>>>> jeonBranch
+    <link rel="stylesheet" href="/camputFront/js/camputDetail copy.js">
+    <!-- 아이콘 -->
+    <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <!-- 캠프 상세페이지 & 예약페이지 -->
-    <div class="wrap">
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-        <header></header>
-
-=======
->>>>>>> teamUpdate
-<<<<<<< HEAD
-=======
->>>>>>> 4bea7a4b9edbc953aa0cb5a121a5a8a28ce4d58f
-=======
->>>>>>> Stashed changes
->>>>>>> jeonBranch
+    <div class="wrap" th:object="${camp}">
         <header>
-            <!-- header01.html or hearder01.html -->
+            <div class="Logo"></div>
+            <div class="nav">
+                <ul class="menuBtn">
+                    <li class="nologin"><a href="login.html">Login</a></li>
+                    <li class="join"><a href="join.html">Join</a></li>
+                    <li class="menu">
+                    <a href="#"><i class="fa-solid fa-bars"></i></a>
+                        <ul class="miniMenu">
+                            <li class="notice gnb_menu"><a href=""> 공지사항</a></li>
+                            <li class="qandA gnb_menu"><a href=""> Q & A</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- 메뉴 -->
+            <div class="menu" style="display: none;">
+                <ul class="menuBtn">
+                    <li class="login"><a href="login.html">마이페이지</a></li>
+                    <li class="join"><a href="join.html">로그아웃</a></li>
+                    <li class="menu">
+                    <a href="#"><i class="fa-solid fa-bars"></i></a>
+                        <ul class="miniMenu" style="display: none;">
+                            <li class="qandA gnb_menu">위시리스트</li>
+                            <li class="qandA gnb_menu">예약리스트</li>
+                            <li class="notice gnb_menu">공지사항</li>
+                            <li class="qandA gnb_menu">Q & A</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </header>
         <div class="innercon">
             <!-- 캠핑장 이미지 및 간단소개 -->
             <div class="camp_main">
                 <div class="cmap_img">
-                    <div class="main_img"></div>
-                    <div class="img_box">
-                        <div class="box01"><a href=""></a></div>
-                        <div class="box02"><a href=""></a></div>
-                        <div class="box03"><a href=""></a></div>
-                    </div>
-                </div>
+                    <div class="main_img"><img src="img/header02.jpg" alt=""></div>
+                </div> <!--이미지가 하나뿐이라서 일단 대표 이미지 하나만 설정한다.-->
                 <div class="camp_txt">
                     <div class="camp_title">camp name</div>
-                    <div class="camp_addr">주소</div>
-                    <div class="capm_owner">사장님 한마디</div>
-                </div>
-            </div>
-            <!-- 객실안내 / 예약 -->
-            <div class="roomInfo_Booking">
-                <div class="main_title">
-                    <a href="">객실안내 / 예약</a>
-                    <a href="">숙소정보</a>
-                    <a href="">리뷰</a>
-                </div>
-                <div class="room">
-                    <div class="room_img"></div>
-                    <div class="room_info">
-                        <p>camp name</p>
-                        <samp>100,000원</samp>
-                        <button>예약하기</button>
+                    <div class="camp_addr" th:text="*{campAddress}">주소</div>
+                    <p>사장님 한마디</p>
+                    <div class="capm_owner" th:text="*{simpleIntro}">사장님 한마디</div>
+                    <div class="likeCount">
+                        <div class="totalLike" th:text="*{totalLike}"></div>
+                        <form action="/camput/detail/like" method="post" >
+                            <div class="campNameforLike" th:value="*{campName}"></div>
+                            <div class="likeValue"></div>
+                            <button type="button" class="likeButton" onclick="like()"><i class="fa-solid fa-heart"></i></button>
+                        </form>
                     </div>
                 </div>
             </div>
-            <!-- 숙소정보 -->
-            <div class="acc_info">
-                <div class="main_title">
-                    <div class="main_title_reservation">객실안내 / 예약</div>
-                    <button>에약하기</button>
-                    <div class="reservationCalendar">
-                        <div class="sec_cal">
-                            <div class="cal_nav">
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-                              <a href="javascript:;" class="nav-btn go-prev">prev</a>
-                              <div class="year-month"></div>
-                              <a href="javascript:;" class="nav-btn go-next">next</a>
-                            </div>
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 4bea7a4b9edbc953aa0cb5a121a5a8a28ce4d58f
-=======
-
->>>>>>> Stashed changes
->>>>>>> jeonBranch
-                              <a href="javascript:;" class="nav-btn go-prev" id="prev1">prev</a>
-                              <div class="year-month"></div>
-                              <a href="javascript:;" class="nav-btn go-next">next</a>
-                            </div>
-                            <div class="startWarring"></div>
-<<<<<<< HEAD
->>>>>>> myUpdate
-=======
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-=======
->>>>>>> myUpdate
->>>>>>> 4bea7a4b9edbc953aa0cb5a121a5a8a28ce4d58f
-=======
->>>>>>> Stashed changes
->>>>>>> jeonBranch
-                            <div class="cal_wrap">
-                              <div class="days">
-                                <div class="day">MON</div>
-                                <div class="day">TUE</div>
-                                <div class="day">WED</div>
-                                <div class="day">THU</div>
-                                <div class="day">FRI</div>
-                                <div class="day">SAT</div>
-                                <div class="day">SUN</div>
-                              </div>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-                              <div class="dates"></div>
-                            </div>
-                          </div>
-                          <div class="startReservationDay"></div>
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 4bea7a4b9edbc953aa0cb5a121a5a8a28ce4d58f
-=======
-
->>>>>>> Stashed changes
->>>>>>> jeonBranch
-                              <div class="dates one"></div>
-                            </div>
-                          </div>
-                          <div class="startReservationDay"></div>
-
-                          <div class="sec_cal">
-                            <div class="cal_nav">
-                              <a href="javascript:;" class="nav-btn go-prevend" id="prev2">prev</a>
-                              <div class="year-month-end"></div>
-                              <a href="javascript:;" class="nav-btn go-nextend">next</a>
-                            </div>
-                            <div class="endWarring" style="color: red;"></div>
-                            <div class="cal_wrap">
-                              <div class="days">
-                                <div class="day">MON</div>
-                                <div class="day">TUE</div>
-                                <div class="day">WED</div>
-                                <div class="day">THU</div>
-                                <div class="day">FRI</div>
-                                <div class="day">SAT</div>
-                                <div class="day">SUN</div>
-                              </div>
-                              <div class="dates two"></div>
-                            </div>
-                          </div>
-<<<<<<< HEAD
->>>>>>> myUpdate
-=======
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-=======
->>>>>>> myUpdate
->>>>>>> 4bea7a4b9edbc953aa0cb5a121a5a8a28ce4d58f
-=======
-
->>>>>>> Stashed changes
->>>>>>> jeonBranch
-                          <div class="endReservationDay"></div>
-                        </div>
-                    <div class="main_title_info">숙소정보</div>
-                    <div class="main_title-review">리뷰</d>
+            <!-- 메인 페이지 -->
+            <div class="roomInfo_Booking">
+                <div class="main_title_btn">
+                    <button class="info go">숙소정보</button>
+                    <button class="reservation go">예약</button>
+                    <button class="reivew go">리뷰</button>
                 </div>
+                <!-- 숙소정보 -->
                 <div class="info">
+                    <div class="campInfo" >
+                        <div class="main_title_info">숙소정보</div>
+                    </div>
                     <!-- 어떤 식으로 가져와야되는지 확인 후 작성 -->
+                    <div class="detail_info" th:text="*{detailIntro}">
+                        testtest
+                    </div>
                 </div>
-            </div>
-            <!-- 리뷰 -->
-            <div class="review">s
-                <div class="main_title" >
-                    <a href="">객실안내 / 예약</a>
-                    <a href="">숙소정보</a>
-                    <a href="">리뷰</a>
+
+                <!-- 예약 -->
+                <div class="acc_info">
+                    <div class="main_title_btn slideBtn">예약</div>
+                    <div class="openBooking">
+                        <form class="main_title" method="post" >
+                            <div class="reservationCalendar">
+                                <div class="sec_cal" >
+                                    <div class="cal_nav">
+                                        <a href="javascript:;" class="nav-btn go-prev" id="prev1">Prev</a>
+                                        <div class="year-month"></div>
+                                        <a href="javascript:;" class="nav-btn go-next">Next</a>
+                                    </div>
+                                    <div class="startWarring"></div>
+                                    <div class="cal_wrap" id="startLocalDates"th:value="${localDates}">
+                                        <div class="days">
+                                            <div class="day">MON</div>
+                                            <div class="day">TUE</div>
+                                            <div class="day">WED</div>
+                                            <div class="day">THU</div>
+                                            <div class="day">FRI</div>
+                                            <div class="day">SAT</div>
+                                            <div class="day">SUN</div>
+                                        </div>
+                                        <div class="dates one"></div>
+                                    </div>
+                                </div>
+                                    <div class="startReservationDay"></div>
+                                    <div type="button" class="init" onclick="reset()">취소하기</div>
+                                    <div class="sec_cal">
+                                        <div class="cal_nav">
+                                            <a href="javascript:;" class="nav-btn go-prevend" id="prev2">prev</a>
+                                            <div class="year-month-end"></div>
+                                            <a href="javascript:;" class="nav-btn go-nextend">next</a>
+                                        </div>
+                                    </div>
+                                    <div class="endWarring" style="color: red;"></div>
+                                    <div class="cal_wrap">
+                                        <div class="days">
+                                            <div class="day">MON</div>
+                                            <div class="day">TUE</div>
+                                            <div class="day">WED</div>
+                                            <div class="day">THU</div>
+                                            <div class="day">FRI</div>
+                                            <div class="day">SAT</div>
+                                            <div class="day">SUN</div>
+                                        </div>
+                                        <div class="dates two"></div>
+                                    </div>
+                                    <div class="endReservationDay"></div>
+                                </div>
+                                <div class="room" th:each="price:*{prices}">
+                                    <div class="room_info">
+                                        <p th:text="*{campName}">camp name</p>
+                                        <samp th:text="${price}">100,000원</samp>
+                                        <button>예약하기</button>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="avg_star"></div>
-                <div class="review_list">
-                    <div class="re_box">
-                        <div class="member_profile">
-                            <div class="member_img" style= "background-color: rgba(72, 137, 73, 0.562)"></div>
-                            <div class="member_nickName">닉네임</div>
-                            <div class="re_star"></div>
+                   
+                <!-- 리뷰 글쓰기 모달 창 -->
+                <div id="modal" class="modal_re">
+                    <div class="newReview">
+                        <form method="post" name="postFrm" action="boardPost" enctype="multipart/form-data">
+                            <div class="newpost">
+                                <div class="npTitle">Review 쓰기</div>
+                                <div class="star"></div>
+                                    <tr class="star_line">
+                                        <p>숙소 어떠셨나요??</p>
+                                            <span class="star">
+                                                ★★★★★
+                                                <span>★★★★★</span>
+                                                <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="5">
+                                            </span>
+
+                                            
+                                    </tr>
+                                    <tr>
+                                        <td>제목</td>
+                                        <td><input name="subject" size="30"></td>
+                                    </tr>	
+                                    <tr rowspan="10">
+                                        <td>내용</td>
+                                        <td><textarea name="content" rows="10" cols="65"></textarea></td>
+                                    </tr>	
+                                    <tr>
+                                        <td>비밀 번호</td>
+                                        <td><input type="password" name="pass"></td>
+                                    </tr>	
+                                    <tr class="re_potoarea">
+                                        <td>리뷰 사진</td>
+                                        <td>
+                                            <label class="re_poto_btn" for="re_poto"><i class="fa-solid fa-plus"></i></label>
+                                            <input id="re_poto" type='file' onchange="readURL(this);"/>
+                                            <div class="re_poto">
+                                                <img id="blah" src="img/board/pngegg.png" alt="your image" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><hr/>
+                                    </tr>
+                                    <tr class="new_post_btn">
+                                        <td colspan="2">
+                                            <input type="submit" value="리뷰등록">
+                                            <input type="reset" value="다시쓰기">
+                                            <input type="button" value="돌아가기" onClick="location.href='list.jsp'">
+                                        </td>
+                                    </tr>
+                                </table>
+                                <input type="hidden" name="ip" value="<%=request.getRemoteAddr()%>">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- 리뷰 -->
+                <div class="review">
+                    <div class="main_title_btn slideBtn">리뷰</div>
+                    <div class="openBooking">
+                        <div class="avg_star" th:text="*{campTotalAvg}"></div> <!--1~5점-->
+                        <div class="newReBtn">
+                            <button id="open_modal">글쓰기</button>
                         </div>
-                        <div class="re_txt_img">
-                            <div class="re_txt"></div>
-                            <!-- 이미지 장수 제한 2~4개 정도 -->
-                            <div class="re_img"></div>
+                        <div class="review_list" th:each="comment:*{campContents}">
+                            <div class="re_box">
+                                <div class="member_profile">
+                                    <div class="member_img" style= "background-color: rgba(72, 137, 73, 0.562)"></div>
+                                    <div class="member_nickName" th:text="${comment.memberName}">닉네임</div>
+                                    <div class="re_star" th:text="${comment.stars}"></div>
+                                </div>
+                                <div class="re_txt_img">
+                                    <div class="re_txt"></div>
+                                    <!-- 이미지 장수 제한 2~4개 정도 -->
+                                    <div class="re_img"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-=======
->>>>>>> myUpdate
->>>>>>> teamUpdate
-<<<<<<< HEAD
-=======
->>>>>>> 4bea7a4b9edbc953aa0cb5a121a5a8a28ce4d58f
-=======
->>>>>>> Stashed changes
->>>>>>> jeonBranch
     </div>
 </body>
 </html>
