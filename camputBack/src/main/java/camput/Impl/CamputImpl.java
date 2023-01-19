@@ -1,23 +1,25 @@
 package camput.Impl;
 
-import camput.Dto.CampCommentDto;
-import camput.Dto.DetailPageDto;
-import camput.Dto.LikeDto;
-import camput.Dto.ReservationDto;
+import camput.Dto.*;
 import camput.Service.CamputService;
 import camput.domain.*;
 import camput.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Table;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Transactional(readOnly = true)
+@Transactional
 @RequiredArgsConstructor
 @Slf4j
 public class CamputImpl implements CamputService {
@@ -31,6 +33,7 @@ public class CamputImpl implements CamputService {
 
 
     @Override
+    @Transactional(readOnly = true)
     public DetailPageDto show(String campName,String memberId){
         Camput camp = camputRepository.findByCampName(campName);
         Member member = memberRepository.findByMemberLoginId(memberId);
@@ -50,22 +53,28 @@ public class CamputImpl implements CamputService {
     }
 
     @Override
-    public ReservationDto bookedCamp(String memberId,String campName,ReservationDto reservationDto) {
-        CampBooked cmBooked= campBooked.campBooking(memberId, campName, reservationDto);
+    public String bookedCamp(String memberId, String finalReservationDto) throws ParseException {
+        JSONParser jsonParser = new JSONParser();
+        JSONObject jobj=(JSONObject) jsonParser.parse(finalReservationDto);
+        String startReservationDay = (String)jobj.get("startReservationDay");
+        LocalDate startDay=LocalDate.parse(startReservationDay, DateTimeFormatter.ISO_DATE);
+        String endReservationDay = (String)jobj.get("endReservationDay");
+        LocalDate endDay=LocalDate.parse(endReservationDay, DateTimeFormatter.ISO_DATE);
+        String campName = (String)jobj.get("campName");
+        int price =Integer.parseInt((String)jobj.get("price"));
+        log.info("startReservationDay={}",startReservationDay);
+        log.info("endReservationDay={}",endReservationDay);
+        log.info("campName={}",campName);
+        log.info("price={}",price);
+        CampBooked cmBooked= campBooked.campBooking(memberId, campName, startDay,endDay,price);
         log.info("cmBooked={}",cmBooked.getId());
         if(cmBooked==null){
             return null;
         }
-        MemberBooked booked = memberBooked.makeMemberReservation(cmBooked.getId(), memberId);
+        MemberBooked memberBooked1 = memberBooked.makeMemberReservation(cmBooked.getId(), memberId);
+        log.info("memberBooked1={}",memberBooked1.getId());
 
-        ReservationDto reservation = ReservationDto.builder()
-                .choicePrice(cmBooked.getCampPrice())
-                .startDate(booked.getMStartDay())
-                .endDate(booked.getMEndDay())
-                .campName(booked.getBookedCampName())
-                .memberName(booked.getMember().getMemberName())
-                .build();
-        return reservation;
+        return "complete";
     }
 
     private static DetailPageDto makeDetailPage(Camput camp, List<CampCommentDto> campCommentDtos, List<String> prices, String address,int resultLike) {

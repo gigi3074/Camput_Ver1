@@ -28,14 +28,14 @@ public class CampBookedImpl implements CampBookedService {
     private final MemberRepository memberRepository;
     private final CampReservationDaysRepository campReservationDaysRepository;
 
-    public CampBooked campBooking(String loginId, String campName, ReservationDto reservationInfo) {
+    public CampBooked campBooking(String loginId, String campName, LocalDate startDay, LocalDate endDay,int price) {
         Camput camp = camputRepository.findByCampName(campName);
         Member member = memberRepository.findByMemberLoginId(loginId);
-        LocalDate endDate = reservationInfo.getEndDate();
-        LocalDate startDate = reservationInfo.getStartDate();
+        LocalDate endDate = endDay;
+        LocalDate startDate = startDay;
 
         CampBooked campBooking = CampBooked.builder()
-                .campPrice(reservationInfo.getChoicePrice())
+                .campPrice(price)
                 .cBookedDay(LocalDateTime.now())
                 .cEndDay(endDate)
                 .camput(camp)
@@ -43,7 +43,6 @@ public class CampBookedImpl implements CampBookedService {
                 .build();
 
         CampBooked campBooked = campBookedRepository.save(campBooking);
-
 
         while(!startDate.equals(endDate)){
             List<CampReservationDays> allByReservationDays = campReservationDaysRepository.findAllByReservationDaysAndCampName(startDate,campName);
@@ -55,8 +54,9 @@ public class CampBookedImpl implements CampBookedService {
                         .count(1)
                         .campName(campName)
                         .campBooked(campBooked)
+
                         .build();
-                campReservationDaysRepository.save(campReservationDay);
+                CampReservationDays save = campReservationDaysRepository.save(campReservationDay);
                 log.info("calenderstart");
                 log.info("startDate={}",startDate);
                 log.info("endDate={}",endDate);

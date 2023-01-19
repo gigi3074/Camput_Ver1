@@ -26,7 +26,7 @@
                         <div class="totalLike" th:text="*{totalLike}"></div>
 
                         <form action="/camput/detail/like" method="post" >
-                            <div class="campNameforLike" th:value="*{campName}"></div>
+                            <div class="campNameforLike"  th:value="*{campName}"></div>
                             <div class="likeValue"></div>
                             <button type="button" class="likeButton"  onclick="like()" >좋아요</button>
                         </form>
@@ -44,12 +44,14 @@
             </div>
             <!-- 숙소정보 -->
             <div class="acc_info">
-                <form class="main_title" method="post" >
+                <form class="reserInfo" name="reserInfo" method="get" action="/camput/reservationPage">
+                    <input type="hidden" class="reservationInfo_name" name="campName" th:value="*{campName}"></input>
+                    <input type="hidden" class="reservationInfo_address" name="campAddress" th:value="*{campAddress}"></input>
                     <div class="main_title_reservation">객실안내 / 예약</div>
                     <div class="room" th:each="price:*{prices}">
                         <div class="room_img"></div>
                         <div class="room_info">
-                            <input type="radio" th:text="${price}" th:value="${price}">원</input>
+                            <input type="checkbox" th:class="'price'+${price}" onclick="checkOnlyOne(this)" name="price" th:text="${price}+'원'" th:value="${price}">
                         </div>
                     </div>
 
@@ -74,7 +76,8 @@
                               <div class="dates one"></div>
                             </div>
                           </div>
-                          <div class="startReservationDay"></div>
+                        <input type="hidden" class="startReservationDay" name="startReservationDay">
+                          <div class="startReservationDay" name="startReservationDay" value=""></div>
                         <div type="button" class="init" onclick="reset()">취소하기</div>
                           <div class="sec_cal">
                             <div class="cal_nav">
@@ -97,9 +100,11 @@
                               <div class="dates two"></div>
                             </div>
                           </div>
-                          <div class="endReservationDay"></div>
+                        <input type="hidden" class="endReservationDay" name="endReservationDay">
+                          <div class="endReservationDay" name="endReservationDay" value=""></div>
                         </div>
-                    <button>예약하기</button>
+                    <div class="warring" name="warring" style="color: #dc3545;display: none">선택하지 않은 항목이 존재합니다</div>
+                    <button onclick="nullCheck(); return false" >예약하기</button>
                 </form>
             </div>
                 <div class="info">
@@ -130,6 +135,7 @@
     </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script th:inline="javascript">
         var fullBookedDays= [[${localDates}]];
         var campName=[[${camp.getCampName}]];

@@ -410,3 +410,54 @@ $(document).ready(function (){
         check.setAttribute("style","background: red");
     }
 })
+
+function nullCheck(){
+    if( $('.price').val()===""|| $('.startReservationDay').val()===""||$('.endReservationDay').val()===""){
+        console.log( $('.price').val())
+
+        console.log( $('.startReservationDay').val())
+        console.log( $('.endReservationDay').val())
+
+        console.log("ehlsrjdla")
+        $('.warring').show();
+        return;
+    }
+    reserInfo.submit();
+}
+function checkOnlyOne(_this){
+var checkBox=document.getElementsByName('price');
+
+var checkBox1=document.querySelector('.price50000');
+var checkBox2=document.querySelector('.price100000');
+    console.log(_this.value);
+    console.log(checkBox1.value);
+    console.log(checkBox2.value);
+    console.log("33333333333333333");
+    console.log(checkBox1.checked);
+    console.log(checkBox2.checked);
+
+if(((!checkBox2.checked&&!checkBox1.checked))&&_this.value===checkBox1.value){
+    console.log(1);
+
+    console.log(_this.value);
+    console.log(checkBox1.value);
+    checkBox.forEach((a)=>{
+        a.checked = false;
+    })
+} else if(((!checkBox2.checked&&!checkBox1.checked))&&_this.value===checkBox2.value){
+    console.log(2);
+
+    console.log(_this.value);
+    console.log(checkBox2.value);
+        checkBox.forEach((a)=>{
+        a.checked = false;
+    })
+}else{
+    checkBox.forEach((a)=>{
+        console.log("3");
+
+        a.checked = false;
+    });
+    _this.checked =true;
+}
+}
