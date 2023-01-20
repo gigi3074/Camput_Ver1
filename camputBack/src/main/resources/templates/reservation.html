@@ -11,8 +11,6 @@
         var endReservationDay = [[${finalReservationInfo.endReservationDay}]];
         var campName = [[${finalReservationInfo.campName}]];
         var price = [[${finalReservationInfo.price}]];
-
-
     </script>
     <script type="text/javascript" src="/js/reservation.js"></script>
     <title>Reservation</title>
@@ -76,6 +74,7 @@
                 <div class="price_total">
                     <form action="/camput/reservationPage/init" method="post"  th:object="${finalReservationInfo}" class="finalReservation">
                         <input type="hidden" th:value="*{startReservationDay}" name="startReservationDay">
+
                         <input type="hidden" th:value="*{endReservationDay}" name="endReservationDay">
                         <input type="hidden" th:value="*{campName}" name="campName">
                         <input type="hidden" th:value="*{price}" name="price">
@@ -109,11 +108,9 @@
                         <div class="successTitle">예약이 꽉찾습니다!</div>
                         <div class="successContent">이전페이지로 이동합니다.</div>
                         <form class="goToBack" th:action="'/camput/detail/'+${finalReservationInfo.campName}" method="get" >
-                            <button>HOME</button>
+                            <button>이전페이지로</button>
                         </form>
                     </div>
-                    <button>다음</button>
-
             </div>
         </div>
     </div> 

@@ -36,7 +36,7 @@ public class CampBookedImpl implements CampBookedService {
 
         CampBooked campBooking = CampBooked.builder()
                 .campPrice(price)
-                .cBookedDay(LocalDateTime.now())
+                .campBookedDay(LocalDateTime.now())
                 .cEndDay(endDate)
                 .camput(camp)
                 .cStartDay(startDate)
@@ -46,27 +46,21 @@ public class CampBookedImpl implements CampBookedService {
 
         while(!startDate.equals(endDate)){
             List<CampReservationDays> allByReservationDays = campReservationDaysRepository.findAllByReservationDaysAndCampName(startDate,campName);
-            log.info("allByReservationDays={}",allByReservationDays.toString());
             if(allByReservationDays.isEmpty()){
                 CampReservationDays campReservationDay = CampReservationDays.builder()
                         .reservationDays(startDate)
                         .memberName(member.getMemberName())
                         .count(1)
                         .campName(campName)
-                        .campBooked(campBooked)
-
                         .build();
                 CampReservationDays save = campReservationDaysRepository.save(campReservationDay);
-                log.info("calenderstart");
-                log.info("startDate={}",startDate);
-                log.info("endDate={}",endDate);
+
                 startDate = startDate.plusDays(1);
             }else{
                 for(CampReservationDays reservationDay :allByReservationDays){
                     if(reservationDay.getCount()!=3){
                         reservationDay.addCount();
                     }else if(reservationDay.getCount()==3){
-                        log.info("count={}",reservationDay.getCount());
                         return null;
                     }
                 }

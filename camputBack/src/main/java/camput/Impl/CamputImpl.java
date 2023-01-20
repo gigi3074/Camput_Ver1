@@ -44,7 +44,6 @@ public class CamputImpl implements CamputService {
         }else{
             resultLike=1;
         }
-        log.info("showCamp={}",camp.getCampName());
         List<CampCommentDto> campCommentDtos = getCampCommentDtos(camp);
         List<String> prices = getPrices(camp);
         String address = camp.getCampAddress().getSimpleAddr();
@@ -62,10 +61,6 @@ public class CamputImpl implements CamputService {
         LocalDate endDay=LocalDate.parse(endReservationDay, DateTimeFormatter.ISO_DATE);
         String campName = (String)jobj.get("campName");
         int price =Integer.parseInt((String)jobj.get("price"));
-        log.info("startReservationDay={}",startReservationDay);
-        log.info("endReservationDay={}",endReservationDay);
-        log.info("campName={}",campName);
-        log.info("price={}",price);
         CampBooked cmBooked= campBooked.campBooking(memberId, campName, startDay,endDay,price);
         log.info("cmBooked={}",cmBooked.getId());
         if(cmBooked==null){

@@ -35,6 +35,7 @@ public class CampDetailPageController {
      */
     @GetMapping("/detail/{name}")
     public String detailPageForm(@PathVariable String name, Model model){
+        log.info(name);
         DetailPageDto camp = camputService.show(name,"asd123");
         List<LocalDate> localDates = campCalenderService.campBookedCalender(name);
         log.info("like={}",camp.getLike());

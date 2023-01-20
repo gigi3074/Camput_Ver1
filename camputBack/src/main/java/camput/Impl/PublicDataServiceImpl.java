@@ -6,6 +6,7 @@ import camput.repository.*;
 import lombok.RequiredArgsConstructor;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -21,6 +22,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional
+@Slf4j
 public class PublicDataServiceImpl implements PublicDataService {
 
     private final CamputRepository camputCampRepository;
@@ -33,7 +35,7 @@ public class PublicDataServiceImpl implements PublicDataService {
 
     @Override
     public void init(String jsonData){
-
+        log.info("실행");
         try{
             JSONObject jObj;
             JSONParser jsonParser = new JSONParser();

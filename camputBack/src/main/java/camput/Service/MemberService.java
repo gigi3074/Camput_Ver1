@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 public interface MemberService {
-    MemberInfoDto findMemberInfo(Long Id);
-    String findMemberNickName(Long memberId);
+    MemberInfoDto findMemberInfo(String loginId);
+    String findMemberNickName(String loginId);
     String findMemberByPw(String memberPw);
     //List<MemberBooked> findBookedList()
 

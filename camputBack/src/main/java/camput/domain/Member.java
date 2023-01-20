@@ -58,7 +58,10 @@ public class Member {
 //      this.memberPoint = memberPoint;
 
     }
-
+    public Member plusPoint(int price){
+        this.memberPoint=Integer.toString(Integer.parseInt(this.memberPoint)+price);
+        return this;
+    }
 
     public Member minusPoint(int price){
         this.memberPoint=Integer.toString(Integer.parseInt(this.memberPoint)-price);

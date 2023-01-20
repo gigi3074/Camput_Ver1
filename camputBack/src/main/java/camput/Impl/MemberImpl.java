@@ -40,16 +40,15 @@ public class MemberImpl implements MemberService {
     }
 
     @Override
-    public String findMemberNickName(Long memberId) {
-        Member member = memberRepository.findById(memberId).get();
+    public String findMemberNickName(String loginId) {
+        Member member = memberRepository.findByMemberLoginId(loginId);
         String nickName = member.getNickName();
         return nickName;
     }
 
     @Override
-    public MemberInfoDto findMemberInfo(Long memberId) {
-        Member member = memberRepository.findById(memberId).orElseThrow(() ->
-                new IllegalArgumentException("없는 회원입니다."));
+    public MemberInfoDto findMemberInfo(String loginId) {
+        Member member = memberRepository.findByMemberLoginId(loginId);
         String memberHolAddress = getMemberAddress(member);
         String gender;
         if (member.getGender() == MemberGender.MALE) {

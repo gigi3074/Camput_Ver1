@@ -112,6 +112,29 @@ public class TestMember {
         MemberBooked save2 = memberBookedRepository.save(BCamp2);
         }
     }*/
+/*    @PostConstruct
+    void init(){
+        MemberAddress address = MemberAddress.builder()
+                .extraAddress("")
+                .detailAddress("아파드 111호")
+                .mainAddress("서울 강남")
+                .memberPostNum("123")
+                .streetAddress("xx로 323")
+                .build();
+        MemberAddress save = memberAddressRepository.save(address);
 
-
+        Member makeMember = Member.builder()
+                .memberName("User")
+                .memberLoginId("asd123")
+                .memberEmail("asd123@naver.com")
+                .gender(MemberGender.MALE)
+                .memberAddress(save)
+                .birthday("001212")
+                .nickName("one")
+                .memberPoint("10000000")
+                .phoneNumber("01012341234")
+                .memberPassword("12345")
+                .build();
+        Member member = memberRepository.save(makeMember);
+    }*/
 }
