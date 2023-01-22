@@ -18,9 +18,24 @@ spring:
         # show_sql: true
         format_sql: true
 
+social:
+  client:
+    kakao:
+      rest-api-key: ba50165094c8a6717bca69e014ef797d
+      secret-key: nN7IyomDVGAkJm4z5nln24jQLiJzBG7Q
+      grant_type: authorization_code
+      redirect-uri: http://localhost:8081/camput/login/api-login
+
+
 logging.level:
   org.hibernate.SQL: debug
 # org.hibernate.type: trace
 
 server:
   port: 8081
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
