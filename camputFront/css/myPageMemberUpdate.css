@@ -5,6 +5,7 @@
 @font-face { font-family: 'TmoneyRoundWindExtraBold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff') format('woff'); font-weight: normal; font-style: normal; }
 *{font-family:'TmoneyRoundWindExtraBold';-webkit-text-size-adjust: auto;}
 /* *{font-family:'LINESeedKR-Bd';} */
+
 /* 배경 */
 .wrap{
     margin: 0 auto; height: 100vmax;
@@ -23,7 +24,7 @@ body{
 header{
     /* position: fixed;
     top: 0;left: 0;right: 0;z-index: 6; */
-    height: 10%;
+    height: 15%;
     background-color: rgba( 255, 255, 255, 0.1);
     font-weight: bold;
     display: flex;
@@ -50,7 +51,7 @@ header{
     width: 100%;
     display: inline-flex;
 }
-.menuBtn li{width: 100%; font-size: 50%;}
+.menuBtn li{width: 100%; font-size: 1.3rem;}
 .menuBtn .menu{position: relative;}
 .menu li{position: absolute; width:100%; height: 100%; right: 80%;}
 .menu .qandA{top: 200%;}
@@ -59,7 +60,8 @@ header{
 .miniMenu li{text-align: right;}
 
 
-.myPageCheckReservation{
+/* 수정폼 */
+.updateMember{
     margin: 0 auto; padding: 1%; 
     width: 70%; height: 80vw;
     background-color: rgba(255, 255, 255, 0.7);
@@ -69,6 +71,7 @@ header{
     flex-direction: row;flex-wrap: wrap; align-content: flex-start;
     box-sizing: border-box; overflow: hidden;
 }
+
 /* 내부해더 */
 .miniHeader{
     /* background-color: #f6d365; */
@@ -85,7 +88,9 @@ header{
 .memberImage i{font-size: 7.5vw; color: #ffa600;}
 .memberNickName{font-size: 3vw;}
 /* 내부사이드 */
-.incon{width: 100%; height: 70%; display: flex;}
+.incon{
+    width: 100%; height: 70%; display: flex;
+}
 /* 사이드바 */
 .aside{
     width: 30%; height: 100%;
@@ -94,7 +99,9 @@ header{
 }
 .aside p {display: flex; flex-direction: column; margin: 10% 10%;}
 .aside span {margin: 10% 10%;}
-.to-right-underline{position: relative;}
+.to-right-underline{
+    position: relative;
+}
 .to-right-underline:after{
     content: "";
     position: absolute;
@@ -108,36 +115,52 @@ header{
     opacity: 0;
     background-color: #ffa600;
 }
-.to-right-underline:hover:after{width: 100%;opacity: 1;}
+.to-right-underline:hover:after{
+    width: 100%;
+    opacity: 1;
+}
 /* 내부메인 */
 .section{
     width: 70%; height: 100%; overflow:scroll;
-    padding: 1% 3%;
+    padding: 1% 5%;
 }
-.reservationCampdetailInfo{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-}
-.reservationCampImage{
-    padding: 3%; width: 35%; margin: 5%;
-    background-image: url(/camputFront/img/main01.png);
-    background-repeat: no-repeat; background-size: contain;
-    background-position: 0 20%;
-}
-.reservationList{width: 60%;}
-.title{font-size: 1.5vw; color: rgba(0, 0, 0, 0.5);}
-.content{text-align: right; font-size: 1.3vw;}
-.cancel{
-    float: right; color: #ffa600;
-    padding: 4%; margin: 5% 0 2% 0%; width: 70%;
-    font-family: 'TmoneyRoundWindExtraBold'; font-size: 1.5vw;
+/* 타이틀 */
+.join_title{font-size: 2vw; padding: 2% 0;}
+/* input 공통 디자인 */
+.int{
+    padding: 4%; margin: 2% 0 2% 30%; width: 70%;
+    font-family: 'TmoneyRoundWindExtraBold'; font-size: 1.3vw;
     box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.4);
-    border-radius: 20px;
+    border-radius: 20px; border: 0;
     background-color: rgba(255, 255, 255, 0.6);
-    transition: color 0.5s ease-in-out;
+    color: #ffa600;
 }
-.cancel:hover{
+#addrBtn{
+    float: right;
+    font-family: 'TmoneyRoundWindExtraBold'; font-size: 1.3vw;
+    padding: 2% 8%;  border-radius: 10px; margin: 2% 0 2% 0%;
+    transition: box-shadow 0.5s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+#addrBtn:hover{
+    color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 80px 0 0  #ffa600 inset, 
+                0 -80px 0 0 #ffa600 inset;
+}
+select:focus{outline: none;}
+.sel option{background: rgba(255, 255, 255, 0.6);}
+input:focus{
+    outline: none;
+}
+.btn_area{text-align: center;}
+.submitButton{
+    font-family: 'TmoneyRoundWindExtraBold'; font-size: 1.3vw;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 3% 8%;  border-radius: 10px; margin: 5% 0%;
+    width: 80%;
+    transition: box-shadow 0.5s ease-in-out;
+}
+.submitButton:hover{
     color: rgba(255, 255, 255, 0.8);
     box-shadow: 0 80px 0 0  #ffa600 inset, 
                 0 -80px 0 0 #ffa600 inset;

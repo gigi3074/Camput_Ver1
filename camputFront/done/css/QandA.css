@@ -10,17 +10,20 @@
 .wrap{
     margin: 0 auto; height: 100vh;
     overflow-y: scroll;
-    -ms-overflow-style: none; /* 인터넷 익스플로러 */
-    scrollbar-width: none; /* 파이어폭스 */
     background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
 }
-.wrap::-webkit-scrollbar {
+/* 스크롤제거 */
+body{
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+}
+::-webkit-scrollbar {
     display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }
 /* 헤더 */
 header{
-    position: fixed;
-    top: 0;left: 0;right: 0;z-index: 6;
+    /* position: fixed;
+    top: 0;left: 0;right: 0;z-index: 6; */
     height: 15%;
     background-color: rgba( 255, 255, 255, 0.1);
     font-weight: bold;
@@ -59,9 +62,11 @@ header{
 
 /* 보드 리스트 */
 .boardQ{
-    margin: 15vh auto; 
-    width: 70%; height: 75%;
-    background-color: rgba(255, 255, 255, 0.8);
+    /* margin: 15vh auto;  */
+    margin: 0 auto; 
+    width: 60%; height: 80vh;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.5);
     border-radius: 30px;
 }
 /* 보드타이틀 */
@@ -69,22 +74,24 @@ header{
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
-    padding-top: 5%; font-size: 2.5rem;
+    padding-top: 5vh; font-size: 3vw;
 }
 .boardTop .boardTitle{
-    margin-left: 5%;
+    margin-left: 5%; height: 4.5vw;
     border-bottom: 5px solid #000;
 }
 .boardTop .boardBtn {
     margin-right: 10%; width: 15%;
 }
 .boardTop .boardBtn button{
-    padding: 3%; width: 100%; font-size: 1.5rem; font-family: 'TmoneyRoundWindExtraBold';
+    padding: 3%; width: 100%; font-size: 1.3vw; font-family: 'TmoneyRoundWindExtraBold';
     box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.4);
-    border-radius: 20px; border: 0;
+    border-radius: 15px; border: 0;
     background-color: rgba(255, 255, 255, 0.8);
     color: #ffa600;
+    transition: 0.5s, color 0.5s ease-in-out;
 }
+.boardTop .boardBtn button:hover{background-color: #ffa600; color: rgba(255, 255, 255, 0.8);}
 .boardMain{
     width: 80%; height: 80%; margin: 2vh auto;
     padding: 2%;
@@ -93,7 +100,7 @@ header{
     height: 10vh;
     display: flex;
     justify-content: space-between;
-    border-bottom: 5px solid rgba(0, 0, 0, 0.7);
+    border-bottom: 3px solid rgba(0, 0, 0, 0.7);
     padding: 3%;
 }
 .txtLeft{
@@ -114,9 +121,20 @@ header{
 .txtRight span{font-size: 1vh;}
 .txtRight p{font-size: 1.2vh;}
 
-/* 페이지 수  */
-.boardNum{
-    width: 50%; text-align: center;
-    margin: 2vh auto;
-    font-size: 1.5vh;
+/* 페이지 수 & 검색 */
+.numAndSearch{
+    display: flex; align-items: flex-end;flex-direction: column
 }
+.numAndSearch .boardNum{
+    width: 70%; text-align: center;
+    margin: 2vh auto;
+    font-size: 1.5vw;
+}
+.numAndSearch .search form{
+    width: 30%; font-size: 2vw; height: 10%;
+    display: flex;
+    align-items: center;
+}
+.numAndSearch .search form i{margin-bottom: 20%; margin-right: 10%;}
+.numAndSearch .search form input{background-color: unset; border-bottom: 3px solid #000; font-size: 1.3vw; font-family:'TmoneyRoundWindExtraBold';}
+.numAndSearch .search form input:focus{outline: none;}

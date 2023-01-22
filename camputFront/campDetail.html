@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/camputFront/campDetail.css">
     <!--    스크립트 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="/camputFront/js/camputDetail copy.js">
+    <script src="/camputFront/js/test.js"></script>
     <!-- 아이콘 -->
     <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
 </head>
@@ -64,7 +64,7 @@
                         <form action="/camput/detail/like" method="post" >
                             <div class="campNameforLike" th:value="*{campName}"></div>
                             <div class="likeValue"></div>
-                            <button type="button" class="likeButton" onclick="like()"><i class="fa-solid fa-heart"></i></button>
+                            <button type="button" class="likeButton"><i class="fa-solid fa-heart"></i></button>
                         </form>
                     </div>
                 </div>
@@ -147,60 +147,38 @@
                         </form>
                     </div>
                 </div>
-                   
-                <!-- 리뷰 글쓰기 모달 창 -->
-                <div id="modal" class="modal_re">
-                    <div class="newReview">
-                        <form method="post" name="postFrm" action="boardPost" enctype="multipart/form-data">
-                            <div class="newpost">
-                                <div class="npTitle">Review 쓰기</div>
-                                <div class="star"></div>
-                                    <tr class="star_line">
-                                        <p>숙소 어떠셨나요??</p>
-                                            <span class="star">
-                                                ★★★★★
-                                                <span>★★★★★</span>
-                                                <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="5">
-                                            </span>
 
-                                            
-                                    </tr>
-                                    <tr>
-                                        <td>제목</td>
-                                        <td><input name="subject" size="30"></td>
-                                    </tr>	
-                                    <tr rowspan="10">
-                                        <td>내용</td>
-                                        <td><textarea name="content" rows="10" cols="65"></textarea></td>
-                                    </tr>	
-                                    <tr>
-                                        <td>비밀 번호</td>
-                                        <td><input type="password" name="pass"></td>
-                                    </tr>	
-                                    <tr class="re_potoarea">
-                                        <td>리뷰 사진</td>
-                                        <td>
-                                            <label class="re_poto_btn" for="re_poto"><i class="fa-solid fa-plus"></i></label>
-                                            <input id="re_poto" type='file' onchange="readURL(this);"/>
-                                            <div class="re_poto">
-                                                <img id="blah" src="img/board/pngegg.png" alt="your image" />
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><hr/>
-                                    </tr>
-                                    <tr class="new_post_btn">
-                                        <td colspan="2">
-                                            <input type="submit" value="리뷰등록">
-                                            <input type="reset" value="다시쓰기">
-                                            <input type="button" value="돌아가기" onClick="location.href='list.jsp'">
-                                        </td>
-                                    </tr>
-                                </table>
-                                <input type="hidden" name="ip" value="<%=request.getRemoteAddr()%>">
+                <!-- 리뷰 글쓰기 모달 창 -->
+                <div id="modal" class="modal_re" style="display:none">
+                    <div class="newReview">
+                        <div class="newpost">
+                            <div class="npTitle">
+                                <p>Review 쓰기</p>
+                                <a class="modal_close"><i class="fa-solid fa-circle-xmark"></i></a>
                             </div>
-                        </form>
+                            <form method="post" name="postFrm" action="boardPost" enctype="multipart/form-data">
+                                <div class="star_line">
+                                    <p>캠핑장 평가해주세요.</p>
+                                    <span class="star">
+                                        ★★★★★
+                                        <span>★★★★★</span>
+                                        <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="5">
+                                    </span>
+                                </div>
+                                <div class="Content">
+                                    <textarea name="re_Content""></textarea>
+                                </div>
+                                <div class="re_pic">
+                                    <input type="image" id="real-input" class="image_inputType_file" multiple>
+                                    <button class="browse-btn"><i class="fa-regular fa-image"></i></botton>
+                                    <div class="imagePreview"><img id="img" /></div>
+                                </div>
+                                <div class="npBtn">
+                                    <input type="reset" class="re_btn" value="취소">
+                                    <input type="submit" class="sub_btn" value="확인">
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <!-- 리뷰 -->

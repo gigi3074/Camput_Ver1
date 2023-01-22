@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{cmmn/adminLayout}">
+<body>
+<div layout:fragment="content">
+    <script src="/js/storeDataSendAjax.js"></script>
+    <script src="/js/imagePreview.js"></script>
+ 
+    <div class="row border-bottom" style="margin-top: 10px; margin-bottom: 10px;"></div>
+ 
+    <form id="addForm">
+        <div style="display: inline;">
+            <label for="img_upload">
+                <img src="/img/photo_add.png" style="width:100px; height:100px; cursor: pointer;">
+            </label>
+            <input type="file" name="img_upload" id="img_upload"
+                   onchange="previewImage(this,'View_area')"
+                   style="display: none;" multiple>
+ 
+            <span id='View_area'
+                  style='position:relative; color: black; border: 0px solid black;'>
+        </span>
+        </div>
+ 
+        <div style="align-content: center; width: 100%; text-align: center;">
+            <input type="button" class="btn" style="background: #FF6491; color: #FFF2F6;" onclick="dataSubmit();"
+                   value="전송하기">
+        </div>
+ 
+        <div id="resultDiv">
+            <p th:text="${log}"></p>
+        </div>
+    </form>
+</div>
+</body>
+</html>

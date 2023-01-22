@@ -4,68 +4,86 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>myPageCheckReservation </title>
+    <title>예약조회 </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="/camputFront/js/myPageCheckReservation.js"></script>
     <link rel="stylesheet" href="css/myPageCheckReservation.css">
+    <!-- 아이콘 -->
+    <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="myPageCheckReservation">
-        <div class="top">
-            <div class="topContent-wrap">
-                <div class="Logo" ></div>
-                <div class="right-bar">
-                    <ul>
-                        <li class="topContent myPage">마이페이지</li>
-                        <li class="topContent QnA">QnA</li>
-                        <li class="topContent notice">공지사항</li>
-                    </ul>
-               </div>
+    <div class="wrap">
+        <header>
+            <div class="Logo"></div>
+            <div class="nav">
+                <ul class="menuBtn">
+                    <li class="nologin"><a href="login.html">Login</a></li>
+                    <li class="join"><a href="join.html">Join</a></li>
+                    <li class="menu">
+                    <a href="#"><i class="fa-solid fa-bars"></i></a>
+                        <ul class="miniMenu">
+                            <li class="notice gnb_menu"><a href=""> 공지사항</a></li>
+                            <li class="qandA gnb_menu"><a href=""> Q & A</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-        </div>
-        <div class="middle-warp">
-        <div class="middle">
-            <div class="middleT">
-            <div class="memberimage_nickName">
-                <div class="memberImage"></div>
-                <div class="memberNickName" th:text="${memberNickName}">닉네임</div>
+            <!-- 메뉴 -->
+            <div class="menu" style="display: none;">
+                <ul class="menuBtn">
+                    <li class="login"><a href="login.html">마이페이지</a></li>
+                    <li class="join"><a href="join.html">로그아웃</a></li>
+                    <li class="menu">
+                    <a href="#"><i class="fa-solid fa-bars"></i></a>
+                        <ul class="miniMenu" style="display: none;">
+                            <li class="qandA gnb_menu">위시리스트</li>
+                            <li class="qandA gnb_menu">예약리스트</li>
+                            <li class="notice gnb_menu">공지사항</li>
+                            <li class="qandA gnb_menu">Q & A</li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-                 <div class="middleInfoTop">예약정보</div>
-            </div>    
-
-            <div class="middleM">
-                <div class="sidebar-wrap">
-                    <div class="sideBar">
-                        <ul>
-                            <li class="memberInfo"><a href="./information">회원정보</a></li>
-                            <li class="memberRservationInfo"><a href="./bookInfo"><strong>예약정보</strong></a></li>
-                            <li class="wishList"><a href="./like">위시리스트</a></li>
-                        </ul>    
-                    </div>
+        </header>
+        <div class="myPageCheckReservation">
+            <div class="miniHeader">
+                <div class="memberImage"><i class="fa-solid fa-user"></i></div>
+                <div class="memberNickName" th:text="${nickName}">닉네임</div>
+            </div>
+            <div class="incon">
+                <div class="aside">
+                    <p>
+                        <span class="memberInfo to-right-underline"><a href="./information">회원정보</a></span>
+                        <span class="memberRservationInfo to-right-underline"><a href="./bookInfo">예약정보</a></span>
+                        <span class="wishList to-right-underline"><a href="./like">위시리스트</a></span>
+                    </p>
                 </div>
+                <div class="section">
                     <div class="middleInfo">
-                            <div class="reservationCampInfo">
-                                    <div class="reservationCampdetailInfo" th:each="camp:${bookedCamps}">
-                                        <div class="reservationCampImage" th:style="'background-image:url('+${camp.getMyPageCampImageUrl()}+');'"></div>
-                                        <ul>
-                                            <li class="title">캠핑장 이름</li>
-                                            <li class="content reservationCampName" th:text="${camp.getMyPageCampName()}">캠핑장 이름</li>
-                                            <li class="title">캠핑장 주소</li>
-                                            <li class="content reservationCampAddress" th:text="${camp.getMyPageCampAddress()}">캠핑장 주소</li>
-                                            <li class="title">예약일</li>
-                                            <li class="content reservationCampDate" th:text="${camp.getMyPageCampDay()}">예약일</li>
-                                            <li class="cancelButton"><button type="submit" class="cancel" onclick="location.href='/camput/reservation/cancel/{campName}';" th:value="${camp.getMyPageCampName()}" style="background-size: cover">취소하기</button></li>
-                                        </ul>
-                                        
-                                    </div>
-                                </div>
-                                <th:block th:each="page:${#numbers.sequence(startPage, endPage)}">
-                                    <a th:if="${page != nowPage}" th:href="@{/camput/myPage/bookInfo(page=${page}-1)}" th:text="${page}"></a>
-                                    <strong th:if="${page==nowPage}" th:text="${page}" ></strong>
-                                </th:block>
+                        <div class="reservationCampInfo">
+                            <div class="reservationCampdetailInfo" th:each="camp:${bookedCamps}">
+                                <div class="reservationCampImage" th:style="'background-image:url('+${camp.getMyPageCampImageUrl()}+');'"></div>
+                                <ul class="reservationList">
+                                    <li class="title">캠핑장 이름</li>
+                                    <li class="content reservationCampName" th:text="${camp.getMyPageCampName()}">캠핑장 이름</li>
+                                    <li class="title">캠핑장 주소</li>
+                                    <li class="content reservationCampAddress" th:text="${camp.getMyPageCampAddress()}">캠핑장 주소</li>
+                                    <li class="title">예약일</li>
+                                    <li class="content reservationCampDate" th:text="${camp.getMyPageCampDay()}">예약일</li>
+                                    <li class="cancelButton"><button type="submit" class="cancel" onclick="location.href='/camput/reservation/cancel/{campName}';" th:value="${camp.getMyPageCampName()}" style="background-size: cover">취소하기</button></li>
+                                </ul>         
                             </div>
                         </div>
-                        <div class="middleBottom"></div>
+                        <th:block th:each="page:${#numbers.sequence(startPage, endPage)}">
+                            <a th:if="${page != nowPage}" th:href="@{/camput/myPage/bookInfo(page=${page}-1)}" th:text="${page}"></a>
+                            <strong th:if="${page==nowPage}" th:text="${page}" ></strong>
+                        </th:block>
                     </div>
                 </div>
+                <div class="middleBottom"></div>
             </div>
+        </div>
+    </div>
 </body>
 </html>

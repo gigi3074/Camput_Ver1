@@ -6,13 +6,21 @@
 *{font-family:'TmoneyRoundWindExtraBold';}
 
 .wrap{
-    margin: 0 auto; height: 100vh;
+    margin: 0 auto; height: 100VMIN;
     background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
 }
 .main{
     width: 100%;margin: 0 auto;
     display: flex;
     flex-direction: column; align-items: center;
+}
+/* 스크롤제거 */
+body{
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+}
+::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }
 .logo{
     background-image: url(/camputFront/img/logo01_2.png);
@@ -24,21 +32,43 @@
     text-align: center; color: #fff;
     margin: 2% auto;
 }
-.find_Info_Txt h3{font-size: 2rem; margin-bottom: 2%;}
-.find_Info_Txt p{font-size: 1rem;}
+.find_Info_Txt h3{font-size: 3vw; margin-bottom: 2%;}
+.find_Info_Txt p{font-size: 1.3vw;}
 input{
-    padding: 5%; margin: 2% auto; width: 100%; font-size: 1.5rem; font-family: 'TmoneyRoundWindExtraBold';
+    padding: 5%; margin: 2% auto; width: 100%;
+    font-family: 'TmoneyRoundWindExtraBold';
+}
+.BTN{
+    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.4);
+    border-radius: 20px; border: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #ffa600; font-size: 2vw;
+}
+#checkId{
+    transition: 0.5s, color 0.5s ease-in-out;
+}
+#checkId:hover{
+    background-color: #ffa600;
+    color: rgba(255, 255, 255, 0.8);
 }
 
-.form-control{
-    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.4);
-    border-radius: 20px; border: 0;
-    background-color: rgba(255, 255, 255, 0.8);
-    color: #ffa600;
+/* 아이디 인증 후 */
+
+/* 서브 */
+.loginSub{width: 100%; margin: 4% 0; text-align: center;}
+.loginSub a{
+    font-size: 2vw;
+    color: #fff;
 }
-.chekBtn{
-    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.4);
-    border-radius: 20px; border: 0;
-    background-color: rgba(255, 255, 255, 0.8);
-    color: #ffa600;
+.loginSub a::after{
+    margin: 0 2%;
+}
+.loginSub a:last-child::after{display: none;}
+.passwordBtn{font-size: 3vw;}
+.passwordBtn{
+    transition: 0.5s, color 0.5s ease-in-out
+}
+.passwordBtn:hover{
+    background-color: #ffa600;
+    color: rgba(255, 255, 255, 0.8);
 }
