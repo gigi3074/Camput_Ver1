@@ -65,7 +65,7 @@ public class JoinServiceImpl implements JoinService {
 
     public String memberLoginCheck(String memberLoginCheck) {
         Member findMember = memberRepository.findByMemberLoginId(memberLoginCheck);
-        if (findMember != null){ // 조회결과가 있다 -> 사용할 수 없다.
+        if (findMember != null){ // 조회결과가 있다 ->함 사용할 수 없다.
             return null;
         }else {
             return "ok";

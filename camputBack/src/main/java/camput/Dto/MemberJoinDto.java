@@ -38,7 +38,7 @@ private String memberPasswordHidden;
         this.mainAddress = mainAddress;
         this.memberPostNum = memberPostNum;
         this.detailAddress = detailAddress;
-        this.extraAddress=extraAddress;
+        this.extraAddress = extraAddress;
         this.memberLoginId = memberLoginId;
         this.memberPassword = memberPassword;
         this.nickName = nickName;

@@ -1,134 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-        <!-- css -->
-        <link rel="stylesheet" href="/camputFront/done/css/QandA.css" />
-        <!--    스크립트 -->
-        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script type="text/javascript" src="/camputFront/js/QandA.js"></script>
-        <script src="/camputFront/js/QandA.js"></script>
-        <!-- 아이콘 -->
-        <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
-</head>
-<body>
-    <div class="wrap">
-        <!-- Q & A 페이지-->
-        <header>
-            <div class="Logo"></div>
-            <div class="nav">
-                <ul class="menuBtn">
-                    <li class="nologin"><a href="login.html">Login</a></li>
-                    <li class="join"><a href="join.html">Join</a></li>
-                    <li class="menu">
-                    <a href="#"><i class="fa-solid fa-bars"></i></a>
-                        <ul class="miniMenu">
-                            <li class="notice gnb_menu"><a href=""> 공지사항</a></li>
-                            <li class="qandA gnb_menu"><a href=""> Q & A</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <!-- 메뉴 -->
-            <div class="menu" style="display: none;">
-                <ul class="menuBtn">
-                    <li class="login"><a href="login.html">마이페이지</a></li>
-                    <li class="join"><a href="join.html">로그아웃</a></li>
-                    <li class="menu">
-                    <a href="#"><i class="fa-solid fa-bars"></i></a>
-                        <ul class="miniMenu" style="display: none;">
-                            <li class="qandA gnb_menu">위시리스트</li>
-                            <li class="qandA gnb_menu">예약리스트</li>
-                            <li class="notice gnb_menu">공지사항</li>
-                            <li class="qandA gnb_menu">Q & A</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </header>
-        <div class="boardQ">
-            <div class="boardTop">
-                <div class="boardTitle">
-                    <a href=""> Q & A </a>
-                </div>
-                <div class="boardBtn"><button>
-                    <i class="fa-solid fa-pen"></i> 글쓰기
-                </button></div>
-            </div>
-            <div class="boardMain">
-                <div class="boardList"><a href="">
-                    <div class="txtLeft">
-                        <h4>nickName</h4>
-                        <h1>뭘 물어봐야 되나요?</h1>
-                        <span>2023.01.18</span>
-                    </div>
-                    <div class="txtRight">
-                        <span>번호 01</span>
-                        <p>조회수</p>
-                    </div>
-                </a></div>
-                <div class="boardList"><a href="">
-                    <div class="txtLeft">
-                        <h4>nickName</h4>
-                        <h1>뭘 물어봐야 되나요?</h1>
-                        <span>2023.01.18</span>
-                    </div>
-                    <div class="txtRight">
-                        <span>번호 01</span>
-                        <p>조회수</p>
-                    </div>
-                </a></div>
-                <div class="boardList"><a href="">
-                    <div class="txtLeft">
-                        <h4>nickName</h4>
-                        <h1>뭘 물어봐야 되나요?</h1>
-                        <span>2023.01.18</span>
-                    </div>
-                    <div class="txtRight">
-                        <span>번호 01</span>
-                        <p>조회수</p>
-                    </div>
-                </a></div>
-                <div class="boardList"><a href="">
-                    <div class="txtLeft">
-                        <h4>nickName</h4>
-                        <h1>뭘 물어봐야 되나요?</h1>
-                        <span>2023.01.18</span>
-                    </div>
-                    <div class="txtRight">
-                        <span>번호 01</span>
-                        <p>조회수</p>
-                    </div>
-                </a></div>
-                <div class="boardList"><a href="">
-                    <div class="txtLeft">
-                        <h4>nickName</h4>
-                        <h1>뭘 물어봐야 되나요?</h1>
-                        <span>2023.01.18</span>
-                    </div>
-                    <div class="txtRight">
-                        <span>번호 01</span>
-                        <p>조회수</p>
-                    </div>
-                </a></div>
-                <div class="numAndSearch">
-                    <div class="boardNum">
-                        1,2,3,4,5 >
-                    </div>
-                    <div class="search">
-                        <form action="">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            <input class="searchInput" type="text" name="" id="">
-                        </form>
-                    </div>
-                </div>
-            </div>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script th:inline="javascript" src="/js/QandA.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
+    <title>Q&A</title>
+  </head>
+  <style>
+    .table_body {
+      width: 1400px;
+      margin: 0 auto;
+      background-color: yellow;
+    }
+    .board_list {
+      margin: 0 auto;
+      width: 1000px;
+    }
+    .qnaPagination {
+      display: flex;
+      justify-content: center;
+      padding-top: 10%;
+      width: 80%;
+      margin: auto;
+      height: 10%;
+    }
+    .qnaPagination ul {
+      display: flex;
+      flex-direction: row;
+      list-style: none;
+      text-align: center;
+    }
+    .qnaPagination li {
+      padding: 0px 10px;
+      font-size: 20px;
+    }
+    .qnaPagination li a {
+      text-decoration: none;
+      color: black;
+    }
+    .active {
+      font-weight: bolder;
+    }
+  </style>
+  <script>
+    $(document).ready(function () {
+      $("#searchButton").click(function () {
+        location.href = "/QnA/list?searchKeyword=" + $("#searchKeyword").val(); // 값 넘기기
+
+        $("#searchKeyword").val(""); // 값 초기화
+      });
+    });
+  </script>
+  <body>
+    <!-- Q & A 페이지-->
+    <div class="table_body">
+      <div class="board_list">
+        <table class="board_list">
+          <thead>
+            <tr class="table_title">
+              <td colspan="5">게시판목록</td>
+            </tr>
+            <tr>
+              <th>게시글 번호</th>
+              <th>제목</th>
+              <th>작성자</th>
+              <th>작성일</th>
+              <th>조회수</th>
+            </tr>
+            <tr th:each="qna, i : ${qnalist}">
+              <td th:text="${qnalist.getTotalElements() - i.index}"></td>
+              <td>
+                <a th:text="${qna.qnaTitle}" th:href="@{/QnA/view(id=${qna.id})}"></a>
+              </td>
+              <td th:text="${qna.memberLoginId}" }></td>
+              <td th:text="${qna.qnaUpdateDate}"></td>
+              <td th:text="${qna.viewCount}"></td>
+            </tr>
+          </thead>
+        </table>
+        <div>
+          <input type="text" name="searchKeyword" id="searchKeyword" placeholder="검색어를 입력해 주세요." />
+          <input type="button" value="검색" id="searchButton" />
         </div>
+        <div class="qnaPagination">
+          <ul
+            class="pagination"
+            th:with="start=${(T(java.lang.Math).floor(qnalist.getNumber()/10)*10) + 1},
+                                last=(${start + 9 < qnalist.totalPages ? start + 9 : qnalist.totalPages})"
+          >
+            <li>
+              <a th:href="@{/QnA/list(page=1)}" aria-label="First">
+                <span aria-hidden="true"><i class="fa-solid fa-angles-left"></i></span>
+              </a>
+            </li>
+            <li th:class="${qnalist.first} ? 'disabled'">
+              <a th:href="${qnalist.first} ? '#' : @{/QnA/list(page=${qnalist.number})}" aria-label="Previous">
+                <span aria-hidden="true"><i class="fa-solid fa-angle-left"></i></span>
+              </a>
+            </li>
+            <li th:each="page: ${#numbers.sequence(start,last)}" th:class="${page == qnalist.number +1} ? 'active'">
+              <a th:text="${page}" th:href="@{/QnA/list(page=${page})}"></a>
+            </li>
+            <li th:class="${qnalist.last} ? 'disabled'">
+              <a th:href="${qnalist.last} ? '#' : @{/QnA/list(page=${qnalist.number + 2})}" aria-label="Next">
+                <span aria-hidden="true"><i class="fa-solid fa-angle-right"></i></span>
+              </a>
+            </li>
+            <li>
+              <a th:href="@{/QnA/list(page=${totalPage + 1})}" aria-label="Last">
+                <span aria-hidden="true"><i class="fa-solid fa-angles-right"></i></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <a th:if="${loginMember}" th:href="@{/QnA/write}">글쓰기</a>
+      </div>
     </div>
-</body>
+  </body>
 </html>

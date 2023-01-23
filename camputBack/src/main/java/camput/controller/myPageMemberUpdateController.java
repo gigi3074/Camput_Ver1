@@ -7,10 +7,13 @@ import camput.Service.MemberUpdateService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpSession;
 
 
 @Slf4j
@@ -21,17 +24,12 @@ public class myPageMemberUpdateController {
     private final MemberUpdateService memberUpdateService;
     private final JoinService joinService;
 
-
     @GetMapping("/member/update")
-    public String intoPage(){
+    public String intoPage(Model model, HttpSession session){
+        String loginMember = (String) session.getAttribute("loginMember");
+        MemberJoinDto result = memberUpdateService.view(loginMember);
+        model.addAttribute("loginMember", result);
         return "myPageMemberUpdate";
-    }
-
-    @PostMapping("/member/view") // myPageMemberUpdate 페이지를 열면 function이 실행.
-    @ResponseBody // 응답 선언.
-    public MemberJoinDto view(@ModelAttribute MemberJoinDto memberJoinDto){
-        MemberJoinDto result = memberUpdateService.view(memberJoinDto);
-        return result;
     }
 
     @PostMapping("/member/update")
@@ -40,7 +38,7 @@ public class myPageMemberUpdateController {
         System.out.println("memberJoinDto = " + memberJoinDto);
         String MemberUpdate = memberUpdateService.update(memberJoinDto);
         //return "/camput/myPage/information";
-        return "";
+        return "/camput/myPage/information";
     }
 
 }
