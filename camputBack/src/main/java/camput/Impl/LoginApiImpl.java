@@ -7,6 +7,7 @@ import camput.Dto.loginApiDto.SocialAuthResponse;
 import camput.Service.LoginApiService;
 import camput.feinClient.LoginApiClient;
 import camput.feinClient.LoginApiMemberInfoClient;
+import camput.feinClient.LogoutApiClient;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,7 @@ public class LoginApiImpl implements LoginApiService {
 
     private final LoginApiClient loginApiClient;
     private final LoginApiMemberInfoClient loginApiMemberInfoClient;
+    private final LogoutApiClient logoutApiClient;
     @Value("${social.client.kakao.rest-api-key}")
     private String clientId;
     @Value("${social.client.kakao.secret-key}")
@@ -35,6 +37,8 @@ public class LoginApiImpl implements LoginApiService {
     private String grantType;
     @Value("${social.client.kakao.redirect-uri}")
     private String redirectUri;
+    @Value("${social.client.kakao.admin-key}")
+    private String adminkey;
 
 
     @Override
@@ -61,7 +65,6 @@ public class LoginApiImpl implements LoginApiService {
         KakaoLoginData kakaoLoginData = Optional.ofNullable(KakaoLoginResponse.getKakao_account()).orElse(KakaoLoginData.builder().build());
         String nickname = Optional.ofNullable(kakaoLoginData.getProfile()).orElse(KakaoLoginData.KakaoProfile.builder().build()).getNickname();
 
-
         return  MemberResponseDto.builder()
                 .loginId(kakaoLoginData.getEmail())
                 .nickname(nickname)
@@ -69,5 +72,14 @@ public class LoginApiImpl implements LoginApiService {
                 .gender(kakaoLoginData.getGender())
                 .build();
 
+    }
+    @Override
+    public void logOut(String code){
+        Map<String, String> header = new HashMap<>();
+        log.info("code={}",code);
+        header.put("authorization", "Bearer "+code);
+
+        ResponseEntity<?> response = logoutApiClient.doLogOut(header);
+        log.info("response={}",response.toString());
     }
 }

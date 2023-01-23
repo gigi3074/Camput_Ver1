@@ -25,7 +25,8 @@ social:
       secret-key: nN7IyomDVGAkJm4z5nln24jQLiJzBG7Q
       grant_type: authorization_code
       redirect-uri: http://localhost:8081/camput/login/api-login
-
+      admin-key: 09eca5bad30d56c0c80352f2eceecfa4
+      logout-redirect-uri: http://localhost:8081/camput/logout
 
 logging.level:
   org.hibernate.SQL: debug

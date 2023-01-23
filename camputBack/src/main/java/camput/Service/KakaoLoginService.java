@@ -1,5 +1,6 @@
 package camput.Service;
 
+import camput.Dto.loginApiDto.LoginSessionDto;
 import camput.Dto.loginApiDto.MemberResponseDto;
 import camput.Dto.loginApiDto.SocialAuthResponse;
 import camput.domain.Member;
@@ -27,13 +28,6 @@ public class KakaoLoginService {
         if (userInfo.getLoginId().isEmpty()){
             throw new IllegalArgumentException("이메일이 없으면 로그인이 불가능합니다");
         }
-        log.info("userinfo={}",userInfo.toString());
-        log.info("userinfo={}",userInfo.getLoginId());
-        log.info("userinfo={}",userInfo.getBirthday());
-        log.info("userinfo={}",userInfo.getNickname());
-        log.info("userinfo={}",userInfo.getGender());
-
-
 
         if(memberRepository.findByMemberLoginId(userInfo.getLoginId())==null){
             if(userInfo.getGender()=="male"){
@@ -58,9 +52,15 @@ public class KakaoLoginService {
         if(member==null){
             throw new IllegalArgumentException("없는 회원 입니다");
         }
+        String loginId = userInfo.getLoginId();
 
-         session = request.getSession();
-         session.setAttribute(memberService.LOGIN_MEMBER, userInfo.getLoginId());
+        LoginSessionDto loginSession = LoginSessionDto.builder()
+                .loginCode(accessToken.getAccess_token())
+                .loginId(loginId)
+                .build();
+
+        session = request.getSession();
+        session.setAttribute(memberService.LOGIN_MEMBER, loginSession);
      return session;
     }
 

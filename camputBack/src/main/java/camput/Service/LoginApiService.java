@@ -20,7 +20,7 @@ import java.net.URL;
 public interface LoginApiService {
     SocialAuthResponse getAccessToken(String code);
     MemberResponseDto getUserInfo(String token);
-
+    void logOut(String code);
 
 }
 
