@@ -71,10 +71,7 @@ public class MemberController {
         return "redirect:/camput/home";
     }
 
-    // 아이디 찾기 화면 띄우기
-
-    // 아이디 찾기 위한 값을 받아오고
-
+    // 아이디 찾기
     @GetMapping("/findId")
     public String findIdPage(Model model) {
         model.addAttribute("model", FindIdDto.builder().build());

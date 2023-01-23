@@ -101,7 +101,7 @@ public class CamputImpl implements CamputService {
     }
 
     private List<CampCommentDto> getCampCommentDtos(Camput camp) {
-        List<Commented> campComments= commentedRepository.findAllByCamput(camp);
+        List<Commented> campComments = commentedRepository.findAllByCamput(camp);
         List<CampCommentDto> campCommentDtos = new ArrayList<>();
         if(commentedRepository.findAllByCamput(camp)!=null){
 

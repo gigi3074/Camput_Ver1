@@ -32,12 +32,8 @@ public class TestMember {
     private final CampCalenderService campCalenderService;
     private final CamputService camputService;
 
-    private final CampBookedImpl campBooked;
-    private final MemberBookedImpl memberBooked;
-
-   /* @PostConstruct
+    /*@PostConstruct
     public void init() {
-
         MemberAddress address = MemberAddress.builder()
                 .extraAddress("")
                 .detailAddress("아파드 111호")

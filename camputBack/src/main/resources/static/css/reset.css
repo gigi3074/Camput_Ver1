@@ -37,7 +37,7 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: #ffa600;
+  color: #ffa600; !important;
 }
 
 /* 폰트 초기화 */
@@ -80,11 +80,14 @@ h6 {
 /* 버튼 초기화 */
 button {
   border: 0;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: unset;
 }
 /* input 초기화 */
 input {
   border: 0;
+}
+input:focus{
+  outline: none; background-color: rgba(255, 255, 255, 0.6);
 }
 
 /* 반응형 이미지 */

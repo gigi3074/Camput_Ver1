@@ -13,13 +13,13 @@ function findPw_check(){
         success:function(response){
             console.log(response);
             if(response === true){
-                $('#idCheckResult').text("아이디 인증 완료");
-                $( document ).ready(function() {
-                    $('#checkId').click(function() {
+                // $('#idCheckResult').text("아이디 인증 완료");
+                // $( document ).ready(function() {
+                //     $('#checkId').click(function() {
                         $('#pwUpdate').show();
                         $('#checkBox').hide();
-                    });
-                });
+                    // });
+                // });
             } else {
                 $('.checkError').text("아이디가 없습니다.");
             }
