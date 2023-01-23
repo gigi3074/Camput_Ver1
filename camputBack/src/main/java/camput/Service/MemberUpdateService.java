@@ -4,6 +4,6 @@ import camput.Dto.MemberJoinDto;
 
 public interface MemberUpdateService {
 
-    MemberJoinDto view(MemberJoinDto memberJoinDto);
+    MemberJoinDto view(String loginId);
     String update(MemberJoinDto memberJoinDto);
 }

@@ -23,8 +23,8 @@ public class MemberUpdateImpl implements MemberUpdateService {
 
     @Override
     @Transactional
-    public MemberJoinDto view(MemberJoinDto memberJoinDto) {
-        Member member = memberRepository.findByMemberLoginId(memberJoinDto.getMemberLoginId());
+    public MemberJoinDto view(String loginId) {
+        Member member = memberRepository.findByMemberLoginId(loginId);
         String gender = "";
         if (member.getGender() != null) {
             if (member.getGender() == MemberGender.MALE) {

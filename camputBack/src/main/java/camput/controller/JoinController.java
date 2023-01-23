@@ -26,7 +26,7 @@ public class JoinController {
         System.out.println("JoinController.join");
         System.out.println("memberJoinDto = " + memberJoinDto);
         joinService.join(memberJoinDto);
-        return "redirect:/camput/home";
+        return "redirect:/camput/login";
     }
 
     @PostMapping("/member/join2")
