@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -21,7 +22,7 @@ public class CampDetailPageController {
     private final CamputService camputService;
     private final CampCalenderService campCalenderService;
     @GetMapping("/detail/{name}")
-    public String detailPageForm(@RequestParam String name, Model model){
+    public String detailPageForm(@PathVariable String name, Model model){
 
         DetailPageDto camp = camputService.show(name);
         List<LocalDate> localDates = campCalenderService.campBookedCalender(name);

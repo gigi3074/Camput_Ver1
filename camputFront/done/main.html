@@ -33,18 +33,20 @@
     <!-- 메인페이지 -->
     <div class="wrap">
         <div class="backImg">
-            <div class="innercom">
+            <div class="innercon">
                 <div class="logo"></div>
                     <div class="homeBtn">
                         <button class="mapBtn"><a href="home"> 일상에 캠프를 얹다 <i class="fa-solid fa-caravan"></i></a></button>
                     </div>
                     <div class="noneMember" style="display: none;">
-                        <button class="myPage" type="button"><a href="">
-                            <img src="/camputFront/img/svg/camp.svg" alt="캠프아이콘"> MyPage
-                        </a></button>
+                        <a href="">
+                            <object type="image/svg+xml" data="/camputFront/img/svg/camp.svg" class="camp"></object>
+                            <p>&nbsp;MyPage</p>
+                        </a>
                         <form action="/camput/logout" method="post">
                             <button class="logout" type="submit">
-                                <img src="/camputFront/img/svg/fire.svg" alt="캠프아이콘"> Logout
+                                <object type="image/svg+xml" data="/camputFront/img/svg/fire.svg" class="fire"></object>
+                                <p>Logout</p>
                             </button>
                         </form>
                     </div>

@@ -24,18 +24,7 @@ public class TestMember {
     private final CampImageFileRepository campImageFileRepository;
 
     /*@PostConstruct
-=======
-
-   /* @PostConstruct
->>>>>>> teamUpdate
-    public void init(){
-=======
-
-
-
-   /* @PostConstruct
     public void init() {
->>>>>>> teamUpdate
         MemberAddress address = MemberAddress.builder()
                 .extraAddress("")
                 .detailAddress("아파드 111호")
