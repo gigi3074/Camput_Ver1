@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- css -->
-    <link rel="stylesheet" href="/camputBack/src/main/resources/static/css/main.css">
+    <link rel="stylesheet" href="/camputFront/done/css/main.css">
     <!-- 아이콘 -->
     <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
     <!--    스크립트 -->
@@ -19,7 +19,7 @@
             let loginMember = [[${member}]];
 
             console.log(loginMember);
-            if(loginMember == false){ // 로그인 상태가 아닐 때
+            if(loginMember == false || loginMember == null){ // 로그인 상태가 아닐 때
                 $('.noneMember').hide();
                 $('.memberLogin').show();
             }else{
@@ -40,21 +40,23 @@
                     </div>
                     <div class="noneMember" style="display: none;">
                         <button class="myPage" type="button"><a href="">
-                            <img src="/camputBack/src/main/resources/static/img/svg/la_campground.svg" alt="캠프아이콘"> MyPage
+                            <img src="/camputFront/img/svg/camp.svg" alt="캠프아이콘"> MyPage
                         </a></button>
                         <form action="/camput/logout" method="post">
-                            <button class="logout" type="submit"><a href="">
-                                <img src="/camputBack/src/main/resources/static/img/svg/nimbus_fire.svg" alt="캠프아이콘"> Logout
-                            </a></button>
+                            <button class="logout" type="submit">
+                                <img src="/camputFront/img/svg/fire.svg" alt="캠프아이콘"> Logout
+                            </button>
                         </form>
                     </div>
                     <div class="memberLogin">
-                        <button class="loginBtn"><a href="login">
-                            <img src="/camputBack/src/main/resources/static/img/svg/la_campground.svg" alt="캠프아이콘">Login
-                        </a></button>
-                        <button class="joinBtn"><a href="join">
-                            <img src="/camputBack/src/main/resources/static/img/svg/nimbus_fire.svg" alt="캠프아이콘">Join
-                        </a></button>
+                        <a href="loginBtn">
+                            <object type="image/svg+xml" data="/camputFront/img/svg/camp.svg" class="camp"></object>
+                            <p>&nbsp;Login</p>
+                        </a>
+                        <a href="joinBtn">
+                            <object type="image/svg+xml" data="/camputFront/img/svg/fire.svg" class="fire"></object>
+                            <p>&nbsp;Join</p>
+                        </a>
                     </div>
             </div>
         </div>

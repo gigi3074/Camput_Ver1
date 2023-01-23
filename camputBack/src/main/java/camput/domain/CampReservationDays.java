@@ -10,25 +10,27 @@ import java.time.LocalDate;
 @Getter
 public class CampReservationDays {
     @Id@GeneratedValue
-    @Column(name = "campbookedDays_id")
+    @Column(name = "campReservationDays_id")
     private Long id;
     private String memberName;
     private LocalDate reservationDays;
     private int count;
     private String campName;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private CampBooked campBooked;
+
     @Builder
-    public CampReservationDays(String memberName,String campName ,LocalDate reservationDays, int count, CampBooked campBooked) {
+    public CampReservationDays(String memberName,String campName ,LocalDate reservationDays, int count) {
         this.memberName = memberName;
         this.reservationDays = reservationDays;
         this.count = count;
-        this.campBooked = campBooked;
         this.campName = campName;
     }
 
     public CampReservationDays addCount(){
         this.count+=1;
+        return this;
+    }
+    public CampReservationDays minusCount(){
+        this.count-=1;
         return this;
     }
 }
