@@ -13,9 +13,6 @@ function findPw_check(){
         success:function(response){
             console.log(response);
             if(response === true){
-                // $('#idCheckResult').text("아이디 인증 완료");
-                // $( document ).ready(function() {
-                //     $('#checkId').click(function() {
                         $('#pwUpdate').show();
                         $('#checkBox').hide();
                     // });
@@ -29,3 +26,33 @@ function findPw_check(){
         }
     });
 };
+
+function passwordBtn(){
+
+    //비밀번호 - 정규식 8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합
+    if (!memberUpdate.memberPassword.value == "") {
+        var password = $("#memberPassword").val();
+        var regExp = /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+        if (!regExp.test(password)) {
+            error_txt_pwd.innerHTML = "8 ~ 16자 영문, 숫자, 특수문자 최소 하나씩 입력";
+            memberUpdate.memberPassword.focus();
+            return;
+        }
+        if (memberUpdate.memberPassword2.value == "") {
+            error_txt_pwd2.innerHTML = "비밀번호 확인을 입력하세요";
+            memberUpdate.memberPassword2.focus();
+            return;
+        }
+        if (memberUpdate.memberPassword.value != memberPassword2.value) {
+            error_txt_pwd2.innerHTML = "비밀번호가 일치하지 않습니다";
+            memberUpdate.memberPassword2.focus();
+            return;
+        }
+        if (memberUpdate.memberPassword.value == memberPasswordHidden.value){
+            error_txt_pwd.innerHTML = '기존의 비밀번호와 동일합니다';
+            memberUpdate.memberPassword.focus();
+            return;
+        }
+    }
+    memberUpdate.submit();
+}

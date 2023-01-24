@@ -65,4 +65,7 @@ public class Member {
         return this;
     }
 
+    public void pwUpdateMember(String memberPassword){
+        this.memberPassword = memberPassword;
+    }
 }

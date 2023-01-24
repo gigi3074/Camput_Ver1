@@ -1,4 +1,5 @@
 
+
 // 모달 창 나오게 만들기 var.4
 $( document ).ready(function() {
     $('#open_modal').click(function() {

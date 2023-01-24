@@ -27,4 +27,11 @@ public interface MemberService {
     FindIdDto findByNickNameAndPhoneNumber(FindIdDto findIdDto);
     // 아이디 인증
     boolean checkMemberLoginId(String memberLoginId);
+<<<<<<< Updated upstream
+=======
+
+    MemberPointDto memberPoint(String asd123,String price);
+
+    String update(FindPwDto findPwDto);
+>>>>>>> Stashed changes
 }

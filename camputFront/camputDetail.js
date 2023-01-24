@@ -411,32 +411,5 @@ $(document).ready(function (){
     }
 })
 
-// 메뉴
-$(function(){
-    // 각각 목록 내려오기
-    $(".menuBtn>li").mouseover(function(){
-        $(this).children(".miniMenu").stop().slideDown();
-    });
-    $(".menuBtn>li").mouseout(function(){
-        $(this).children(".miniMenu").stop().slideUp();
-    });
-}) // last
 
-// 화면 슬라이딩
-$(document).ready(function(){
-        // 각각 목록 내려오기
-        $("#slideBtn>a").click(function(){
-            $(this).children(".openBooking").stop().slideDown();
-        });
-        $("#slideBtn>a").click(function(){
-            $(this).children(".openBooking").stop().slideUp();
-        });
-}); // last
 
-// // 좋아요
-// $(function(){
-//     // 좋아요 버튼!
-//     $(".likeButton i").click(function() {
-//         $(this).toggleClass("done");
-//     })
-// });

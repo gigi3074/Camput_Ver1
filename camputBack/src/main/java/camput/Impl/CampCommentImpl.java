@@ -2,10 +2,7 @@ package camput.Impl;
 
 import camput.Dto.CampCommentDto;
 import camput.Service.CampCommentService;
-import camput.domain.Commented;
-import camput.domain.CommentedImageFile;
-import camput.domain.Member;
-import camput.domain.MemberAddress;
+import camput.domain.*;
 import camput.repository.CommentedImageFileRepository;
 import camput.repository.CommentedRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,26 +22,38 @@ public class CampCommentImpl implements CampCommentService {
     private final CommentedRepository commentedRepository;
     private final CommentedImageFileRepository commentedImageFileRepository;
 
+
+    @Override
+    public List<Commented> findByCampName(Camput campName) {
+        return commentedRepository.findAllByCamput(campName);
+    }
+
     // 새글
     @Override
     @Transactional
     public void save(CampCommentDto commentDto) {
-        CommentedImageFile img = CommentedImageFile.builder()
-                .saveImageUrl(commentDto.getSaveImageUrl())
-                .imageOriginalUrl(commentDto.getImageOriginalUrl())
-                .imageFilename(commentDto.getImageFilename())
-                .imageDate(commentDto.getImageDate())
-                .build();
-        CommentedImageFile save = commentedImageFileRepository.save(img);
+//        CommentedImageFile img = CommentedImageFile.builder()
+//                .saveImageUrl(commentDto.getSaveImageUrl())
+//                .imageOriginalUrl(commentDto.getImageOriginalUrl())
+//                .imageFilename(commentDto.getImageFilename())
+//                .imageDate(commentDto.getImageDate())
+//                .build();
+//        CommentedImageFile save = commentedImageFileRepository.save(img);
 
         Commented commented = Commented.builder()
                 .commentedContent(commentDto.getComment())
-                .commentedDate(commentDto.getMakedDate())
-                .stars(commentDto.getStars())
+                .commentedDate(LocalDateTime.now())
                 .commentedMemberName(commentDto.getMemberName())
-                .commentedImageFiles(save.getCommented().getCommentedImageFiles())
+                .stars((Integer) commentDto.getStars())
+//                .commentedImageFiles(save.getCommented().getCommentedImageFiles())
                 .build();
-        commentedRepository.save(commentDto);
+        commentedRepository.save(commented);
+    }
+
+    @Override
+    public Optional<Commented> findById(Long id) {
+        Optional<Commented> commentedList = commentedRepository.findById(id);
+        return commentedList;
     }
 
 //    @Override
@@ -51,10 +61,6 @@ public class CampCommentImpl implements CampCommentService {
 //        return commentedRepository.getAvgRating();
 //    }
 //
-//    @Override
-//    public List<Commented> findAllByCamput() {
-//        return commentedRepository.findAll();
-//    }
 
 //    @Override
 //    public CampCommentDto findByNickNameAndMakedDate(String nickName, String makedDate) {

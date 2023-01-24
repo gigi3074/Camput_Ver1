@@ -14,19 +14,21 @@ public class CampCommentDto {
     private LocalDateTime makedDate; // 날짜
     private String comment; // 내용
     private String memberName; // 닉네임
-    private int stars; // 별점
-    private String saveImageUrl; // 사진
+    private Number stars; // 별점
+    private String campName;
+    private String saveImageUrl; // 사진 - 보류
     private String imageOriginalUrl;
     private String imageFilename;
     private LocalDateTime imageDate;
 
     @Builder
-    public CampCommentDto(Long id, LocalDateTime makedDate, String comment, String memberName, int stars, String saveImageUrl, String imageOriginalUrl, String imageFilename, LocalDateTime imageDate) {
+    public CampCommentDto(Long id, LocalDateTime makedDate, String comment, String memberName, Number stars, String campName, String saveImageUrl, String imageOriginalUrl, String imageFilename, LocalDateTime imageDate) {
         this.id = id;
         this.makedDate = makedDate;
         this.comment = comment;
         this.memberName = memberName;
         this.stars = stars;
+        this.campName = campName;
         this.saveImageUrl = saveImageUrl;
         this.imageOriginalUrl = imageOriginalUrl;
         this.imageFilename = imageFilename;

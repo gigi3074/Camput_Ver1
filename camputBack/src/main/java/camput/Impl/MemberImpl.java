@@ -25,8 +25,42 @@ public class MemberImpl implements MemberService {
     private final MemberRepository memberRepository;
 
     @Override
+<<<<<<< Updated upstream
     public String findMemberNickName(Long memberId) {
         Member member = memberRepository.findById(memberId).get();
+=======
+    public MemberPointDto memberPoint(String loginId,String price) {
+        Member member = memberRepository.findByMemberLoginId(loginId);
+        int memberPoint =Integer.parseInt(member.getMemberPoint());
+        int reservationPrice =Integer.parseInt(price);
+        String afterMemberPoint = Integer.toString(memberPoint-reservationPrice);
+        MemberPointDto memberPointDto = MemberPointDto.builder()
+                .point(member.getMemberPoint())
+                .memberName(member.getMemberName())
+                .afterMemberPoint(afterMemberPoint)
+                .memberPhone(member.getPhoneNumber())
+                .build();
+        return memberPointDto;
+    }
+
+    @Override
+    public String update(FindPwDto findPwDto) {
+        String memberPassword = null;
+        if (findPwDto.getMemberPassword().equals("")) {
+            memberPassword = findPwDto.getMemberPasswordHidden();
+        } else{
+            memberPassword = findPwDto.getMemberPassword();
+        }
+        Member member = memberRepository.findByMemberLoginId(findPwDto.getMemberLoginId());
+        member.pwUpdateMember(memberPassword);
+        memberRepository.save(member);
+        return null;
+    }
+
+    @Override
+    public String findMemberNickName(String loginId) {
+        Member member = memberRepository.findByMemberLoginId(loginId);
+>>>>>>> Stashed changes
         String nickName = member.getNickName();
         return nickName;
     }

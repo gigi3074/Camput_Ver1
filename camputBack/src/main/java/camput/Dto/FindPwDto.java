@@ -13,10 +13,14 @@ public class FindPwDto {
     private String memberLoginId;
     @NotBlank
     private String memberPassword;
+    private Long id;
+    private String memberPasswordHidden;
 
     @Builder
-    public FindPwDto(String memberLoginId, String memberPassword) {
+    public FindPwDto(String memberLoginId, String memberPassword, Long id, String memberPasswordHidden) {
         this.memberLoginId = memberLoginId;
         this.memberPassword = memberPassword;
+        this.id = id;
+        this.memberPasswordHidden = memberPasswordHidden;
     }
 }

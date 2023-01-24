@@ -30,9 +30,6 @@ public class Commented {
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<CommentedImageFile> commentedImageFiles= new ArrayList<>();
 
-//    public double getAvgRating() {
-//        return (double) this.rating;
-//    }
     @Builder
     public Commented(String commentedContent, String commentedMemberName, int stars, LocalDateTime commentedDate, Member member, Camput camput, List<CommentedImageFile> commentedImageFiles) {
         this.commentedContent = commentedContent;
