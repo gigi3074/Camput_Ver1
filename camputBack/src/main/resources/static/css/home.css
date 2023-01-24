@@ -6,73 +6,76 @@
 *{font-family:'TmoneyRoundWindExtraBold'; -webkit-text-size-adjust: auto;}
 
 /* 화면 구성 */
+*{
+    padding: 0px;
+    margin: 0px;
+}
 .home{
-    height: 100%;width: 100%;
-    overflow-y: scroll;
-    -ms-overflow-style: none; /* 인터넷 익스플로러 */
-    scrollbar-width: none; /* 파이어폭스 */
-    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+    height: 100vh;
+    width: 100vw;
+
 }
-.home::-webkit-scrollbar {
-    display: none; /* 크롬, 사파리, 오페라, 엣지 */
+.top{
+    z-index: 1;
+    width: 100%;
+    padding: 1rem 0px;
+    margin-bottom: 20px;
+    font-weight: bolder;
+    background-color: rgba( 255, 255, 255, 0.1 );
 }
-.wrap-top.fixed{
+.fixed.top{
     position: fixed;
 }
-header{
-    top: 0;left: 0;right: 0;z-index: 6;
-    height: 15%;
-    background-color: rgba( 255, 255, 255, 0.1);
-    font-weight: bold;
+.topContent-wrap{
     display: flex;
-    justify-content: space-between;
+    padding: 0px 200px;
+    justify-content:space-around;
+}
+.Logo{
+    justify-content: flex-start;
+    width: 60px;
+    height: 60px;
+    background-image: url("../img/camput.png");
+    background-size:contain ;
+    background-repeat: no-repeat;
+}
+.right-bar{
+    display: flex;
+    align-items: flex-end;
+}
+.right-bar ul{
+    display: flex;
+    align-items: baseline;
+    list-style: none;
     align-items: center;
 }
-.nav{
-    width: 20%;
-    margin-right: 5%;
-    display: flex; justify-content: flex-end;
-    margin: 5%;
-    font-size: 2vw;
+.right-bar ul li{
+    margin: 0px 1rem;
+    font-size: 18px;
 }
-.menuBtn{
-    width: 100%;
-    display: inline-flex;
+.right-bar ul li a{
+    text-decoration: none;
+    color: black;
 }
-.miniMenu li{width: 100%; font-size: 1.3vw;}
-.menuBtn .menu{position: relative;}
-.menu li{position: absolute; width:100%; height: 100%; right: 80%;}
-.menu .qandA{top: 200%;}
-/* 사이드 메뉴 */
-.miniMenu{display: none;}
-.miniMenu li{text-align: right;}
 
 .middle-wrap{
     width: 100%;
-    height: 3000px;
+    height: 4000px;
 }
 .middle{
-    z-index: 2; width: 100%;
+    z-index: 2;
+    width: 100%;
     height: 100%;
+    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
 }
 .campTopSevenContent{
     font-weight: bolder;
-    font-size: 6rem;
+    font-size: 130px;
     margin-left: 10%;
     padding-top: 20%;
 }
-/* 캠프top */
-.campIcon{
-    width: 60%;
-    margin: auto;
-    margin-top: 50%;
-    text-align: center;
-    height: 2%;
-    font-size: 2.5rem;
-    font-weight: 700;
-}
 .campTopSeven{
-    margin-bottom: 10%;
+    margin-bottom: 10% ;
     height: 18%;
     display: flex;
     flex-direction: row;
@@ -80,25 +83,34 @@ header{
     align-items: center;
     justify-content: space-around
 }
+.campIcon{
+    width: 60%;
+    margin: auto;
+    margin-top: 20%;
+    text-align: center;
+    height: 5%;
+    font-size: 100px;
+    font-weight: 700;
+}
 
 .content{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    width: 50%;height: 70%;
+    width: 50%;
+    height: 70%;
 }
 .campSideInfo{
     position: absolute;
     border-radius:7px ;
     width: 72%;
     height: 85%;
-    font-size: 2rem;
+    font-size: 30px;
     /* background-image: url('https://enhttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSskk40ZIt_Tgli5ZzTGdsCmQNoVqgjQnR651wSpPGe1wZDYmIqc1iTJL49J1Bqy6l4H8Q&usqp=CAUcrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSskk40ZIt_Tgli5ZzTGdsCmQNoVqgjQnR651wSpPGe1wZDYmIqc1iTJL49J1Bqy6l4H8Q&usqp=CAU');*/
     background-color: #fda085;
     background-size: cover;
     background-repeat: no-repeat;
 }
-.campSideInfo h1 {font-size: 1.2rem;}
 .campSideInfo ul{
     width: 50%;
     height: 100%;
@@ -110,24 +122,16 @@ header{
     display: none;
 }
 .campSideInfo ul li{
+    list-style: none;
     height: 15%;
-    padding: 6% 0;
+    padding: 6% 0px;
     padding-left: 7%;
-}
-.detail{margin-right: 10%;}
-.detail button{
-    float:right;
-    width: 60%; padding: 5% 8%;
-    margin: 2% auto;font-size: 1rem; font-family: 'TmoneyRoundWindExtraBold';
-    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.4);
-    border-radius: 10px; border: 0;
-    background-color: rgba(255, 255, 255, 0.7);
-    color: #ffa600;
+
 }
 
 .campSideInfo ul li p{
-    font-size: 1.3rem;
-    font-weight: bold;
+    font-size: 25px;
+    font-weight: 700;
 }
 
 .ToptButton{
@@ -143,60 +147,57 @@ header{
     width: 80%;
     margin: auto;
     text-align: center;
-    background-color: #fff;
+    background-color: aliceblue;
 }
-.one{z-index: 1;}.two{z-index: 5;}.three{z-index: 4;}.four{z-index: 3;}.five{z-index: 2;}
+.one{z-index: 6;}.two{z-index: 5;}.three{z-index: 4;}.four{z-index: 3;}.five{z-index: 2;}
 
 .findCampsUseInfo{
-    position: relative;
+    position: absolute;
     width: 100%;
-    height: 80%;
+    height: 40%;
 }
 .searchInput{
-    position: absolute; margin: 0 auto;
+    position: absolute;
     padding-top: 2%;
     width: 100%;
-    height: 10%;
+    height: 14%;
+    margin: auto;
 }
 .search-wrap{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    width: 80%; height: 80%;
-    margin: 0 auto;
+    width: 79%;
+    height: 69%;
+    margin: auto;
     border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: white;
 }
 .searchInputText{
-    width: 70%; height: 80%;
-    border: none;outline: none;
-    font-size: 1rem;
+    width: 70%;
+    height: 80%;
+    border: none;
+    outline: none;
+    font-size: 15px;
     border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.6 );
-    color: #ffa600; font-size: 0.8rem; font-weight: bold;
-    padding: 0 2%;
+
 }
 .bt{
-    width: 7%; height: 90%;
+    width: 6%;
+    height: 90%;
     border: none;
     border-radius: 5px;
-    color: #ffa600;
-    font-weight: bold;
-    font-size: 0.8rem;
-    background-color: rgba(255, 255, 255, 0.6 );
-}
-input{
-    padding: 0 2%; margin: 2%; font-family: 'TmoneyRoundWindExtraBold';
+
 }
 .MapTitle{
-    width: 100%;
+    width: 60%;
     margin: auto;
     margin-top: 20%;
     text-align: center;
     height: 5%;
-    font-size: 6rem;
-    font-weight: bold;
+    font-size: 100px;
+    font-weight: 700;
 }
 .mapWrap{
     position: sticky;
@@ -207,103 +208,70 @@ input{
     width: 100%;
     height: 100%;
     margin: auto;
-    z-index: 10;
+
 }
 .test{
     width: 100%;
     height: 100%;
 }
-/* 필터 */
-.filterBox{
-    width: 90%; height: 60%;
-    position: absolute;
-    left: 5%; top: 10%;
-    display: flex; flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
 .filter{
     display: flex;
     flex-direction: column;
-    width: 80%;height: 100%; margin: auto;
+    width: 80.5%;
+    height: 100%;
+    margin: auto;
     justify-content: space-around;
-    border-radius: 20px; padding: 1%;
-    background-color: rgba(255, 255, 255, 0.6); ;
-    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.3);
-}
-.warring{
-    padding: 20px;
-    text-align: center;
-}
-.filterContent{
-    width: 100%;
-    display: flex;
-    flex-wrap:wrap;
-    justify-content: center;
-    margin-top: 3%;
-}
-.starsSelect{
-    width: 100%;
+    border: 1px solid;
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, 0.608); ;
+}.warring{
+     padding: 20px;
+     text-align: center;
+ }
 
-}
 .filter ul{
-    width: 90%;
-    display: flex;
-}
-.filter ul li{
-    width: 100%;
-}
-.contentTitle{
-    width: 8%;
+    margin-top: 5%;
+    padding: 0px 40px;
 }
 .categoryContent{
-    width: 100%;
+    width: 80%;
+    padding-top: 15%;
     text-align: center;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin: 2% 0;
 }
-/* 지역 */
-.locationSelect{
-    width: 100%;
-    position:relative; overflow: hidden;
-    float: left;width: 100%; margin: 0.5%;
+
+.filter ul li{
+    list-style: none;
 }
-.locationSelect ul{
-    width: 100%; display: block;
+.starsTop{
+    text-align: center;
 }
-.locationSelect ul li{
-    width: 40%; display:inline-block; text-align: justify;
+.location{
+    text-align: center;
 }
-/* 동물 */
-.animalTop{width: 30%;}
-.animalCheckSelect{width: 50%;}
-/* 종류 */
-.campKindsTop{width: 30%;}
-.campKindsSelect{width: 50%;}
 .category{
     text-align: center;
     width: 100%;
-    margin-top: 2%;
-    padding: 3%;
+    margin-top:10% ;
+    padding: 10px;
+    height: 10%;
+    margin: auto 0px;
+
 }
 .category button{
-    padding: 3%; width: 30%; font-size: 1.5rem; font-family: 'TmoneyRoundWindExtraBold';
-    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.4);
-    border-radius: 20px; border: 0;
-    background-color: rgba(255, 255, 255, 0.8);
-    color: #ffa600;
+    width: 80%;
+    height: 100%;
+    margin: auto;
+    border: none;
+    font-size: 18px;
+    border-radius: 5px;
+    background-color: #f6d46541;
 }
-/* 지도 */
 .map{
     padding-top: 10%;
     width: 100%;
-    height: 100%;
+    height: 45%;
 }
 .mapImage{
-    background-color: #403a2d;
     width: 80%;
     margin: auto;
     height: 100%;
@@ -311,7 +279,9 @@ input{
 .mapImage.zIndex{
     z-index: -1;
 }
-
+.filterContent{
+    display: flex;
+}
 .wrap {
     position: absolute;
     left: 0;
@@ -322,58 +292,15 @@ input{
     text-align: left;
     font-size: 10px;
     line-height: 1.5;}
-.info {
-    posittion: relative;
-    width:98%;
-    height:98%;
-    border-radius: 10px;
-    background-color: white;}
-.title {
-    height: 20%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;border:none;
-    border-radius: 10px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-    background-color: #f6d365;
-    color: #403a2d;
-    font-size:13px;
-    font-weight: bolder;
-    padding: 0px 11px;}
-.closeBtn{
-    float: right;
-    border: none;
-    background-color: #f6d365
-}
-.overlayContent{
-    width: 100%;
-    height: 80%;
-    display: flex;
-}
-.image{
-    border-bottom-left-radius:10px;
-    background-size: cover;
-    width: 40%;
-    height: 100%;
-}
-.desc{
-    display:inline-block;
-    overflow: auto;
-    width: 60%;
-    display: grid;
-    justify-items: center;
-    font-size: 11.5px;
-    padding: 2px 0px;
-}
-.address{
-    margin-top: 5px;
-    width: 100%
-}
-.lineInfo{
-    margin-top: 5px;
-    width: 100%
-}
+.info {posittion: relative; width:98%;height:98%; border-radius: 10px;background-color: white;}
+.title {height: 20%; display: flex;justify-content: space-between;align-items: center;border:none;border-radius: 10px;border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;background-color: #f6d365;  color: #403a2d;
+    font-size:13px; font-weight: bolder;    padding: 0px 11px;}
+.closeBtn{float: right;border: none;background-color: #f6d365}
+.overlayContent{width: 100%; height: 80%;display: flex; }
+.image{border-bottom-left-radius:10px; background-size: cover; width: 40%;height: 100%;}
+.desc{display:inline-block;overflow: auto; width: 60%;display: grid;justify-items: center;font-size: 11.5px;padding: 2px 0px;}
+.address{margin-top: 5px;width: 100%}
+.lineInfo{margin-top: 5px;width: 100%}
 .CampHome a{
     text-decoration: none;
     font-weight: bolder;
@@ -383,8 +310,4 @@ input{
     border: none;
     border-radius: 9px;
 }
-.home{
-    margin-top: 5px;
-    margin-bottom: 5px
-}
-
+.home{margin-top: 5px;margin-bottom: 5px}
