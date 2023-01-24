@@ -86,12 +86,12 @@ function checkVisible2( element, check = 'above' ) {
 
 let func2 = function () {
     if (checkVisible2('.map') ) {
-        document.querySelector('.top').classList.add('animate__animated','animate__fadeOutUp');
-        document.querySelector('.top').classList.remove('.fixed');
+        document.querySelector('.wrap-top').classList.add('animate__animated','animate__fadeOutUp');
+        document.querySelector('.wrap-top').classList.remove('.fixed');
     }else{
-        document.querySelector('.top').classList.remove('animate__animated','animate__fadeOutUp');
-        document.querySelector('.top').classList.add('animate__animated','animate__fadeInDown');
-        document.querySelector('.top').classList.add('.fixed');
+        document.querySelector('.wrap-top').classList.remove('animate__animated','animate__fadeOutUp');
+        document.querySelector('.wrap-top').classList.add('animate__animated','animate__fadeInDown');
+        document.querySelector('.wrap-top').classList.add('.fixed');
     }
 }
 

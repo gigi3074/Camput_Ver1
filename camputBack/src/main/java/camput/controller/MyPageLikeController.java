@@ -1,6 +1,7 @@
 package camput.controller;
 
 import camput.Dto.MyPageCampDto;
+import camput.Service.LoginCheckService;
 import camput.Service.MemberService;
 import camput.Service.MyPageLikeService;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -23,11 +25,13 @@ import java.util.List;
 public class MyPageLikeController {
     private final MyPageLikeService myPageLikeService;
     private final MemberService memberService;
+    private final LoginCheckService loginCheckService;
 
     @GetMapping("myPage/like")
-    public String myPageLike(Model model,Pageable pageable){
-        String memberNickName = memberService.findMemberNickName("asd123");
-        Page<MyPageCampDto> myPageCampDtos = myPageLikeService.likeCamps("asd123",pageable);
+    public String myPageLike(Model model, Pageable pageable, HttpServletRequest request){
+        String loginId = loginCheckService.checkLogin(request);
+        String memberNickName = memberService.findMemberNickName(loginId);
+        Page<MyPageCampDto> myPageCampDtos = myPageLikeService.likeCamps(loginId,pageable);
         Page<MyPageCampDto> content = myPageCampDtos;
         int totalPage= myPageCampDtos.getTotalPages()-1;
 

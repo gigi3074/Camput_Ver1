@@ -3,6 +3,7 @@ package camput.controller;
 
 
 import camput.Dto.MyPageCampDto;
+import camput.Service.LoginCheckService;
 import camput.Service.MemberService;
 import camput.Service.MyPageBookInfoService;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -27,11 +29,13 @@ public class MyPageBookInfoController {
 
     private final MyPageBookInfoService myPageBookInfoService;
     private final MemberService memberService;
+    private final LoginCheckService loginCheckService;
 
     @GetMapping("myPage/bookInfo")
-    public String myPageBookInfo(Model model, Pageable pageable){
-        String memberNickName = memberService.findMemberNickName("asd123");
-        Page<MyPageCampDto> bookedCampDtos = myPageBookInfoService.bookedCamp(	"asd123", pageable);
+    public String myPageBookInfo(Model model, HttpServletRequest request, Pageable pageable){
+        String loginId = loginCheckService.checkLogin(request);
+        String memberNickName = memberService.findMemberNickName(loginId);
+        Page<MyPageCampDto> bookedCampDtos = myPageBookInfoService.bookedCamp(loginId, pageable);
         int totalPage= bookedCampDtos.getTotalPages()-1;
 
         model.addAttribute("memberNickName",memberNickName);

@@ -3,6 +3,7 @@ package camput.controller;
 import camput.Dto.MemberJoinDto;
 import camput.Impl.MemberUpdateImpl;
 import camput.Service.JoinService;
+import camput.Service.LoginCheckService;
 import camput.Service.MemberUpdateService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
@@ -23,11 +25,12 @@ public class myPageMemberUpdateController {
 
     private final MemberUpdateService memberUpdateService;
     private final JoinService joinService;
+    private final LoginCheckService loginCheckService;
 
     @GetMapping("/member/update")
-    public String intoPage(Model model, HttpSession session){
-        String loginMember = (String) session.getAttribute("loginMember");
-        MemberJoinDto result = memberUpdateService.view(loginMember);
+    public String intoPage(Model model, HttpServletRequest request, HttpSession session){
+        String loginId = loginCheckService.checkLogin(request);
+        MemberJoinDto result = memberUpdateService.view(loginId);
         model.addAttribute("loginMember", result);
         return "myPageMemberUpdate";
     }

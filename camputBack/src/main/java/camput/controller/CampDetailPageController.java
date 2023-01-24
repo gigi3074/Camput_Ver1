@@ -5,6 +5,7 @@ import camput.Dto.LikeDto;
 import camput.Service.CampCalenderService;
 import camput.Service.CamputService;
 import camput.Service.LikeService;
+import camput.Service.LoginCheckService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -26,6 +28,7 @@ public class CampDetailPageController {
     private final CamputService camputService;
     private final CampCalenderService campCalenderService;
     private final LikeService likeService;
+    private final LoginCheckService loginCheckService;
 
     /**
      * 멤버세션필요
@@ -34,9 +37,10 @@ public class CampDetailPageController {
      * @return
      */
     @GetMapping("/detail/{name}")
-    public String detailPageForm(@PathVariable String name, Model model){
-        log.info(name);
-        DetailPageDto camp = camputService.show(name,"asd123");
+
+    public String detailPageForm(@PathVariable String name, Model model,HttpServletRequest request){
+        String loginId = loginCheckService.checkLogin(request);
+        DetailPageDto camp = camputService.show(name,"loginId");
         List<LocalDate> localDates = campCalenderService.campBookedCalender(name);
         log.info("like={}",camp.getLike());
         model.addAttribute("localDates",localDates);

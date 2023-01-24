@@ -1,4 +1,4 @@
-@import url(reset.css);
+@import url(../css/reset.css);
 .footer{width: 1920px; text-align: center; padding: 30px 50px;}
 .footer .foot_top{width: 100%; display: flex;justify-content: center;align-items: center;}
 .footer .foot_top ul{width: 30%;}
