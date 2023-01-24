@@ -19,7 +19,7 @@ public class MyPageController {
     private final MemberService memberService;
     @GetMapping("/myPage/information")
     public String myInformationPage(Model model){
-        MemberInfoDto memberInfo = memberService.findMemberInfo("asd123");
+        MemberInfoDto memberInfo = memberService.findMemberInfo(19862L);
         String nickName=memberInfo.getName();
         model.addAttribute("memberInfo",memberInfo);
         model.addAttribute("nickName",nickName);
@@ -33,4 +33,7 @@ public class MyPageController {
         String result = memberService.findMemberByPw(memberPw);
         return result;
     }
+
+
+
 }

@@ -19,7 +19,7 @@ public class CampBooked {
     @Column(name = "campbooked_id")
     private Long id;
     private int campPrice;
-    private LocalDateTime campBookedDay;
+    private LocalDateTime cBookedDay;
     private LocalDate cStartDay;
     private LocalDate cEndDay;
     @ManyToOne(fetch = FetchType.LAZY)
@@ -27,9 +27,9 @@ public class CampBooked {
     @ManyToOne(fetch = FetchType.LAZY)
     private MemberBooked memberBooked;
     @Builder
-    public CampBooked(int campPrice, LocalDateTime campBookedDay, LocalDate cStartDay, LocalDate cEndDay, Camput camput, MemberBooked memberBooked) {
+    public CampBooked(int campPrice, LocalDateTime cBookedDay, LocalDate cStartDay, LocalDate cEndDay, Camput camput, MemberBooked memberBooked) {
         this.campPrice = campPrice;
-        this.campBookedDay = campBookedDay;
+        this.cBookedDay = cBookedDay;
         this.cStartDay = cStartDay;
         this.cEndDay = cEndDay;
         this.camput = camput;

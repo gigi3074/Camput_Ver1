@@ -39,5 +39,4 @@ public interface CamputRepository extends JpaRepository<Camput,Long> {
     List<Camput> findByTotalStarAvgAfterAndAnimalCmClContains(Long star, String imposable);
 
     List<Camput> findByCaravanAcceptNotContainsAndTotalStarAvgAfterAndAnimalCmClContains(String s, Long star, String imposable);
-
 }

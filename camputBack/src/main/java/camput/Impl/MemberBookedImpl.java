@@ -32,7 +32,7 @@ public class MemberBookedImpl implements MemberBookedService {
         MemberBooked memberBooked = MemberBooked.builder()
                 .bookedCampName(campBooked.getCamput().getCampName())
                 .member(minusedPointMember)
-                .bookedDay(campBooked.getCampBookedDay())
+                .mBookedDay(campBooked.getCBookedDay())
                 .mStartDay(campBooked.getCStartDay())
                 .mEndDay(campBooked.getCEndDay())
                 .bookedCampImageUrl(campBooked.getCamput().getCampImageFilesList().get(0).getCampOriginalUrl())

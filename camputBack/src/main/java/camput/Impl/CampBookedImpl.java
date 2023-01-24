@@ -28,15 +28,15 @@ public class CampBookedImpl implements CampBookedService {
     private final MemberRepository memberRepository;
     private final CampReservationDaysRepository campReservationDaysRepository;
 
-    public CampBooked campBooking(String loginId, String campName, LocalDate startDay, LocalDate endDay,int price) {
+    public CampBooked campBooking(String loginId, String campName, ReservationDto reservationInfo) {
         Camput camp = camputRepository.findByCampName(campName);
         Member member = memberRepository.findByMemberLoginId(loginId);
-        LocalDate endDate = endDay;
-        LocalDate startDate = startDay;
+        LocalDate endDate = reservationInfo.getEndDate();
+        LocalDate startDate = reservationInfo.getStartDate();
 
         CampBooked campBooking = CampBooked.builder()
-                .campPrice(price)
-                .campBookedDay(LocalDateTime.now())
+                .campPrice(reservationInfo.getChoicePrice())
+                .cBookedDay(LocalDateTime.now())
                 .cEndDay(endDate)
                 .camput(camp)
                 .cStartDay(startDate)
@@ -44,23 +44,29 @@ public class CampBookedImpl implements CampBookedService {
 
         CampBooked campBooked = campBookedRepository.save(campBooking);
 
+
         while(!startDate.equals(endDate)){
             List<CampReservationDays> allByReservationDays = campReservationDaysRepository.findAllByReservationDaysAndCampName(startDate,campName);
+            log.info("allByReservationDays={}",allByReservationDays.toString());
             if(allByReservationDays.isEmpty()){
                 CampReservationDays campReservationDay = CampReservationDays.builder()
                         .reservationDays(startDate)
                         .memberName(member.getMemberName())
                         .count(1)
                         .campName(campName)
+                        .campBooked(campBooked)
                         .build();
-                CampReservationDays save = campReservationDaysRepository.save(campReservationDay);
-
+                campReservationDaysRepository.save(campReservationDay);
+                log.info("calenderstart");
+                log.info("startDate={}",startDate);
+                log.info("endDate={}",endDate);
                 startDate = startDate.plusDays(1);
             }else{
                 for(CampReservationDays reservationDay :allByReservationDays){
                     if(reservationDay.getCount()!=3){
                         reservationDay.addCount();
                     }else if(reservationDay.getCount()==3){
+                        log.info("count={}",reservationDay.getCount());
                         return null;
                     }
                 }

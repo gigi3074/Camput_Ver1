@@ -18,11 +18,7 @@ body{
 }
 .backImg{
     width: 100%; height: 100%;
-<<<<<<< HEAD
-    background-image: url(../img/camp-gadfc85d94_1280.png);
-=======
     background-image: url(/img/main01.png);
->>>>>>> gigi
     background-size: cover;
     background-repeat: no-repeat;
     background-position:bottom;
@@ -46,11 +42,7 @@ input{
 
 /* 로고 */
 .main .logo{
-<<<<<<< HEAD
-    background-image: url(../img/Logo01.png);
-=======
     background-image: url(/img/logo.png);
->>>>>>> gigi
     background-repeat: no-repeat; background-size: contain;
     width: 50%; padding-bottom: 50%; z-index: 100;
     margin-top: 0%;

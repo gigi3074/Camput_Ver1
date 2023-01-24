@@ -1,19 +1,23 @@
 package camput.controller;
 import camput.Dto.FindIdDto;
+import camput.Dto.FindPwDto;
 import camput.Dto.LoginDto;
-import camput.Dto.loginApiDto.LoginSessionDto;
-import camput.Service.LoginApiService;
-import camput.Service.LoginCheckService;
 import camput.Service.MemberService;
+import camput.domain.Member;
+import camput.session.SessionManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+
+import static camput.session.SessionManager.SESSION_COOKIE_NAME;
 
 @Slf4j
 @Controller
@@ -22,7 +26,6 @@ import javax.validation.Valid;
 public class MemberController {
 
     private final MemberService memberService;
-    private final LoginApiService loginApiService;
 
     // 로그인
     @GetMapping("/login") // 로그인 창 보여줌
@@ -32,43 +35,31 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public String login(@Valid @ModelAttribute("LoginDto") LoginDto loginDto, BindingResult bindingResult, HttpServletRequest request
-    ) {
+    public String login(@Valid @ModelAttribute("LoginDto") LoginDto loginDto, BindingResult bindingResult, HttpServletRequest request, HttpSession session) {
         if (bindingResult.hasErrors()) { // 빈값이면..!
             log.info("errors={}", bindingResult);
             return "login";
         }
         boolean isValid = memberService.loginIsValid(loginDto.getMemberLoginId(), loginDto.getMemberPassword());
             String loginMember = loginDto.getMemberLoginId();
-      //추가
-        LoginSessionDto loginsession = LoginSessionDto.builder()
-                .loginId(loginMember)
-                .loginCode("empty")
-                .build();
         if (isValid) {  // 참이면
-            HttpSession session = request.getSession();
-            session.setAttribute(memberService.LOGIN_MEMBER, loginsession);  // 아이디 담아서
+//            String loginMember = loginDto.getMemberLoginId();
+            session = request.getSession();
+            session.setAttribute(memberService.LOGIN_MEMBER, loginMember);  // 아이디 담아서
             return "redirect:/camput/main"; // 보냄
         } else {
             return "login";
         }
-    }
 
+    }
     // 로그아웃
     @PostMapping("/logout")
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session != null) {
-            LoginSessionDto loginMember = (LoginSessionDto)session.getAttribute("loginMember");
-            if(loginMember.getLoginCode()!="empty"){
-
-                String code = loginMember.getLoginCode();
-                log.info("loginCode={}",code);
-                loginApiService.logOut(code);
-            }
             session.invalidate(); // 이거면 세션이랑 데이터 다 날라간다.
         }
-        return "redirect:/camput/home";
+        return "redirect:/camput/main";
     }
 
     // 아이디 찾기

@@ -1,6 +1,5 @@
 package camput.Impl;
 
-import camput.Dto.FinalReservationDto;
 import camput.Dto.ReservationDto;
 import camput.Service.CamputService;
 import camput.domain.Member;
@@ -30,13 +29,18 @@ class CamputImplTest {
     @Test
     void Test(){
         Member member = memberRepository.findById(26482L).get();
-        FinalReservationDto reservation = FinalReservationDto.builder()
-                .startReservationDay("2023-01-30")
-                .endReservationDay("2023-02-02")
+        ReservationDto reservation = ReservationDto.builder()
+                .startDate(LocalDate.of(2023, 01, 30))
+                .endDate(LocalDate.of(2023, 02, 2))
                 .campName("드림랜드오토캠핑장")
-                .price("50000")
+                .choicePrice(50000)
+                .memberLoginId(member.getMemberLoginId())
+                .memberName(member.getMemberName())
                 .build();
-        //String reservationDto = camputService.bookedCamp(member.getMemberLoginId(), reservation);
+        ReservationDto reservationDto = camputService.bookedCamp(member.getMemberLoginId(), "드림랜드오토캠핑장", reservation);
+        log.info("드림랜드오토캠핑장 회원이름={}",reservationDto.getMemberName());
+        log.info("드림랜드오토캠핑장 캠핑장이름={}",reservationDto.getCampName());
+
 
     }
 

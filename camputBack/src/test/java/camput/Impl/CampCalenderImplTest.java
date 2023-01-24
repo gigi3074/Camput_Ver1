@@ -1,6 +1,5 @@
 package camput.Impl;
 
-import camput.Dto.FinalReservationDto;
 import camput.Dto.ReservationDto;
 import camput.Service.CampCalenderService;
 import camput.Service.CamputService;
@@ -38,25 +37,31 @@ class CampCalenderImplTest {
     @Test
     void Test(){
         Member member = memberRepository.findById(26482L).get();
-        FinalReservationDto reservation1 = FinalReservationDto.builder()
-                .startReservationDay("2023-01-30")
-                .endReservationDay("2023-02-02")
+        ReservationDto reservation1 = ReservationDto.builder()
+                .startDate(LocalDate.of(2023, 01, 30))
+                .endDate(LocalDate.of(2023, 02, 2))
                 .campName("드림랜드오토캠핑장")
-                .price("50000")
+                .choicePrice(50000)
+                .memberLoginId(member.getMemberLoginId())
+                .memberName(member.getMemberName())
                 .build();
-        FinalReservationDto reservation2 = FinalReservationDto.builder()
-                .startReservationDay("2023-01-30")
-                .endReservationDay("2023-02-02")
+        ReservationDto reservation2 = ReservationDto.builder()
+                .startDate(LocalDate.of(2023, 01, 30))
+                .endDate(LocalDate.of(2023, 02, 2))
                 .campName("드림랜드오토캠핑장")
-                .price("50000")
+                .choicePrice(50000)
+                .memberLoginId(member.getMemberLoginId())
+                .memberName(member.getMemberName())
                 .build();
-        FinalReservationDto reservation3 = FinalReservationDto.builder()
-                .startReservationDay("2023-01-30")
-                .endReservationDay("2023-02-02")
+        ReservationDto reservation3 = ReservationDto.builder()
+                .startDate(LocalDate.of(2023, 01, 30))
+                .endDate(LocalDate.of(2023, 02, 2))
                 .campName("드림랜드오토캠핑장")
-                .price("50000")
+                .choicePrice(50000)
+                .memberLoginId(member.getMemberLoginId())
+                .memberName(member.getMemberName())
                 .build();
-   /*    ReservationDto reservation4 = ReservationDto.builder()
+   /*     ReservationDto reservation4 = ReservationDto.builder()
                 .endDate(LocalDate.of(2023, 01, 30))
                 .startDate(LocalDate.of(2023, 02, 2))
                 .campName("드림랜드오토캠핑장")
@@ -73,12 +78,14 @@ class CampCalenderImplTest {
                 .memberName(member.getMemberName())
                 .build();*/
 
-        /*camputService.bookedCamp(member.getMemberLoginId() , );
-        camputService.bookedCamp(member.getMemberLoginId(),reservation2);
-        camputService.bookedCamp(member.getMemberLoginId(), reservation3);*/
-  /*     camputService.bookedCamp(member.getMemberLoginId(), "드림랜드오토캠핑장", reservation4);
+        camputService.bookedCamp(member.getMemberLoginId(), "드림랜드오토캠핑장", reservation1);
+        camputService.bookedCamp(member.getMemberLoginId(), "드림랜드오토캠핑장", reservation2);
+        camputService.bookedCamp(member.getMemberLoginId(), "드림랜드오토캠핑장", reservation3);
+  /*      camputService.bookedCamp(member.getMemberLoginId(), "드림랜드오토캠핑장", reservation4);
         camputService.bookedCamp(member.getMemberLoginId(), "드림랜드오토캠핑장", reservation5);*/
 
+        em.flush();
+        em.clear();
         log.info("start1");
         List<LocalDate> blockDays = campCalenderService.campBookedCalender("드림랜드오토캠핑장");
 

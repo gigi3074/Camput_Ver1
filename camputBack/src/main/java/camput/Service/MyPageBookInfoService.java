@@ -6,5 +6,5 @@ import org.springframework.data.domain.Pageable;
 
 public interface MyPageBookInfoService {
 
-    Page<MyPageCampDto> bookedCamp(String memberId, Pageable pageable);
+    Page<MyPageCampDto> bookedCamp(Long memberId, Pageable pageable);
 }

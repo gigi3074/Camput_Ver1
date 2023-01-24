@@ -2,10 +2,8 @@ package camput.Impl;
 
 import camput.Dto.MyPageCampDto;
 import camput.Service.MyPageBookInfoService;
-import camput.domain.Member;
 import camput.domain.MemberBooked;
 import camput.repository.MemberBookedRepository;
-import camput.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,19 +15,16 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class MyPageBookInfoImpl implements MyPageBookInfoService {
-    private final MemberRepository memberRepository;
+
     private final MemberBookedRepository memberBookedRepository;
     @Override
-    public Page<MyPageCampDto> bookedCamp(String memberId, Pageable pageable) {
-        Member member = memberRepository.findByMemberLoginId(memberId);
+    public Page<MyPageCampDto> bookedCamp(Long memberId, Pageable pageable) {
         int page =(pageable.getPageNumber()==0)?0:(pageable.getPageNumber() - 1);
         pageable = PageRequest.of(page, 3);
-        Page<MemberBooked> memberBookedCamps = memberBookedRepository.findByMember_Id(member.getId(), pageable);
+        Page<MemberBooked> memberBookedCamps = memberBookedRepository.findByMember_Id(memberId, pageable);
         Page<MyPageCampDto> bookedCampDtos= memberBookedCamps.map(
                 camp-> MyPageCampDto.builder()
-                        .myPageCampDay(camp.getBookedDay())
-                        .myPageCampEndDay(camp.getMStartDay())
-                        .myPageCampStartDay(camp.getMStartDay())
+                        .myPageCampDay(camp.getMStartDay().toString() + camp.getMEndDay().toString())
                         .myPageCampAddress(camp.getBookedCampAddress())
                         .myPageCampName(camp.getBookedCampName())
                         .myPageCampImageUrl(camp.getBookedCampImageUrl())

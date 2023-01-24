@@ -21,7 +21,7 @@ public class CampCalenderImpl implements CampCalenderService {
     public List<LocalDate> campBookedCalender(String campName) {
 
         List<LocalDate> resultDays = new ArrayList<>();
-        List<CampReservationDays> fullReservationDay = campReservationDaysRepository.findByCampNameAndCount(campName, 3);
+        List<CampReservationDays> fullReservationDay = campReservationDaysRepository.findByCampNameAndAndCount(campName, 3);
         if(!fullReservationDay.isEmpty()){
             for (CampReservationDays campReservationDays : fullReservationDay) {
                 resultDays.add(campReservationDays.getReservationDays());

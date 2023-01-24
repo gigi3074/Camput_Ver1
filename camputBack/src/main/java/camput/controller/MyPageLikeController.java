@@ -26,8 +26,8 @@ public class MyPageLikeController {
 
     @GetMapping("myPage/like")
     public String myPageLike(Model model,Pageable pageable){
-        String memberNickName = memberService.findMemberNickName("asd123");
-        Page<MyPageCampDto> myPageCampDtos = myPageLikeService.likeCamps("asd123",pageable);
+        String memberNickName = memberService.findMemberNickName(19874L);
+        Page<MyPageCampDto> myPageCampDtos = myPageLikeService.likeCamps(19874L,pageable);
         Page<MyPageCampDto> content = myPageCampDtos;
         int totalPage= myPageCampDtos.getTotalPages()-1;
 
