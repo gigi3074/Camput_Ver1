@@ -1,4 +1,4 @@
-@import url("/reset.css");
+@import url("/css/reset.css");
 /* 라인 */
 @font-face { font-family: 'LINESeedKR-Bd'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2'); font-weight: 700; font-style: normal; }
 /* 티머니 */
@@ -6,73 +6,74 @@
 *{font-family:'TmoneyRoundWindExtraBold'; -webkit-text-size-adjust: auto;}
 
 /* 화면 구성 */
-*{
-    padding: 0px;
-    margin: 0px;
-}
 .home{
-    height: 100vh;
-    width: 100vw;
-
+    height: 100%; width: 100%;
+    overflow-y: scroll;
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
 }
-.top{
-    z-index: 1;
-    width: 100%;
-    padding: 1rem 0px;
-    margin-bottom: 20px;
-    font-weight: bolder;
-    background-color: rgba( 255, 255, 255, 0.1 );
+.home::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }
-.fixed.top{
+/* 메뉴바 */
+header{
     position: fixed;
-}
-.topContent-wrap{
+    top: 0;left: 0;right: 0;z-index: 100;
+    height: 13%;
+    background-color: rgba( 255, 255, 255, 0.1);
+    font-weight: bold;
     display: flex;
-    padding: 0px 200px;
-    justify-content:space-around;
+    justify-content: space-between;
+    align-items: center;
 }
 .Logo{
-    justify-content: flex-start;
-    width: 60px;
-    height: 60px;
-    background-image: url("../img/camput.png");
+    margin-left: 5%;
+    width: 10%; padding-bottom: 7%;
+    background-image: url("/img/logo.png");
     background-size:contain ;
     background-repeat: no-repeat;
 }
-.right-bar{
-    display: flex;
-    align-items: flex-end;
+/* 메뉴 */
+.nav{
+    width: 30%;
+    margin-right: 10%; font-size: 2vw;
+    display: flex; justify-content: flex-end;
 }
-.right-bar ul{
-    display: flex;
-    align-items: baseline;
-    list-style: none;
-    align-items: center;
+.menuBtn{
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-evenly;
 }
-.right-bar ul li{
-    margin: 0px 1rem;
-    font-size: 18px;
-}
-.right-bar ul li a{
-    text-decoration: none;
-    color: black;
-}
+.miniMenu li{width: 100%; font-size: 1.3vw;}
+.menuBtn .menu{position: relative;}
+.menu li{position: absolute; width:100%; height: 100%; right: 80%;}
+.menu .qandA{top: 200%;}
+/* 사이드 메뉴 */
+.miniMenu{display: none;}
+.miniMenu li{text-align: right;}
 
 .middle-wrap{
     width: 100%;
-    height: 4000px;
+    height: 3000px;
 }
 .middle{
-    z-index: 2;
-    width: 100%;
+    z-index: 2; width: 100%;
     height: 100%;
-    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
 }
+/*캠프 상단 글자*/
 .campTopSevenContent{
-    font-weight: bolder;
-    font-size: 130px;
-    margin-left: 10%;
-    padding-top: 20%;
+    width: 60%;
+    font-weight: bolder; font-size: 7vw;
+    margin: 30% 10%;
+}
+/* 캠프탑 */
+.campIcon{
+    width: 60%;
+    margin: 10% auto;
+    text-align: center;
+    height: 5%;
+    font-size: 5vw;font-weight: bold;
 }
 .campTopSeven{
     margin-bottom: 10% ;
@@ -83,34 +84,26 @@
     align-items: center;
     justify-content: space-around
 }
-.campIcon{
-    width: 60%;
-    margin: auto;
-    margin-top: 20%;
-    text-align: center;
-    height: 5%;
-    font-size: 100px;
-    font-weight: 700;
-}
-
-.content{
+.toparea{padding-top: 10%; display: flex; flex-direction: column;}
+.contentarea{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    width: 50%;
-    height: 70%;
+    width: 80%; height: 50vh;
+    box-sizing: border-box;
+    position:relative;
 }
 .campSideInfo{
     position: absolute;
     border-radius:7px ;
-    width: 72%;
-    height: 85%;
-    font-size: 30px;
+    width: 72%;height: 85%;
+    font-size: 2vw;
     /* background-image: url('https://enhttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSskk40ZIt_Tgli5ZzTGdsCmQNoVqgjQnR651wSpPGe1wZDYmIqc1iTJL49J1Bqy6l4H8Q&usqp=CAUcrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSskk40ZIt_Tgli5ZzTGdsCmQNoVqgjQnR651wSpPGe1wZDYmIqc1iTJL49J1Bqy6l4H8Q&usqp=CAU');*/
     background-color: #fda085;
     background-size: cover;
     background-repeat: no-repeat;
 }
+.campSideInfo h1 {font-size: 2vw;}
 .campSideInfo ul{
     width: 50%;
     height: 100%;
@@ -122,23 +115,20 @@
     display: none;
 }
 .campSideInfo ul li{
-    list-style: none;
     height: 15%;
     padding: 6% 0px;
     padding-left: 7%;
-
 }
-
+.detail{margin-right: 10%;}
 .campSideInfo ul li p{
-    font-size: 25px;
-    font-weight: 700;
+    font-size: 1.3vw; z-index: 7;
+    font-weight: bold;
 }
-
 .ToptButton{
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    font-size: 40px;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*align-content: center;*/
+    font-size: 5vw;
 }
 .campSide{
     margin-left: 10%;
@@ -147,140 +137,182 @@
     width: 80%;
     margin: auto;
     text-align: center;
-    background-color: aliceblue;
+    background-color: #fff;
 }
 .one{z-index: 6;}.two{z-index: 5;}.three{z-index: 4;}.four{z-index: 3;}.five{z-index: 2;}
 
 .findCampsUseInfo{
-    position: absolute;
+    position: relative;
     width: 100%;
-    height: 40%;
+    height: 80%;
 }
 .searchInput{
-    position: absolute;
+    position: absolute;  margin: 0 auto;
     padding-top: 2%;
-    width: 100%;
-    height: 14%;
-    margin: auto;
+    width: 100%; height: 10%;
 }
 .search-wrap{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    width: 79%;
-    height: 69%;
-    margin: auto;
+    width: 80%; height: 80%;
+    margin: 0 auto;
     border-radius: 5px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 .searchInputText{
-    width: 70%;
-    height: 80%;
-    border: none;
-    outline: none;
-    font-size: 15px;
+    width: 70%; height: 80%;
+    border: none;outline: none;
+    font-size: 1vw; font-weight: bold;
     border-radius: 5px;
-
+    background-color: rgba(255, 255, 255, 0.6 );
+    color: #ffa600;
+    padding: 0 2%;
 }
 .bt{
-    width: 6%;
-    height: 90%;
+    width: 7%; height: 90%;
     border: none;
     border-radius: 5px;
-
+    color: #ffa600;
+    font-weight: bold;
+    font-size: 1.3vw;
+    background-color: rgba(255, 255, 255, 0.6 );
+    font-family: 'TmoneyRoundWindExtraBold'
+}
+input{
+    padding: 0 2%; margin: 2%; font-family: 'TmoneyRoundWindExtraBold';
+}
+.categoryInput{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    z-index: 10;
+}
+.test{
+    width: 100%;
+    height: 100%;
 }
 .MapTitle{
-    width: 60%;
-    margin: auto;
-    margin-top: 20%;
+    width: 100%;
+    margin: 5% auto;
     text-align: center;
     height: 5%;
-    font-size: 100px;
-    font-weight: 700;
+    font-size: 7vw;
+    font-weight: bold;
 }
 .mapWrap{
     position: sticky;
     width: 100%;
     height: 40%;
 }
-.categoryInput{
-    width: 100%;
-    height: 100%;
-    margin: auto;
 
-}
-.test{
-    width: 100%;
-    height: 100%;
+/*필터*/
+.filterBox{
+    width: 90%; height: 100%;
+    position: absolute;
+    left: 5%; top: 12%;
+    display: flex; flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box; overflow: hidden;
 }
 .filter{
     display: flex;
     flex-direction: column;
-    width: 80.5%;
-    height: 100%;
-    margin: auto;
-    justify-content: space-around;
-    border: 1px solid;
-    border-radius: 3px;
-    background-color: rgba(255, 255, 255, 0.608); ;
-}.warring{
-     padding: 20px;
-     text-align: center;
- }
-
-.filter ul{
-    margin-top: 5%;
-    padding: 0px 40px;
+    width: 80%;height: 60%; margin: auto;
+    justify-content: flex-start;
+    border-radius: 20px; padding: 1%;
+    background-color: rgba(255, 255, 255, 0.6); ;
+    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.3);
 }
-.categoryContent{
-    width: 80%;
-    padding-top: 15%;
+.filterContent{
+    width: 100%;
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    margin-top: 0%;
+}
+.warring{
+    padding: 20px;
     text-align: center;
 }
-
-.filter ul li{
-    list-style: none;
+.starsSelect{
+    width: 100%;
 }
+.filter ul{
+    width: 90%;
+    display: flex;
+}
+.filter ul li{
+    width: 100%;  font-size: 1.5vw;
+}
+.contentTitle{
+    width: 8%;
+}
+.categoryContent{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 2% 0;
+}
+
+
 .starsTop{
     text-align: center;
 }
-.location{
-    text-align: center;
+/* 지역 */
+.locationSelect{
+    width: 100%;
+    position:relative; overflow: hidden;
+    float: left;width: 100%; margin: 0.5%;
 }
+.locationSelect ul{
+    width: 100%; display: block;
+}
+.locationSelect ul li{
+    width: 40%; display:inline-block; text-align: justify;
+}
+/* 종류 */
+.animalTop{width: 30%;}
+.animalCheckSelect{width: 50%;}
+.campKindsTop{width: 30%;}
+.campKindsSelect{width: 50%;}
 .category{
     text-align: center;
     width: 100%;
-    margin-top:10% ;
-    padding: 10px;
-    height: 10%;
-    margin: auto 0px;
-
+    margin-top: 1%;
+    padding: 3%;
 }
 .category button{
-    width: 80%;
-    height: 100%;
-    margin: auto;
-    border: none;
-    font-size: 18px;
-    border-radius: 5px;
-    background-color: #f6d46541;
+    padding: 2%; width: 30%; font-size: 1.5vw; font-family: 'TmoneyRoundWindExtraBold';
+    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.4);
+    border-radius: 20px; border: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #ffa600;
 }
+
+/*지도*/
+.maparea{
+    width: 100%; height: 100%;
+    display: flex;flex-direction: column;
+    margin-top: 50%;
+}
+
 .map{
     padding-top: 10%;
-    width: 100%;
-    height: 45%;
+    width: 100%; height: 100%;
 }
 .mapImage{
+    background-color: #403a2d;
     width: 80%;
     margin: auto;
     height: 100%;
 }
 .mapImage.zIndex{
     z-index: -1;
-}
-.filterContent{
-    display: flex;
 }
 .wrap {
     position: absolute;
@@ -292,7 +324,7 @@
     text-align: left;
     font-size: 10px;
     line-height: 1.5;}
-.info {posittion: relative; width:98%;height:98%; border-radius: 10px;background-color: white;}
+.info {position: relative; width:98%;height:98%; border-radius: 10px;background-color: white;}
 .title {height: 20%; display: flex;justify-content: space-between;align-items: center;border:none;border-radius: 10px;border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;background-color: #f6d365;  color: #403a2d;
     font-size:13px; font-weight: bolder;    padding: 0px 11px;}
 .closeBtn{float: right;border: none;background-color: #f6d365}
@@ -310,4 +342,3 @@
     border: none;
     border-radius: 9px;
 }
-.home{margin-top: 5px;margin-bottom: 5px}

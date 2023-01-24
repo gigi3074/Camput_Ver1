@@ -21,7 +21,7 @@ $(document).ready(function(){
         rollingFn('left');
     });
 
-function rollingFn(direction){
+    function rollingFn(direction){
         if(direction=="right"){
             nowNum = nowNum+1;
             if(nowNum>maxLength-1){
@@ -51,8 +51,9 @@ function checkVisible1( element, check = 'above' ) {
     let y = $(element).offset().top;
     let elementHeight = $(element).height();
 
-    document.querySelector('.campIcon').classList.remove('animate__animated','animate__slideInUp');
-    document.querySelector('.campTopSeven').classList.remove('animate__animated','animate__slideInUp');
+    document.querySelector('.toparea').classList.remove('animate__animated','animate__slideInUp');
+    // document.querySelector('.campIcon').classList.remove('animate__animated','animate__slideInUp');
+    // document.querySelector('.campTopSeven').classList.remove('animate__animated','animate__slideInUp');
 
     if (check == "visible"){
         return ((y < (viewportHeight + scrolltop)) && (y > (scrolltop - elementHeight)));
@@ -64,10 +65,12 @@ function checkVisible1( element, check = 'above' ) {
 }
 let func1 = function () {
     if (checkVisible1('.campIcon') ) {
-        document.querySelector('.campIcon').classList.add('animate__animated','animate__slideInUp');
-        document.querySelector('.campIcon').style.setProperty('--animate-duration', '2s');
-        document.querySelector('.campTopSeven').classList.add('animate__animated','animate__slideInUp');
-        document.querySelector('.campTopSeven').style.setProperty('--animate-duration', '2s');
+        // document.querySelector('.campIcon').classList.add('animate__animated','animate__slideInUp');
+        // document.querySelector('.campIcon').style.setProperty('--animate-duration', '2s');
+        document.querySelector('.toparea').classList.add('animate__animated','animate__slideInUp');
+        document.querySelector('.toparea').style.setProperty('--animate-duration', '2s');
+        // document.querySelector('.campTopSeven').classList.add('animate__animated','animate__slideInUp');
+        // document.querySelector('.campTopSeven').style.setProperty('--animate-duration', '2s');
     }
 }
 window.addEventListener('scroll', func1);
@@ -100,11 +103,11 @@ window.addEventListener('scroll', func2);
 let check = true;
 function filter(){
     if(check){
-        $('.categoryInput').show();
+        $('.filterBox').show();
         document.querySelector('.mapImage').classList.add('zIndex');
         check=false;
     }else{
-        $('.categoryInput').hide();
+        $('.filterBox').hide();
         document.querySelector('.mapImage').classList.remove('zIndex');
         check=true;
     }
@@ -234,7 +237,8 @@ function makeOverLay(m,marker) {
 
     CampHome.appendChild(homeUrl)
 
-    var detailPage = document.createElement('form');
+    var detailPage =
+        document.createElement('form');
     detailPage.setAttribute("action","/camput/detail/"+m.name);
     detailPage.setAttribute("method","get")
     detailPage.setAttribute("value",m.name)

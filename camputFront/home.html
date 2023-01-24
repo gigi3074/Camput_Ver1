@@ -6,154 +6,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CAMPUT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="/camputFront/css/home.css">
+    <link rel="stylesheet" href="/css/home.css">
     <link rel='icon' type='images/png' href='/css/img/TeamProject.png'>
-   
+    <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
-    <div class="home">
-        <header>
-            <div class="Logo"></div>
-            <div class="nav">
-                <ul class="menuBtn">
-                    <li class="login"><a href="login.html">Login</a></li>
-                    <li class="join"><a href="join.html">Join</a></li>
-                    <li class="menu">
+<div class="home">
+    <header>
+        <div class="Logo"></div>
+        <div class="nav">
+            <ul class="menuBtn">
+                <li class="login"><a href="login">Login</a></li>
+                <li class="join"><a href="join">Join</a></li>
+                <!--                <li class="menu">-->
+                <!--                    <a href="#"><i class="fa-solid fa-bars"></i></a>-->
+                <!--                    <ul class="miniMenu">-->
+                <!--                        <li class="notice gnb_menu"><a href=""> 공지사항</a></li>-->
+                <!--                        <li class="qandA gnb_menu"><a href=""> Q & A</a></li>-->
+                <!--                    </ul>-->
+                <!--                </li>-->
+            </ul>
+        </div>
+        <!-- 메뉴 -->
+        <div class="menu" style="display: none;">
+            <ul class="menuBtn">
+                <li class="login"><a href="login.html">마이페이지</a></li>
+                <li class="join"><a href="join.html">로그아웃</a></li>
+                <li class="menu">
                     <a href="#"><i class="fa-solid fa-bars"></i></a>
-                        <ul class="miniMenu">
-                            <li class="notice gnb_menu"><a href=""> 공지사항</a></li>
-                            <li class="qandA gnb_menu"><a href=""> Q & A</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <!-- 메뉴 -->
-            <div class="menu" style="display: none;">
-                <ul class="menuBtn">
-                    <li class="login"><a href="login.html">마이페이지</a></li>
-                    <li class="join"><a href="join.html">로그아웃</a></li>
-                    <li class="menu">
-                    <a href="#"><i class="fa-solid fa-bars"></i></a>
-                        <ul class="miniMenu" style="display: none;">
-                            <li class="qandA gnb_menu">위시리스트</li>
-                            <li class="qandA gnb_menu">예약리스트</li>
-                            <li class="notice gnb_menu">공지사항</li>
-                            <li class="qandA gnb_menu">Q & A</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </header>
-        <div class="fixed top">
-            <div class="topContent-wrap">
-                    <!--<div class="right-bar">
-                        <div class="notLogin">
-                            <ul>
-                                <li class="notice"><a href="notice.html">공지사항</a></li>
-                                <li class="QnA"><a href="QnA.html">QnA</a></li>
-                                <li class="login"><a href="login.html">로그인</a></li>
-                                <li class="join"><a href="join.html">회원가입</a></li>
-                            </ul>
-                        </div>
-                        <div class="Login">
-                        
-                            <ul>
-                                <li class="notice"><a href="notice.html">공지사항</a></li>
-                                <li class="QnA"><a href="QnA.html">QnA</a></li>
-                                <li class="myPage"><a href="myPageCheckReservation.html">마이페이지</a></li>
-                                <li class="logOut"><a href="">로그아웃</a></li>
-                            </ul>
-                        </div>
-                    </div>-->
-                </div>
-            </div>
-            <div class="middle-wrap">    
-            <div class="middle">
+                    <ul class="miniMenu" style="display: none;">
+                        <li class="qandA gnb_menu">위시리스트</li>
+                        <li class="qandA gnb_menu">예약리스트</li>
+                        <li class="notice gnb_menu">공지사항</li>
+                        <li class="qandA gnb_menu">Q & A</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="middle-wrap">
+        <div class="middle">
             <div class="campTopSevenContent">
-                    <div class="animate__animated animate__fadeIn one">EVERY WHERE</div>
-                    <div class="animate__animated animate__fadeIn two">ANY WHERE</div>
-                    <div class="animate__animated animate__fadeIn three">WE CAN GO!</div>
-                </div>
+                <div class="animate__animated animate__fadeIn one">EVERY WHERE</div>
+                <div class="animate__animated animate__fadeIn two">ANY WHERE</div>
+                <div class="animate__animated animate__fadeIn three">WE CAN GO!</div>
+            </div>
+            <div class="toparea">
                 <div class="campIcon">CMAP TOP5</div>
                 <div class="campTopSeven">
                     <div class="pre ToptButton"><i class="fa-solid fa-angle-left"></i></div>
-                    <div class="content">                    
-                        <div class="campSideInfo one" id="campSideInfo" >
+                    <div class="contentarea">
+                        <div class="campSideInfo one"  id="campSideInfo" th:style="'background-image:url('+${topFive.get(0).getImageUrl()}+');'" >
                             <ul>
-                                <li class="campName"><h1>01.이름</h1></li>
-                                <li class="Address campSide"><p>주소</p></li>
-                                <li class="Content campSide"><p>내용</p></li>
-                                <li class="detail campSide">
-                                <form action="" method="get"><button>상세 페이지</button></form>
-                                </li>
+                                <li class="campName"><h1>01.</h1><h2 th:text="*{topFive.get(0).getName()}">이름</h2></li>
+                                <li class="Address campSide" th:text="*{topFive.get(0).getSimpleAddress()}"><p>주소</p></li>
+                                <li class="Contentinner campSide" th:text="*{topFive.get(0).getLineIntro()}"><p>내용</p></li>
+                                <li class="detail campSide" th:text="*{topFive.get(0).getTotalStars()}"><p>평점</p></li>
                             </ul>
                         </div>
-                        <div class="campSideInfo two" id="campSideInfo">
+                        <div class="campSideInfo two" id="campSideInfo" th:style="'background-image:url('+${topFive.get(1).getImageUrl()}+');'">
                             <ul>
-                                <li class="campName"><h1>02.이름</h1></li>
-                                <li class="Address campSide"><p>주소</p></li>
-                                <li class="Content campSide"><p>내용</p></li>
-                                <li class="detail campSide">
-                                    <form action="" method="get"><button>상세 페이지</button></form>
-                                </li>
+                                <li class="campName"><h1>01.</h1><h2 th:text="*{topFive.get(1).getName()}">이름</h2></li>
+                                <li class="Address campSide" th:text="*{topFive.get(1).getSimpleAddress()}"><p>주소</p></li>
+                                <li class="Content campSide" th:text="*{topFive.get(1).getLineIntro()}"><p>내용</p></li>
+                                <li class="detail campSide" th:text="*{topFive.get(1).getTotalStars()}"><p>평점</p></li>
                             </ul>
-                        </div>  
-                        <div class="campSideInfo three" id="campSideInfo">
+                        </div>
+                        <div class="campSideInfo three" id="campSideInfo" th:style="'background-image:url('+${topFive.get(2).getImageUrl()}+');'">
                             <ul>
-                                <li class="campName"><h1>03.이름</h1></li>
-                                <li class="Address campSide"><p>주소</p></li>
-                                <li class="Content campSide"><p>내용</p></li>
-                                <li class="detail campSide">
-                                    <form action="" method="get"><button>상세 페이지</button></form>
-                                </li>
+                                <li class="campName"><h1>01.</h1><h2 th:text="*{topFive.get(2).getName()}">이름</h2></li>
+                                <li class="Address campSide" th:text="*{topFive.get(2).getSimpleAddress()}"><p>주소</p></li>
+                                <li class="Content campSide" th:text="*{topFive.get(2).getLineIntro()}"><p>내용</p></li>
+                                <li class="detail campSide" th:text="*{topFive.get(2).getTotalStars()}"><p>평점</p></li>
                             </ul>
-                        </div> 
-                        <div class="campSideInfo four" id="campSideInfo">
+                        </div>
+                        <div class="campSideInfo four" id="campSideInfo" th:style="'background-image:url('+${topFive.get(3).getImageUrl()}+');'">
                             <ul>
-                                <li class="campName"><h1>04.이름</h1></li>
-                                <li class="Address campSide"><p>주소</p></li>
-                                <li class="Content campSide"><p>내용</p></li>
-                                <li class="detail campSide">
-                                    <form action="" method="get"><button>상세 페이지</button></form>
-                                </li>
+                                <li class="campName"><h1>01.</h1><h2 th:text="*{topFive.get(3).getName()}">이름</h2></li>
+                                <li class="Address campSide" th:text="*{topFive.get(3).getSimpleAddress()}"><p>주소</p></li>
+                                <li class="Content campSide" th:text="*{topFive.get(3).getLineIntro()}"><p>내용</p></li>
+                                <li class="detail campSide" th:text="*{topFive.get(3).getTotalStars()}"><p>평점</p></li>
                             </ul>
-                        </div> 
-                        <div class="campSideInfo five" id="campSideInfo">
+                        </div>
+                        <div class="campSideInfo five" id="campSideInfo" th:style="'background-image:url('+${topFive.get(4).getImageUrl()}+');'">
                             <ul>
-                                <li class="campName"><h1>05.이름</h1></li>
-                                <li class="Address campSide"><p>주소</p></li>
-                                <li class="Content campSide"><p>내용</p></li>
-                                <li class="detail campSide">
-                                    <form action="" method="get"><button>상세 페이지</button></form>
-                                </li>
+                                <li class="campName"><h1>01.</h1><h2 th:text="*{topFive.get(4).getName()}">이름</h2></li>
+                                <li class="Address campSide" th:text="*{topFive.get(4).getSimpleAddress()}"><p>주소</p></li>
+                                <li class="Content campSide" th:text="*{topFive.get(4).getLineIntro()}"><p>내용</p></li>
+                                <li class="detail campSide" th:text="*{topFive.get(4).getTotalStars()}"><p>평점</p></li>
                             </ul>
                         </div>
                     </div>
                     <div class="next ToptButton"><i class="fa-solid fa-angle-right"></i></div>
-                    </div>
+                </div>
+            </div>
+            <div class="maparea">
                 <div class="MapTitle"> FIND CAMP!</div>
-                        <div class="mapWrap">
-                            <div class="test">
-                            <div class="findCampsUseInfo">
-                                <form class="searchInput" action="/camput/home/search" method="get" onsubmit="return false">
-                                    <div class="search-wrap">
-                                        <input class="searchInputText" type="text" placeholder="  시,도(지역)/캠프이름을 입력해주세요." value="" onclick="initPlaceholder()" >
-                                        <button type="button" class="searchButton bt" onclick="searchCamps()">검색</button>
-                                        <button type="button" class="reset bt" onclick="reset()">초기화</button>
-                                        <button type="button" class="fitterButton bt" onclick="filter()">필터</button>
-                                    </div>
-                                </form>
-                                <div class="map">
-                                    <div class="mapImage" id="map" ></div>
+                <div class="mapWrap">
+                    <div class="test">
+                        <div class="findCampsUseInfo">
+                            <form class="searchInput" action="/camput/home/search" method="get" onsubmit="return false">
+                                <div class="search-wrap">
+                                    <input class="searchInputText" type="text" placeholder="  시,도(지역)/캠프이름을 입력해주세요." value="" onclick="initPlaceholder()" >
+                                    <button type="button" class="searchButton bt" onclick="searchCamps()">검색</button>
+                                    <button type="button" class="reset bt" onclick="reset()">초기화</button>
+                                    <button type="button" class="fitterButton bt" onclick="filter()">필터</button>
                                 </div>
-                                <div class="warring" style="display: none ; color: red">찾을 수 없습니다</div>
-                                <div class="filterBox" style="display: none;">
-                                    <form class="categoryInput" method="get" action="/camput/home/category">
-                                        <div class="filter">
-                                            <div class="filterContent">
-                                                <div class="stars categoryContent">
-                                                    <div class="starsTop contentTitle">별점</div>
-                                                    <div class="starsSelect">
+                            </form>
+                            <div class="map">
+                                <div class="mapImage" id="map" ></div>
+                            </div>
+                            <div class="warring" style="display: none; color: red">찾을 수 없습니다</div>
+                            <div class="filterBox" style="display: none;">
+                                <form class="categoryInput" method="get" action="/camput/home/category" style="display: none;">
+                                    <div class="filter">
+                                        <div class="filterContent">
+                                            <div class="stars categoryContent">
+                                                <div class="starsTop contentTitle">별점</div>
+                                                <div class="starsSelect">
                                                     <ul>
                                                         <li class="one"><input type="radio" name="star" value="1">1점이상</li>
                                                         <li class="two"><input type="radio" name="star"  value="2">2점이상</li>
@@ -161,11 +133,11 @@
                                                         <li class="four"><input type="radio" name="star"  value="4">4점이상</li>
                                                         <li class="noChoice"><input type="radio" id="noChoice" name="star"  value="noChoice" checked="checked1" style="display: none"></li>
                                                     </ul>
-                                                    </div>
                                                 </div>
-                                                <div class="location categoryContent">
-                                                    <div class="locationTop contentTitle">지역</div>
-                                                    <div class="locationSelect">
+                                            </div>
+                                            <div class="location categoryContent">
+                                                <div class="locationTop contentTitle">지역</div>
+                                                <div class="locationSelect">
                                                     <ul>
                                                         <li class="seoul"><input type="checkbox" name="location" value="서울시">서울시</li>
                                                         <li class="incheon"><input type="checkbox" name="location" value="인천시">인천시</li>
@@ -178,361 +150,49 @@
                                                         <li class="chunchangnamdo"><input type="checkbox" name="location" value="충청남도">충청남도</li>
                                                         <li class="chunchangbukdo"><input type="checkbox" name="location" value="충청북도">충청북도</li>
                                                         <li class="busan"><input type="checkbox" name="location" value="부산">부산</li>
-                                                    <li class="jeju"><input type="checkbox" name="location" value="제주도">제주도</li>
+                                                        <li class="jeju"><input type="checkbox" name="location" value="제주도">제주도</li>
                                                     </ul>
-                                                    </div>
                                                 </div>
-                                                <div class="animalCheck categoryContent">
-                                                    <div class="animalTop contentTitle">애완동물 출입여부</div>
-                                                    <div class="animalCheckSelect">
-                                                        <ul>
+                                            </div>
+                                            <div class="animalCheck categoryContent">
+                                                <div class="animalTop contentTitle">애완동물 출입여부</div>
+                                                <div class="animalCheckSelect">
+                                                    <ul>
                                                         <li class="animalYes"><input type="radio" name="animalCheck" value="Yes">Yes</li>
                                                         <li class="animalNo"><input type="radio" name="animalCheck" value="No">No</li>
-                                                            <li class="animalNotChoice"><input type="radio" id="NoCheck" name="animalCheck" value="NoCheck" checked="checked2" style="display: none"></li>
-                                                        </ul>
-                                                    </div>
+                                                        <li class="animalNotChoice"><input type="radio" id="NoCheck" name="animalCheck" value="NoCheck" checked="checked2" style="display: none"></li>
+                                                    </ul>
                                                 </div>
-                                                <div class="campKinds categoryContent">
-                                                    <div class="campKindsTop contentTitle">카라반/트레일러/글램핑</div>
-                                                    <div class="campKindsSelect ">
-                                                        <ul>
+                                            </div>
+                                            <div class="campKinds categoryContent">
+                                                <div class="campKindsTop contentTitle">카라반/트레일러/글램핑</div>
+                                                <div class="campKindsSelect ">
+                                                    <ul>
                                                         <li class="carvan"><input type="checkbox" name="campKinds" value="카라반">카라반</li>
                                                         <li class="glamping"><input type="checkbox" name="campKinds" value="글램핑" >글램핑</li>
-                                                        </ul>
-                                                    </div>     
+                                                    </ul>
                                                 </div>
                                             </div>
-                                            <div class="category">
-                                                <button type="button" onclick="categoryCamps()"> 찾아보기</button>
-                                            </div>
-                                        </div> 
-                                    </form>
-                                </div>
+                                        </div>
+                                        <div class="category"><button type="button" onclick="categoryCamps()"> 찾아보기</button></div>
+                                    </div>
+                                </form>
                             </div>
-                        </div>
+                        </div> <!--findCampsUseInfo-->
+                    </div> <!--test-->
+                </div> <!--mapWrap-->
             </div>
         </div>
-        </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/camputFront/js/home.js"></script> 
-
-
-
-   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e3cb72ae1e875c47e83a78a91d17b8dd&libraries=clusterer"></script>
-    <script th:inline='javascript'>
-        var mapContainer = document.getElementById('map'),
-            mapOption = {
-                center: new kakao.maps.LatLng( 37.604394620976244, 127.05306776321997),
-                level: 10 // 지도의 확대 레벨
-            };
-        var map =new kakao.maps.Map(mapContainer,mapOption);
-        var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-        var imageSize = new kakao.maps.Size(24, 35);
-        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-        var campMap= [[${campList}]];
-        var markers=[];
-        var clust = new kakao.maps.MarkerClusterer({
-            map:map,
-            averageCenter:true,
-            minLevel:6
-        });
-        ///현재 위치로 이동//
-        function currentLocation(){
-            if( navigator.geolocation){
-                navigator.geolocation.getCurrentPosition(function(position){
-                    const presentX= position.coords.latitude,
-                        presentY = position.coords.longitude;
-                    var newCenter = new kakao.maps.LatLng(presentX,presentY);
-                    map.panTo(newCenter);
-                });
-            }else{
-                var newCenter = new kakao.maps.LatLng(37.4812845080678,126.952713197762);
-                currentLatLon['presentX'] = 33.450701
-                currentLatLon['presentY'] = 126.570667
-                map.panTo(newCenter);
-            }
-            return true;
-        }
-
-        currentLocation();
-
-        campMap.forEach(function(m){
-            marker=new kakao.maps.Marker({
-                map: map,
-                position: new kakao.maps.LatLng(Number(m.mapX),String(m.mapY)),
-                title: m.name,
-                image : markerImage
-            });
-            markers.push(marker);
-            makeOverLay(m,marker);
-        });
-        clust.addMarkers(markers);
-       //마커생성///
-        function makeOverLay(m,marker) {
-            var overlay = new kakao.maps.CustomOverlay({
-                yAnchor: 3,
-                position: marker.getPosition()
-            });
-
-            var content = document.createElement('div');
-            content.className = 'wrap'
-
-            var info = document.createElement('div');
-            info.className = 'info'
-            content.style
-
-            var title = document.createElement('div');
-            title.className = 'title';
-            title.innerHTML = m.name;
-            title.style.cssText = 'background: white; border: 1px solid black';
-
-            var closeBtn = document.createElement('button');
-            closeBtn.className = 'closeBtn';
-            closeBtn.innerHTML = '닫기';
-            closeBtn.onclick = function () {
-                overlay.setMap(null);
-            };
-            var content = document.createElement('div');
-            content.className = 'wrap'
-
-            var body = document.createElement('div');
-            body.className = 'body';
-
-            var imageC = document.createElement('div');
-            imageC.className = 'image';
-            if (m.imageUrl == "") {
-                imageC.style.cssText = 'background-image: url("/static/img/camput.png")';
-            } else {
-                imageC.style.cssText = 'background-image: url( ' + m.imageUrl + ')';
-            }
-            var lineInfo = document.createElement('div');
-            lineInfo.className = 'lineInfo';
-            if (m.lineIntro == "") {
-                lineInfo.textContent = '놀러오세요!'
-            } else {
-                lineInfo.textContent = m.lineIntro;
-            }
-
-            var address = document.createElement('div');
-            address.className = 'address';
-            address.textContent = m.simpleAddress;
-            var animalCheck = document.createElement('div');
-            animalCheck.className = 'animalCheck';
-            animalCheck.setAttribute('value', m.animalCheck);
-            animalCheck.textContent = m.animalCheck;
-            var carvan = document.createElement('div')
-            carvan.className = 'carvan';
-            carvan.setAttribute('value', m.carvan);
-            var gramping = document.createElement('div')
-            gramping.className = 'gramping';
-            gramping.setAttribute('value', m.gramping);
-            var doNum = document.createElement('div')
-            doNum.className = 'doNum';
-            doNum.setAttribute('value', m.doNum);
-            var totalStars = document.createElement('div')
-            totalStars.className = 'totalStars';
-            totalStars.setAttribute('value', m.totalStars);
-
-            var CampHome = document.createElement('div');
-            CampHome.className = 'CampHome';
-            var homeUrl;
-            if(m.homepageUrl!=""){
-                homeUrl  = document.createElement('a');
-                homeUrl.setAttribute("href", m.homepageUrl);
-                homeUrl.textContent = '홈페이지'
-                homeUrl.className = 'campHomePage';
-            }else{
-                homeUrl = document.createElement('div');
-                homeUrl.className = 'campHomePage';
-            }
-
-            CampHome.appendChild(homeUrl)
-
-            var detailPage = document.createElement('form');
-            detailPage.setAttribute("action","/camput/detail/{name}");
-            detailPage.setAttribute("method","get")
-            var detailCampName= document.createElement('div');
-            detailCampName.className='detailCampName';
-            detailCampName.setAttribute("value",m.name);
-
-            var moveToDetail = document.createElement('input');
-            moveToDetail.setAttribute("type","submit")
-            moveToDetail.textContent = '상세페이지'
-            moveToDetail.className = 'moveToDetail';
-            detailPage.appendChild(detailCampName)
-            detailPage.appendChild(moveToDetail)
-
-            var desc = document.createElement('div');
-            desc.className = 'desc'
-
-            desc.appendChild(lineInfo);
-            desc.appendChild(address);
-            desc.appendChild(carvan);
-            desc.appendChild(gramping);
-            desc.appendChild(doNum);
-            desc.appendChild(totalStars);
-            desc.appendChild(CampHome);
-            desc.appendChild(detailPage);
-
-            body.appendChild(imageC);
-            body.appendChild(desc);
-
-            info.appendChild(title);
-            info.appendChild(body);
-
-            title.appendChild(closeBtn)
-            content.appendChild(info);
-            overlay.setContent(content);
-            kakao.maps.event.addListener(marker, 'click', function () {
-                var move = new kakao.maps.LatLng(Number(m.mapX),String(m.mapY))
-                overlay.setMap(map);
-                map.panTo(move);
-            });
-        }
-        function deleteMarker() {
-            clust.removeMarkers(markers)
-            markers=[]
-        }
-        //상세페이지//
-        /*  kakao.maps.event.addListener(marker, 'mouseover', function () {
-                        overlay.setMap(map);
-                    });
-                    kakao.maps.event.addListener(overlay, 'mouseout', function () {
-                        setTimeout(function () {
-                            overlay.setMap();
-                        });
-                    });
-                 ;*/
-        function makeMarkersAndOveray(data) {
-            $.each(data, function (index, m) {
-                var newMarker = new kakao.maps.Marker({
-                    map: map,
-                    position: new kakao.maps.LatLng(Number(m.mapX), String(m.mapY)),
-                    title: m.name,
-                    image: markerImage
-                });
-                markers.push(newMarker);
-                makeOverLay(m, newMarker);
-            });
-            clust.addMarkers(markers);
-        }
-
-        function BigMap() {
-            map.setLevel(13);
-            var moveLatLng = new kakao.maps.LatLng(37.004463879516784, 125.41500850102987);
-
-            map.panTo(moveLatLng);
-        }
-
-        async function reset(){
-            $.ajax({
-                url:"home/reset",
-                type:"GET",
-                async: false,
-                success:function (data){
-                    BigMap();
-                    deleteMarker();
-                    makeMarkersAndOveray(data);
-                },error:function (){
-                    console.log("check error");
-                }
-            })
-        }
-
-        //카페고리//
-        async function categoryCamps(){
-
-            $.ajax({
-            url:"home/category",
-            type:"GET",
-                data: $(".categoryInput").serialize(),
-                async:false,
-                success:function(data){
-                    BigMap();
-                    deleteMarker();
-                    makeMarkersAndOveray(data);
-                },
-                error: function (){
-                console.log("check error");
-                }
-            });
-        }
-
-        async function searchCamps(){
-
-            var searchInputText=$('.searchInputText').val();
-
-            $.ajax({
-                url:"home/search",
-                type: "GET",
-                data: {
-                    "searchInputText":searchInputText
-                },
-                async: false,
-                success:function (data){
-                    console.log(data)
-                    if(data==""){
-                        $(".warring").show();
-                    }
-                    else if(data.size==1) {
-                        $.each(data,function(index,m){
-                            var movetosearchCamp = new kakao.maps.LatLng(m.mapX,m.mapY);
-                            map.panTo(movetosearchCamp);
-                        });
-                    }else{
-                        BigMap();
-                        deleteMarker();
-                        makeMarkersAndOveray(data);
-                    }
-                },error: function (){
-                    console.log("check error");
-                }
-            });
-        }
-
-        //redio Button하나만 체크//
-        $(document).on("click","input[name='star']",function (){
-            thisRadio = $(this);
-            Nocheck=$('#noChoice');
-            if(thisRadio.hasClass("thisChecked")){
-                thisRadio.removeClass("thisChecked");
-                thisRadio.prop('checked',false);
-                Nocheck.prop('checked',true);
-                Nocheck.addClass("thisChecked")
-            }else{
-                Nocheck.removeClass("thisChecked");
-                Nocheck.prop('checked',false);
-                thisRadio.prop('checked',true);
-                thisRadio.addClass("thisChecked")
-            }
-        });
-        $(document).on("click","input[name='animalCheck']",function (){
-            thisRadio = $(this);
-            Nocheck=$('#NoCheck');
-            if(thisRadio.hasClass("thisAnimalChecked")){
-                thisRadio.removeClass("thisAnimalChecked");
-                thisRadio.prop('checked',false);
-                Nocheck.prop('checked',true);
-                Nocheck.addClass("thisChecked")
-            }else{
-                Nocheck.removeClass("thisChecked");
-                Nocheck.prop('checked',false);
-                thisRadio.prop('checked',true);
-                thisRadio.addClass("thisAnimalChecked")
-            }
-        });
-        function initPlaceholder(){
-            $(".warring").hide();
-        }
-    </script>
-<<<<<<< HEAD:camputFront/footer.html
->>>>>>> Stashed changes:camputFront/map.html
->>>>>>> myUpdate:camputFront/camp.html
-=======
->>>>>>> myUpdate:camputFront/camp.html-->
-
     </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e3cb72ae1e875c47e83a78a91d17b8dd&libraries=clusterer"></script>
+<script th:inline='javascript'>
+    var campMap= [[${campList}]];
+    var loginCheck=[[${member}]];
+    console.log(loginCheck);
+</script>
+<script type="text/javascript" src="/js/home.js"></script>
+<script type="text/javascript" src="/js/loginCheck.js"></script>
 </body>
 </html>
