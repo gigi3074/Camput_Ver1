@@ -27,4 +27,12 @@ public interface MemberService {
     FindIdDto findByNickNameAndPhoneNumber(FindIdDto findIdDto);
     // 아이디 인증
     boolean checkMemberLoginId(String memberLoginId);
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+    MemberPointDto memberPoint(String asd123,String price);
+=======
+>>>>>>> parent of cb9ccbe (0124)
+>>>>>>> Stashed changes
 }

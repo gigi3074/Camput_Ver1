@@ -25,8 +25,33 @@ public class MemberImpl implements MemberService {
     private final MemberRepository memberRepository;
 
     @Override
+<<<<<<< Updated upstream
     public String findMemberNickName(Long memberId) {
         Member member = memberRepository.findById(memberId).get();
+=======
+<<<<<<< HEAD
+    public MemberPointDto memberPoint(String loginId,String price) {
+        Member member = memberRepository.findByMemberLoginId(loginId);
+        int memberPoint =Integer.parseInt(member.getMemberPoint());
+        int reservationPrice =Integer.parseInt(price);
+        String afterMemberPoint = Integer.toString(memberPoint-reservationPrice);
+        MemberPointDto memberPointDto = MemberPointDto.builder()
+                .point(member.getMemberPoint())
+                .memberName(member.getMemberName())
+                .afterMemberPoint(afterMemberPoint)
+                .memberPhone(member.getPhoneNumber())
+                .build();
+        return memberPointDto;
+    }
+
+    @Override
+    public String findMemberNickName(String loginId) {
+        Member member = memberRepository.findByMemberLoginId(loginId);
+=======
+    public String findMemberNickName(Long memberId) {
+        Member member = memberRepository.findById(memberId).get();
+>>>>>>> parent of cb9ccbe (0124)
+>>>>>>> Stashed changes
         String nickName = member.getNickName();
         return nickName;
     }
