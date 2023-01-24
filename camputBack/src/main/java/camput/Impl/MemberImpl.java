@@ -26,10 +26,19 @@ public class MemberImpl implements MemberService {
 
     @Override
 <<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+<<<<<<< Updated upstream
     public String findMemberNickName(Long memberId) {
         Member member = memberRepository.findById(memberId).get();
 =======
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> gigi
+>>>>>>> Stashed changes
     public MemberPointDto memberPoint(String loginId,String price) {
         Member member = memberRepository.findByMemberLoginId(loginId);
         int memberPoint =Integer.parseInt(member.getMemberPoint());
@@ -45,12 +54,34 @@ public class MemberImpl implements MemberService {
     }
 
     @Override
+<<<<<<< HEAD
     public String findMemberNickName(String loginId) {
         Member member = memberRepository.findByMemberLoginId(loginId);
 =======
+<<<<<<< Updated upstream
     public String findMemberNickName(Long memberId) {
         Member member = memberRepository.findById(memberId).get();
 >>>>>>> parent of cb9ccbe (0124)
+>>>>>>> Stashed changes
+=======
+    public String update(FindPwDto findPwDto) {
+        String memberPassword = null;
+        if (findPwDto.getMemberPassword().equals("")) {
+            memberPassword = findPwDto.getMemberPasswordHidden();
+        } else{
+            memberPassword = findPwDto.getMemberPassword();
+        }
+        Member member = memberRepository.findByMemberLoginId(findPwDto.getMemberLoginId());
+        member.pwUpdateMember(memberPassword);
+        memberRepository.save(member);
+        return null;
+    }
+
+    @Override
+    public String findMemberNickName(String loginId) {
+        Member member = memberRepository.findByMemberLoginId(loginId);
+>>>>>>> Stashed changes
+>>>>>>> gigi
 >>>>>>> Stashed changes
         String nickName = member.getNickName();
         return nickName;

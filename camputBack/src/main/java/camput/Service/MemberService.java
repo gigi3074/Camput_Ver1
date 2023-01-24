@@ -28,11 +28,25 @@ public interface MemberService {
     // 아이디 인증
     boolean checkMemberLoginId(String memberLoginId);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 <<<<<<< HEAD
 
     MemberPointDto memberPoint(String asd123,String price);
 =======
+<<<<<<< Updated upstream
 >>>>>>> parent of cb9ccbe (0124)
+>>>>>>> Stashed changes
+=======
+<<<<<<< Updated upstream
+=======
+
+    MemberPointDto memberPoint(String asd123,String price);
+
+    String update(FindPwDto findPwDto);
+>>>>>>> Stashed changes
+>>>>>>> gigi
 >>>>>>> Stashed changes
 }

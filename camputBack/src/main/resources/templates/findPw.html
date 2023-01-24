@@ -40,15 +40,17 @@
 
       <!-- 아이디 인증 후 -->
         <div id="pwUpdate" class="box" style="display: none">
-          <form class="center" action="" method="post">
-            <input type="password" class="BTN" name="member_Pw" placeholder="변경할 비밀번호를 입력해주세요" />
-            <input type="password" class="BTN" name="member_Pw2" placeholder="비밀번호 확인" />
+          <form action="/member/pwUpdate" method="post" name="pwUpdate" class="center">
+            <input type="password" id="memberPassword" name="memberPassword" class="BTN" maxlength="20" placeholder="변경할 비밀번호를 입력해주세요"/>
+            <span class="lbl"><span id="error_txt_pwd" class="step_txt"></span></span>
+            <input type="password" id="memberPassword2" name="memberPassword2" class="BTN" maxlength="20" placeholder="비밀번호 확인" />
+            <span class="error_next_box" id="error_txt_pwd2"></span>
             <!-- 아이디, 비밀번호 찾기 & 회원가입 링크 -->
             <div class="loginSub">
               <a href="findId">아이디 찾기</a>
               <a href="join">회원가입</a>
             </div>
-            <input type="submit" class="passwordBtn BTN" value="Password" />
+            <button type="submit" class="passwordBtn BTN" onclick="passwordBtn(); return false">비밀번호 변경</button>
           </form>
         </div>
     </div>

@@ -3,8 +3,12 @@ import camput.Dto.FindIdDto;
 import camput.Dto.FindPwDto;
 import camput.Dto.LoginDto;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 <<<<<<< HEAD
+=======
+import camput.Dto.MemberJoinDto;
+>>>>>>> Stashed changes
 import camput.Dto.loginApiDto.LoginSessionDto;
 import camput.Service.LoginApiService;
 import camput.Service.LoginCheckService;
@@ -87,6 +91,13 @@ public class MemberController {
     }
 
     // 패스워드 변경
+    @PostMapping("/member/pwUpdate")
+    @ResponseBody
+    public String update(@ModelAttribute FindPwDto findPwDto){
+        System.out.println("findPwDto = " + findPwDto);
+        String MemberUpdate = memberService.update(findPwDto);
+        return "login";
+    }
     @PostMapping(value = "/findId/modal")
     @ResponseBody   // 포스트를 어디론가로 보내줄꺼니까 애가 붙어있어야됨
     public FindIdDto findId(@ModelAttribute FindIdDto findIdDto) {

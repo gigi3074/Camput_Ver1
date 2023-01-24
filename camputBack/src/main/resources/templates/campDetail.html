@@ -8,6 +8,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="/js/camputDetail.js"></script>
     <link rel="stylesheet" href="/css/campDetail.css">
+    <!-- 아이콘 -->
+    <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <!-- 캠프 상세페이지 & 예약페이지 -->
@@ -48,7 +50,7 @@
             <!-- 캠핑장 이미지 및 간단소개 -->
             <div class="camp_main">
                 <div class="cmap_img">
-                    <div class="main_img"><img src="img/header02.jpg" alt=""></div>
+                    <div class="main_img"><img src="" alt=""></div>
                 </div> <!--이미지가 하나뿐이라서 일단 대표 이미지 하나만 설정한다.-->
                 <div class="camp_txt">
                     <div class="camp_title">camp name</div>
@@ -71,7 +73,7 @@
                     <button class="info go">숙소정보</button>
                     <button class="reservation go">예약</button>
                     <button class="reivew go">리뷰</button>
-                </div>
+                </div> <!-- main_title_btn -->
                 <!-- 숙소정보 -->
                 <div class="info">
                     <div class="campInfo" >
@@ -81,7 +83,7 @@
                     <div class="detail_info" th:text="*{detailIntro}">
                         testtest
                     </div>
-                </div>
+                </div> <!-- info -->
 
                 <!-- 예약 -->
                 <div class="acc_info">
@@ -142,33 +144,17 @@
                             </div>
                         </form>
                     </div>
-                </div>
+                </div> <!-- acc_info -->
 
-            <!-- 리뷰 글쓰기 모달 창 -->
-            <div id="modal" class="modal_re" style="display:none">
-                <div class="newReview">
-                    <div class="newpost">
-                        <div class="npTitle">
-                            <p>Review 쓰기</p>
-                            <a class="modal_close"><i class="fa-solid fa-circle-xmark"></i></a>
-                        </div>
-                        <form method="post" name="postFrm" action="reviews" enctype="multipart/form-data">
-                            <div class="star_line">
-                                <p>캠핑장 평가해주세요.</p>
-                                <span class="star">
-                                    ★★★★★
-                                    <span>★★★★★</span>
-                                    <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="5">
-                                </span>
+                <!-- 리뷰 글쓰기 모달 창 -->
+                <div id="modal" class="modal_re" style="display:none">
+                    <div class="newReview">
+                        <div class="newpost">
+                            <div class="npTitle">
+                                <p>Review 쓰기</p>
+                                <a class="modal_close"><i class="fa-solid fa-circle-xmark"></i></a>
                             </div>
-                            <div class="Content">
-                                <textarea name="re_Content"></textarea>
-                            </div>
-                            <div class="re_pic">
-                                <input type="image" id="real-input" class="image_inputType_file" multiple>
-                                <botton class="browse-btn"><i class="fa-regular fa-image"></i></botton>
-                                <div class="imagePreview"><img id="img" /></div>
-                            </div>
+<<<<<<< Updated upstream
                             <div class="npBtn">
                                 <input type="reset" class="re_btn" value="취소">
                                 <input type="submit" class="sub_btn" value="확인">
@@ -184,21 +170,59 @@
                     <div class="avg_star" th:text="*{campTotalAvg}"></div> <!--1~5점-->
                     <div class="newReBtn">
                         <button id="open_modal">글쓰기</button>
+=======
+                            <form method="post" name="re_postForm" class="re_postForm" id="re_postForm" action="/reviews/new" enctype="multipart/form-data">
+                                <input type="hidden" id="campName" name="campName" th:value="${camp.campName}">
+                                <div class="star_line">
+                                    <p>캠핑장 평가해주세요.</p>
+                                    <span class="star">
+                                        ★★★★★
+                                        <span>★★★★★</span>
+                                        <input type="range" id="stars" name="stars" oninput="stars(this)" value="1" step="1" min="0" max="5">
+                                    </span>
+                                </div>
+                                <div class="Content">
+<!--                                    <input type="text" name="comment" id="comment">-->
+                                    <textarea name="comment" id="comment"></textarea>
+                                </div>
+<!--                                <div class="re_pic">-->
+<!--                                    <input type="image" id="real-input" class="image_inputType_file" multiple>-->
+<!--                                    <botton class="browse-btn"><i class="fa-regular fa-image"></i></botton>-->
+<!--                                    <div class="imagePreview"><img id="img" /></div>-->
+<!--                                </div>-->
+                                <div class="npBtn">
+                                    <input type="reset" class="re_btn" value="취소">
+                                    <input type="submit" class="sub_btn" value="확인">
+                                </div>
+                            </form>
+                        </div>
+>>>>>>> Stashed changes
                     </div>
-                    <div class="review_list" th:each="comment:*{campContents}">
-                        <div class="re_box">
-                            <div class="member_profile">
-                                <div class="member_img" style= "background-color: rgba(72, 137, 73, 0.562)"></div>
-                                <div class="member_nickName" th:text="${comment.memberName}">닉네임</div>
-                                <div class="re_star" th:text="${comment.stars}"></div>
-                            </div>
-                            <div class="re_txt_img">
-                                <div class="re_txt"></div>
-                                <!-- 이미지 장수 제한 2~4개 정도 -->
-                                <div class="re_img"></div>
+                </div> <!-- modal-->
+                <!-- 리뷰 -->
+                <div class="review">
+                    <div class="main_title_btn slideBtn"><a>리뷰</a></div>
+                    <div class="openBooking">
+                        <div class="avg_star" th:text="*{campTotalAvg}"></div>
+                        <div class="newReBtn">
+                            <button id="open_modal">글쓰기</button>
+                        </div>
+                        <div class="review_list" th:each="comment:*{campContents}">
+                            <div class="re_box">
+                                <div class="member_profile">
+                                    <div class="member_img"></div>
+                                    <div class="member_Name" th:text="${comment.memberName}">닉네임</div>
+                                    <div class="re_star" th:text="${comment.stars}"></div>
+                                </div>
+                                <div class="re_txt_img">
+                                    <div class="re_txt" th:text="${comment.commentedContent}"></div>
+                                    <!-- 이미지 장수 제한 2~4개 정도 -->
+                                    <div class="re_img"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
+<<<<<<< Updated upstream
                 </div>
             </div>
         </div>
@@ -207,16 +231,31 @@
 <<<<<<< Updated upstream
 =======
 <<<<<<< HEAD
+=======
+                </div> <!--review-->
+
+            </div> <!-- roomInfo_Booking -->
+        </div> <!-- innercon -->
+    </div> <!-- wrap -->
+>>>>>>> gigi
+>>>>>>> Stashed changes
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script th:inline="javascript">
         var fullBookedDays= [[${localDates}]];
         var campName=[[${camp.getCampName}]];
-        var likeCheck=[[${camp.getLike}]]
+        var likeCheck=[[${camp.getLike}]];
     </script>
+    <!-- 달력관련 스크립트   -->
     <script type="text/javascript" src="/js/camputDetail.js"></script>
+<<<<<<< Updated upstream
 =======
 >>>>>>> parent of cb9ccbe (0124)
+>>>>>>> Stashed changes
+=======
+    <!-- 홈페이지용 스크립트-->
+    <script type="text/javascript" src="/js/camputDetail02.js"></script>
+>>>>>>> gigi
 >>>>>>> Stashed changes
 </body>
 </html>

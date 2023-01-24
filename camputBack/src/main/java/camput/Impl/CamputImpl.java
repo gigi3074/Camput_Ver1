@@ -95,4 +95,10 @@ public class CamputImpl implements CamputService {
         }
         return campCommentDtos;
     }
+
+    @Override
+    public Camput findByCampName(String campName) {
+        return camputRepository.findByCampName(campName);
+    }
+
 }

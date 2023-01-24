@@ -28,12 +28,7 @@ public class ReviewControllerTest {
     @Test
     public void createReview() {
         //given
-//        Commented commented = commentedRepository.save(Commented.builder().build());
-//        CampCommentDto commentDto = new CampCommentDto(commented.getId(),
-//                "20230123","안녕하세요","one")
-//
-//                    .setStar(3);
-
+        Commented commented = commentedRepository.save(Commented.builder().build());
 
         //when
 
