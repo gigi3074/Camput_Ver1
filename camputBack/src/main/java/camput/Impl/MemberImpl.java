@@ -28,6 +28,7 @@ public class MemberImpl implements MemberService {
     public String findMemberNickName(Long memberId) {
         Member member = memberRepository.findById(memberId).get();
 
+    @Override
     public MemberPointDto memberPoint(String loginId,String price) {
         Member member = memberRepository.findByMemberLoginId(loginId);
         int memberPoint =Integer.parseInt(member.getMemberPoint());
