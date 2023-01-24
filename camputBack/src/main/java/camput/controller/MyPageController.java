@@ -2,6 +2,7 @@ package camput.controller;
 
 import camput.Dto.MemberInfoDto;
 import camput.Dto.SearchDto;
+import camput.Service.LoginCheckService;
 import camput.Service.MemberService;
 import camput.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/camput")
@@ -17,9 +20,11 @@ import org.springframework.web.bind.annotation.*;
 public class MyPageController {
 
     private final MemberService memberService;
+    private final LoginCheckService loginCheckService;
     @GetMapping("/myPage/information")
-    public String myInformationPage(Model model){
-        MemberInfoDto memberInfo = memberService.findMemberInfo("asd123");
+    public String myInformationPage(Model model, HttpServletRequest request){
+        String loginId = loginCheckService.checkLogin(request);
+        MemberInfoDto memberInfo = memberService.findMemberInfo(loginId);
         String nickName=memberInfo.getName();
         model.addAttribute("memberInfo",memberInfo);
         model.addAttribute("nickName",nickName);
