@@ -2,19 +2,10 @@ package camput.controller;
 import camput.Dto.FindIdDto;
 import camput.Dto.FindPwDto;
 import camput.Dto.LoginDto;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-=======
 import camput.Dto.MemberJoinDto;
->>>>>>> Stashed changes
 import camput.Dto.loginApiDto.LoginSessionDto;
 import camput.Service.LoginApiService;
 import camput.Service.LoginCheckService;
-=======
->>>>>>> parent of cb9ccbe (0124)
->>>>>>> Stashed changes
 import camput.Service.MemberService;
 import camput.domain.Member;
 import camput.session.SessionManager;
