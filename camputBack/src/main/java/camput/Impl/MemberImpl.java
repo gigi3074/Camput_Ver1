@@ -25,10 +25,6 @@ public class MemberImpl implements MemberService {
     private final MemberRepository memberRepository;
 
     @Override
-    public String findMemberNickName(Long memberId) {
-        Member member = memberRepository.findById(memberId).get();
-
-    @Override
     public MemberPointDto memberPoint(String loginId,String price) {
         Member member = memberRepository.findByMemberLoginId(loginId);
         int memberPoint =Integer.parseInt(member.getMemberPoint());
@@ -43,9 +39,6 @@ public class MemberImpl implements MemberService {
         return memberPointDto;
     }
 
-    @Override
-    public String findMemberNickName(Long memberId) {
-        Member member = memberRepository.findById(memberId).get();
     @Override
     public String update(FindPwDto findPwDto) {
         String memberPassword = null;
@@ -68,9 +61,8 @@ public class MemberImpl implements MemberService {
     }
 
     @Override
-    public MemberInfoDto findMemberInfo(Long memberId) {
-        Member member = memberRepository.findById(memberId).orElseThrow(() ->
-                new IllegalArgumentException("없는 회원입니다."));
+    public MemberInfoDto findMemberInfo(String loginId) {
+        Member member = memberRepository.findByMemberLoginId(loginId);
         String memberHolAddress = getMemberAddress(member);
         String gender;
         if (member.getGender() == MemberGender.MALE) {

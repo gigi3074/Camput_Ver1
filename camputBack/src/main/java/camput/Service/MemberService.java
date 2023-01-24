@@ -1,9 +1,6 @@
 package camput.Service;
 
-import camput.Dto.FindIdDto;
-import camput.Dto.FindPwDto;
-import camput.Dto.LoginDto;
-import camput.Dto.MemberInfoDto;
+import camput.Dto.*;
 import camput.domain.Member;
 
 import java.util.HashMap;
@@ -11,8 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 public interface MemberService {
-    MemberInfoDto findMemberInfo(Long Id);
-    String findMemberNickName(Long memberId);
+    MemberInfoDto findMemberInfo(String loginId);
+    String findMemberNickName(String loginId);
     String findMemberByPw(String memberPw);
     //List<MemberBooked> findBookedList()
 
@@ -27,26 +24,8 @@ public interface MemberService {
     FindIdDto findByNickNameAndPhoneNumber(FindIdDto findIdDto);
     // 아이디 인증
     boolean checkMemberLoginId(String memberLoginId);
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-<<<<<<< HEAD
-
-    MemberPointDto memberPoint(String asd123,String price);
-=======
-<<<<<<< Updated upstream
->>>>>>> parent of cb9ccbe (0124)
->>>>>>> Stashed changes
-=======
-<<<<<<< Updated upstream
-=======
 
     MemberPointDto memberPoint(String asd123,String price);
 
     String update(FindPwDto findPwDto);
->>>>>>> Stashed changes
->>>>>>> gigi
->>>>>>> Stashed changes
 }

@@ -30,8 +30,8 @@ public class MyPageBookInfoController {
 
     @GetMapping("myPage/bookInfo")
     public String myPageBookInfo(Model model, Pageable pageable){
-        String memberNickName = memberService.findMemberNickName(19874L);
-        Page<MyPageCampDto> bookedCampDtos = myPageBookInfoService.bookedCamp(	19874L, pageable);
+        String memberNickName = memberService.findMemberNickName("asd123");
+        Page<MyPageCampDto> bookedCampDtos = myPageBookInfoService.bookedCamp(	"asd123", pageable);
         int totalPage= bookedCampDtos.getTotalPages()-1;
 
         model.addAttribute("memberNickName",memberNickName);
