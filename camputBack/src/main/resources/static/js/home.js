@@ -36,7 +36,7 @@ $(document).ready(function(){
         slide.hide().eq(nowNum).fadeIn();
     }
 });
-
+//Top5 vieweffect//
 function checkVisible1( element, check = 'above' ) {
 
 
@@ -89,8 +89,10 @@ function checkVisible2( element, check = 'above' ) {
 
 let func2 = function () {
     if (checkVisible2('.map') ) {
-        document.querySelector('.top').classList.add('animate__animated','animate__fadeOutUp');
+        document.querySelector('.top').classList.remove('animate__animated','animate__fadeInDown');
         document.querySelector('.top').classList.remove('.fixed');
+        document.querySelector('.top').classList.add('animate__animated','animate__fadeOutUp');
+
     }else{
         document.querySelector('.top').classList.remove('animate__animated','animate__fadeOutUp');
         document.querySelector('.top').classList.add('animate__animated','animate__fadeInDown');
@@ -101,6 +103,7 @@ let func2 = function () {
 window.addEventListener('scroll', func2);
 
 let check = true;
+//map과 category분리
 function filter(){
     if(check){
         $('.filterBox').show();
@@ -113,10 +116,11 @@ function filter(){
     }
 }
 
+//mpa//
 var mapContainer = document.getElementById('map'),
     mapOption = {
         center: new kakao.maps.LatLng( 37.604394620976244, 127.05306776321997),
-        level: 10 // 지도의 확대 레벨
+        level: 10
     };
 var map =new kakao.maps.Map(mapContainer,mapOption);
 var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
@@ -147,6 +151,7 @@ function currentLocation(){
     return true;
 }
 currentLocation();
+///marker생성///
 campMap.forEach(function(m){
     marker=new kakao.maps.Marker({
         map: map,
@@ -158,7 +163,7 @@ campMap.forEach(function(m){
     makeOverLay(m,marker);
 });
 clust.addMarkers(markers);
-//마커생성///
+//마커 오버레이 생성///
 function makeOverLay(m,marker) {
     var overlay = new kakao.maps.CustomOverlay({
         yAnchor: 3,
@@ -279,11 +284,12 @@ function makeOverLay(m,marker) {
         map.panTo(move);
     });
 }
+///마커 초기화////
 function deleteMarker() {
     clust.removeMarkers(markers)
     markers=[]
 }
-
+///마커,오버레이생성///
 function makeMarkersAndOveray(data) {
     $.each(data, function (index, m) {
         var newMarker = new kakao.maps.Marker({
@@ -297,6 +303,7 @@ function makeMarkersAndOveray(data) {
     });
     clust.addMarkers(markers);
 }
+///큰맵 변환////
 function BigMap() {
     map.setLevel(13);
     var moveLatLng = new kakao.maps.LatLng(37.004463879516784, 125.41500850102987);

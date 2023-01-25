@@ -30,17 +30,13 @@ public class CampDetailPageController {
     private final LikeService likeService;
     private final LoginCheckService loginCheckService;
 
-    /**
-     * 멤버세션필요
-     * @param name
-     * @param model
-     * @return
-     */
+
     @GetMapping("/detail/{name}")
 
-    public String detailPageForm(@PathVariable String name, Model model,HttpServletRequest request){
+    public String detailPageForm(@PathVariable("name") String name, Model model,HttpServletRequest request){
+        log.info("name={}",name);
         String loginId = loginCheckService.checkLogin(request);
-        DetailPageDto camp = camputService.show(name,"loginId");
+        DetailPageDto camp = camputService.show(name,loginId);
         List<LocalDate> localDates = campCalenderService.campBookedCalender(name);
         log.info("like={}",camp.getLike());
         model.addAttribute("localDates",localDates);

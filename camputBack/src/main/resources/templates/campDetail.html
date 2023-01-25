@@ -1,67 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/allLayout}">
+
+<th:block layout:fragment="css">
     <link rel="stylesheet" href="/css/campDetail.css">
-    <!-- 아이콘 -->
-    <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
-</head>
-<body>
-<!-- 캠프 상세페이지 & 예약페이지 -->
-<div class="wrap" th:object="${camp}">
-    <header>
-        <div class="Logo"></div>
-        <div class="nav">
-            <ul class="menuBtn">
-                <li class="nologin"><a href="login.html">Login</a></li>
-                <li class="join"><a href="join.html">Join</a></li>
-                <li class="menu">
-                    <a href="#"><i class="fa-solid fa-bars"></i></a>
-                    <ul class="miniMenu">
-                        <li class="notice gnb_menu"><a href=""> 공지사항</a></li>
-                        <li class="qandA gnb_menu"><a href=""> Q & A</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <!-- 메뉴 -->
-        <div class="menu" style="display: none;">
-            <ul class="menuBtn">
-                <li class="login"><a href="login.html">마이페이지</a></li>
-                <li class="join"><a href="join.html">로그아웃</a></li>
-                <li class="menu">
-                    <a href="#"><i class="fa-solid fa-bars"></i></a>
-                    <ul class="miniMenu" style="display: none;">
-                        <li class="qandA gnb_menu">위시리스트</li>
-                        <li class="qandA gnb_menu">예약리스트</li>
-                        <li class="notice gnb_menu">공지사항</li>
-                        <li class="qandA gnb_menu">Q & A</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </header>
-    <div class="innercon">
-        <!-- 캠핑장 이미지 및 간단소개 -->
-        <div class="camp_main">
-            <div class="cmap_img">
-                <div class="main_img"><img src="" alt=""></div>
-            </div> <!--이미지가 하나뿐이라서 일단 대표 이미지 하나만 설정한다.-->
-            <div class="camp_txt">
-                <div class="camp_title">camp name</div>
-                <div class="camp_addr" th:text="*{campAddress}">주소</div>
-                <p>사장님 한마디</p>
-                <div class="capm_owner" th:text="*{simpleIntro}">사장님 한마디</div>
-                <div class="likeCount">
-                    <div class="totalLike" th:text="*{totalLike}"></div>
-                    <form action="/camput/detail/like" method="post" >
-                        <div class="campNameforLike" th:value="*{campName}"></div>
-                        <div class="likeValue"></div>
-                        <button type="button" class="likeButton"><i class="fa-solid fa-heart"></i></button>
-                    </form>
+</th:block>
+
+<div class="wrap" th:object="${camp}" layout:fragment="content">
+        <div class="innercon">
+            <!-- 캠핑장 이미지 및 간단소개 -->
+            <div class="camp_main">
+                <div class="cmap_img">
+                    <div class="main_img" th:style="'background-image:url('+*{image}+');'"></div>
+                </div> <!--이미지가 하나뿐이라서 일단 대표 이미지 하나만 설정한다.-->
+                <div class="camp_txt">
+                    <div class="camp_title" th:text="*{campName}">camp name</div>
+                    <div class="camp_addr" th:text="*{campAddress}">주소</div>
+                    <p>사장님 한마디</p>
+                    <div class="capm_owner" th:text="*{simpleIntro}">사장님 한마디</div>
+                    <div class="likeCount">
+                        <div class="totalLike" th:text="*{totalLike}"></div>
+                        <form class="likeAction" action="/camput/detail/like" method="post" >
+                            <div class="campNameforLike"  th:value="*{campName}"></div>
+                            <div class="likeValue"></div>
+                            <div class="likeCheck" th:value="*{like}"></div>
+                            <button type="button" class="likeButton" onclick="like()">like</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -81,38 +47,47 @@
                 <div class="detail_info" th:text="*{detailIntro}">
                     testtest
                 </div>
-            </div> <!-- info -->
-            <!-- 예약 -->
-            <div class="acc_info">
-                <div class="main_title_btn slideBtn">예약</div>
-                <div class="openBooking">
-                    <form class="main_title" method="post" >
-                        <div class="reservationCalendar">
-                            <div class="sec_cal" >
-                                <div class="cal_nav">
-                                    <a href="javascript:;" class="nav-btn go-prev" id="prev1">Prev</a>
-                                    <div class="year-month"></div>
-                                    <a href="javascript:;" class="nav-btn go-next">Next</a>
-                                </div>
-                                <div class="startWarring"></div>
-                                <div class="cal_wrap" id="startLocalDates"th:value="${localDates}">
-                                    <div class="days">
-                                        <div class="day">MON</div>
-                                        <div class="day">TUE</div>
-                                        <div class="day">WED</div>
-                                        <div class="day">THU</div>
-                                        <div class="day">FRI</div>
-                                        <div class="day">SAT</div>
-                                        <div class="day">SUN</div>
+                <!-- 예약 -->
+                <div class="acc_info">
+                    <div class="main_title_btn slideBtn reservationBt">예약</div>
+                    <div class="openBooking">
+                        <div class="day-title infoTitles">1.예약일</div>
+                        <form class="main_title" name="reserInfo" method="get" action="/camput/reservationPage" >
+                            <input type="hidden" class="reservationInfo_name" name="campName" th:value="*{campName}"></input>
+                            <input type="hidden" class="reservationInfo_address" name="campAddress" th:value="*{campAddress}"></input>
+                            <div class="reservationCalendar">
+                                <div class="sec_cal" >
+                                    <div class="cal_nav">
+                                        <a href="javascript:;" class="nav-btn go-prev" id="prev1">Prev</a>
+                                        <div class="year-month"></div>
+                                        <a href="javascript:;" class="nav-btn go-next">Next</a>
                                     </div>
-                                    <div class="dates one"></div>
+                                    <div class="startWarring"></div>
+                                    <div class="cal_wrap" id="startLocalDates"th:value="${localDates}">
+                                        <div class="days">
+                                            <div class="day">MON</div>
+                                            <div class="day">TUE</div>
+                                            <div class="day">WED</div>
+                                            <div class="day">THU</div>
+                                            <div class="day">FRI</div>
+                                            <div class="day">SAT</div>
+                                            <div class="day">SUN</div>
+                                        </div>
+                                        <div class="dates one"></div>
+                                        <input type="hidden" class="startReservationDay" name="startReservationDay">
+                                        <div class="startReservationDay selected"></div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="startReservationDay"></div>
-                            <div type="button" class="init" onclick="reset()">취소하기</div>
-                            <div class="sec_cal">
-                                <div class="cal_nav">
-                                    <a href="javascript:;" class="nav-btn go-prevend" id="prev2">prev</a>
+                                <div class="sec_cal">
+                                    <div class="cal_nav">
+                                        <a href="javascript:;" class="nav-btn go-prevend" id="prev2">prev</a>
+                                        <div class="year-month-end"></div>
+                                        <a href="javascript:;" class="nav-btn go-nextend">next</a>
+                                    </div>
+
+                                <div class="endWarring" style="color: red;"></div>
+                                <div class="cal_wrap">
+                                    <div class="days">
                                     <div class="year-month-end"></div>
                                     <a href="javascript:;" class="nav-btn go-nextend">next</a>
                                 </div>
@@ -144,6 +119,27 @@
                 </div>
             </div> <!-- acc_info -->
 
+=======
+                                    <div class="dates two"></div>
+                                    <input type="hidden" class="endReservationDay" name="endReservationDay">
+                                    <div class="endReservationDay selected"></div>
+                                </div>
+                                </div>
+                            </div>
+                            <div type="button" class="init" onclick="reset()">취소하기</div>
+                            <div class="price-title infoTitles">2.가격</div>
+                                <div class="room_info">
+                                    <input type="checkbox" th:class="'price'+${price}+' price'" onclick="checkOnlyOne(this)" name="price" th:text="${price}+'원'" th:value="${price}">
+                                </div>
+                            </div>
+                                <div class="warring" name="warring" style="color: #dc3545;display: none">선택하지 않은 항목이 존재합니다</div>
+                                <div class="rebt-cel">
+                                    <button  onclick="nullCheck(); return false" class="campReservationBt">예약하기</button>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+>>>>>>> jeon
             <!-- 리뷰 글쓰기 모달 창 -->
             <div id="modal" class="modal_re" style="display:none">
                 <div class="newReview">
@@ -252,9 +248,6 @@
             })();
         }
     </script>
-<!-- 달력관련 스크립트   -->
-<script type="text/javascript" src="/js/camputDetail.js"></script>
-<!-- 홈페이지용 스크립트-->
-<!--<script type="text/javascript" src="/js/camputDetail02.js"></script>-->
-</body>
+    <script type="text/javascript" src="/js/camputDetail.js"></script>
+    </th:block>
 </html>
