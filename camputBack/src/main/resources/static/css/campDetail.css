@@ -19,8 +19,7 @@ body{
     display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }
 /* 메뉴바 */
-header{
-    position: fixed;
+/*header{
     top: 0;left: 0;right: 0;z-index: 6;
     height: 15%; width: 100%;
     background-color: rgba( 255, 255, 255, 0.1);
@@ -32,11 +31,10 @@ header{
 .Logo{
     margin-left: 5%;
     width: 10%; padding-bottom: 7%;
-    background-image: url("/img/logo.png");
+    background-image: url("../img/logo.png");
     background-size:contain ;
     background-repeat: no-repeat;
 }
-/* 메뉴 */
 .nav{
     width: 20%;
     margin-right: 5%;
@@ -53,14 +51,15 @@ header{
 .menuBtn .menu{position: relative;}
 .menu li{position: absolute; width:100%; height: 100%; right: 80%;}
 .menu .qandA{top: 200%;}
-/* 사이드 메뉴 */
+
 .miniMenu{display: none;}
 .miniMenu li{font-size: 1.5vw; width: 100%; text-align: right;}
-
-/*--------------------------------상단 동일 구역 ---------------------------*/
-
-/* .sec_cal {
-    width: 360px;
+*/
+.sec_cal {
+    border: solid 1px whitesmoke;
+    border-radius: 16px;
+    background-color: white;
+    width: 400px;
     margin: 0 auto;
     font-family: "NotoSansR";
 }
@@ -72,10 +71,11 @@ header{
     font-weight: 700;
     font-size: 48px;
     line-height: 78px;
+    padding: 0px 15px;
+
 }
 
 .sec_cal .cal_nav .year-month {
-    width: 300px;
     text-align: center;
     line-height: 1;
 }
@@ -85,7 +85,6 @@ header{
     border: 1px solid #333333;
     border-radius: 5px;
 }
-
 .sec_cal .cal_nav .go-prev,
 .sec_cal .cal_nav .go-next {
     display: block;
@@ -119,88 +118,6 @@ header{
 
 .sec_cal .cal_nav .go-next::before {
     transform: rotate(45deg);
-}
-
-.sec_cal .cal_wrap {
-    padding-top: 40px;
-    position: relative;
-    margin: 0 auto;
-}
-
-.sec_cal .cal_wrap .days {
-    display: flex;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ddd;
-}
-
-.sec_cal .cal_wrap::after {
-    top: 368px;
-}
-
-.sec_cal .cal_wrap .day {
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    width: calc(100% / 7);
-    text-align: left;
-    color: #999;
-    font-size: 12px;
-    text-align: center;
-    border-radius:5px
-}
-
-.current.today {background: rgb(242 242 242);}
-
-.sec_cal .cal_wrap .dates {
-    display: flex;
-    flex-flow: wrap;
-    height: 290px;
-}
-
-.sec_cal .cal_wrap .day:nth-child(7n -1) {
-    color: #3c6ffa;
-}
-
-.sec_cal .cal_wrap .day:nth-child(7n) {
-    color: #ed2a61;
-}
-
-.sec_cal .cal_wrap .day.disable {
-    color: #ddd;
-}
- */
-
-
-/*///////////////////////////////////////////////////////////////////////////////////////////////
-*/
-
-
-.sec_cal {
-    width: 360px;
-    margin: 0 auto;
-    font-family: "NotoSansR";
-}
-
-.sec_cal .cal_nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 700;
-    font-size: 48px;
-    line-height: 78px;
-}
-
-.sec_cal .cal_nav .year-month {
-    width: 300px;
-    text-align: center;
-    line-height: 1;
-}
-
-.sec_cal .cal_nav .nav {
-    display: flex;
-    border: 1px solid #333333;
-    border-radius: 5px;
 }
 
 .sec_cal .cal_nav .go-prevend,
@@ -261,8 +178,6 @@ header{
     border-radius:5px
 }
 
-.current.today {background: rgb(242 242 242);}
-
 .sec_cal .cal_wrap .dates {
     display: flex;
     flex-flow: wrap;
@@ -275,7 +190,7 @@ header{
 
 /*-------------------------------- css 작업 ---------------------------*/
 .innercon{
-    width: 80%; height: 100vh;
+    width: 80%;
     margin: 25vh auto;
 }
 .camp_main{
@@ -326,9 +241,13 @@ header{
     flex-wrap: nowrap;
     align-items: center;
     justify-content: flex-start;
-    width: 100%; margin-top: 10%;
+     margin-top: 10%;
     background-color: rgba(255, 255, 255, 0.6 );
-    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.reservationBt{
+ border-radius:10px ;
 }
 .go{
     border: 0;
@@ -339,7 +258,7 @@ header{
 }
 .main_title_info{display: none;}
 .detail_info{
-    padding: 3%; width: 100%; height: 100%;
+    padding: 3%; height: 100%;
     font-size: 2vw;
     background-color: #fff;
 }
@@ -352,7 +271,7 @@ header{
 }
 .openBooking{
     /* display: none;           */
-    width: 100%; height: 90vh;
+    height: 110vh;
     border-radius: 20px;
     padding: 10px;
     margin-top: 1vh;
@@ -360,10 +279,78 @@ header{
     background-color: rgba(255, 255, 255, 0.6 );
     box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.4);
 }
-
+.main-title{
+    display: flex;
+    flex-direction: column;
+    padding-top: 25px;
+}
 /* 달력 */
 .reservationCalendar{
     display: flex;
+    padding: 50px 0px
+}
+.startDayButton:hover{
+background-color: #f6d365;
+}
+.endDayButton:hover{
+    background-color: #f6d365;
+}
+.infoTitles{
+    font-size: 35px;
+    padding-left: 35px;
+    padding-top: 35px;
+}
+info{
+    border-bottom-right-radius:10px ;
+    border-bottom-left-radius:10px ;
+}
+.price50000{
+    width: 40px;
+    height: 20px;
+}
+.price100000{
+    width: 40px;
+    height: 20px;
+}
+.rebt-cel{
+    width: 40%;
+    margin: auto;
+}
+.campReservationBt{
+    width: 100%;
+    border-radius: 3px;
+    font-weight: bolder;
+    background-color: white;
+    font-size: 30px;
+    font-family:'TmoneyRoundWindExtraBold';
+}
+
+.room_info{
+    font-size: 25px;
+    padding: 18px 0px;
+    padding-left: 60px;
+}
+
+.selected{
+    text-align: center;
+    padding-top: 24px;
+    font-size: 25px;
+}
+.init{
+    background-color: white;
+    height: 50px;
+    border-radius: 3px;
+    font-weight: 700;
+    width: 50%;
+    margin: auto;
+    font-size: 25px;
+    text-align: center;
+    padding-top: 15px;
+}
+.warring{
+    text-align: center;
+    padding: 20px;
+    font-size: 19px;
 }
 
 /* 리뷰 */

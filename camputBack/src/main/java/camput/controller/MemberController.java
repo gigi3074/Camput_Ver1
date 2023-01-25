@@ -2,6 +2,7 @@ package camput.controller;
 import camput.Dto.FindIdDto;
 import camput.Dto.LoginDto;
 import camput.Dto.loginApiDto.LoginSessionDto;
+import camput.MemberSession;
 import camput.Service.LoginApiService;
 import camput.Service.LoginCheckService;
 import camput.Service.MemberService;
@@ -47,7 +48,7 @@ public class MemberController {
                 .build();
         if (isValid) {  // 참이면
             HttpSession session = request.getSession();
-            session.setAttribute(memberService.LOGIN_MEMBER, loginsession);  // 아이디 담아서
+            session.setAttribute(MemberSession.LOGIN_MEMBER, loginsession);  // 아이디 담아서
             return "redirect:/camput/main"; // 보냄
         } else {
             return "login";

@@ -22,7 +22,6 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequiredArgsConstructor
 public class myPageMemberUpdateController {
-
     private final MemberUpdateService memberUpdateService;
     private final JoinService joinService;
     private final LoginCheckService loginCheckService;

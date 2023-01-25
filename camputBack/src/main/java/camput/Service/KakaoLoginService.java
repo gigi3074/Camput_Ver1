@@ -3,8 +3,11 @@ package camput.Service;
 import camput.Dto.loginApiDto.LoginSessionDto;
 import camput.Dto.loginApiDto.MemberResponseDto;
 import camput.Dto.loginApiDto.SocialAuthResponse;
+import camput.MemberSession;
 import camput.domain.Member;
+import camput.domain.MemberAddress;
 import camput.domain.MemberGender;
+import camput.repository.MemberAddressRepository;
 import camput.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +23,7 @@ public class KakaoLoginService {
     private final MemberService memberService;
     private final MemberRepository memberRepository;
     private final LoginApiService loginApiService;
+    private final MemberAddressRepository memberAddressRepository;
 
     public HttpSession doApiLogin(String code,HttpSession session, HttpServletRequest request){
         SocialAuthResponse accessToken = loginApiService.getAccessToken(code);
@@ -37,14 +41,8 @@ public class KakaoLoginService {
             }else{
                 gender=null;
             }
-            Member member = Member.builder()
-                    .memberLoginId(userInfo.getLoginId())
-                    .birthday(userInfo.getBirthday())
-                    .nickName(userInfo.getNickname())
-                    .memberPoint("1000000")
-                    .memberName(userInfo.getNickname())
-                    .gender(gender)
-                    .build();
+            MemberAddress memberAddress = saveNullAddress();
+            Member member = joinMemberKakao(userInfo, gender, memberAddress);
             memberRepository.save(member);
         }
         Member member = memberRepository.findByMemberLoginId(userInfo.getLoginId());
@@ -60,8 +58,33 @@ public class KakaoLoginService {
                 .build();
 
         session = request.getSession();
-        session.setAttribute(memberService.LOGIN_MEMBER, loginSession);
+        session.setAttribute(MemberSession.LOGIN_MEMBER, loginSession);
      return session;
+    }
+
+    private static Member joinMemberKakao(MemberResponseDto userInfo, MemberGender gender, MemberAddress memberAddress) {
+        Member member = Member.builder()
+                .memberLoginId(userInfo.getLoginId())
+                .birthday(userInfo.getBirthday())
+                .nickName(userInfo.getNickname())
+                .memberPoint("1000000")
+                .memberName(userInfo.getNickname())
+                .gender(gender)
+                .memberAddress(memberAddress)
+                .build();
+        return member;
+    }
+
+    private MemberAddress saveNullAddress() {
+        MemberAddress memberAddress = MemberAddress.builder()
+                .mainAddress("없음")
+                .detailAddress("")
+                .memberPostNum("")
+                .extraAddress("")
+                .streetAddress("")
+                .build();
+        memberAddressRepository.save(memberAddress);
+        return memberAddress;
     }
 
 }

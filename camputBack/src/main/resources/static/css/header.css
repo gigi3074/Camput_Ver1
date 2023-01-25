@@ -6,8 +6,7 @@
 *{font-family:'TmoneyRoundWindExtraBold';}
 /* 화면 구성 */
 .wrap-top{
-    width: 100%; height: 100vmax;
-    overflow-y:scroll;
+    width: 100%;
     background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
 }
 /* 스크롤제거 */
@@ -20,8 +19,6 @@ body{
 }
 /* 메뉴바 */
 header{
-    position: fixed;
-
     top: 0;left: 0;right: 0;z-index: 6;
     height: 15%; width: 100%;
     background-color: rgba( 255, 255, 255, 0.1);
@@ -30,7 +27,7 @@ header{
     justify-content: space-between;
     align-items: center;
 }
-.Logo{
+.Logo {
     margin-left: 5%;
     width: 10%; padding-bottom: 7%;
     background-image: url("../img/logo.png");

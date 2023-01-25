@@ -16,7 +16,7 @@ public interface MemberService {
     // 로그인 및 세션
     // 로그인 아이디 있는지? 없는지?
     boolean loginIsValid(String memberLoginId, String memberPassword);
-    final String LOGIN_MEMBER = "loginMember";
+
     List<Member> findAll();
     static Map<Long, Member> store = new HashMap<>();
 
