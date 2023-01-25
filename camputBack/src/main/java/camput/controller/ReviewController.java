@@ -1,12 +1,21 @@
 package camput.controller;
 
 import camput.Dto.CampCommentDto;
+import camput.Dto.MemberInfoDto;
+import camput.Dto.MemberJoinDto;
 import camput.Service.CampCommentService;
+<<<<<<< HEAD
 import camput.Service.CamputService;
 import camput.Service.LoginCheckService;
 import camput.Service.MyPageBookInfoService;
 import camput.domain.Camput;
 import camput.domain.Commented;
+=======
+import camput.Service.LoginCheckService;
+import camput.Service.MemberService;
+import camput.Service.MyPageBookInfoService;
+import camput.domain.Camput;
+>>>>>>> myBranch
 import camput.domain.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,11 +24,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+<<<<<<< HEAD
 import javax.servlet.http.HttpSession;
 
 import java.util.List;
 
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+=======
+>>>>>>> myBranch
 
 @Slf4j
 @Controller
@@ -27,6 +39,7 @@ import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 @RequestMapping("/camput")
 public class ReviewController {
     private final CampCommentService campCommentService;
+<<<<<<< HEAD
     private final CamputService camputService;
     private final LoginCheckService loginCheckService;
 
@@ -60,6 +73,46 @@ public class ReviewController {
 //        campCommentService.deleteByNickNameAndMakedDate(nickName, makedDate);
 //        return "redirect:/reviews";
 //    }
+=======
+    private final LoginCheckService loginCheckService;
+    private final MemberService memberService;
+
+    @PostMapping("/reviews/insert") // 새글
+    @ResponseBody
+    public Boolean createReview(@ModelAttribute CampCommentDto commentDto, HttpServletRequest request) {
+        String loginId = loginCheckService.checkLogin(request);
+        MemberInfoDto memberInfoDto = memberService.findMemberInfo(loginId);
+        Member member = Member.builder()
+                .memberLoginId(memberInfoDto.getMemberLoginId())
+                .nickName(memberInfoDto.getNickName())
+                .id(memberInfoDto.getId())
+                .build();
+        commentDto.setMember(member);
+        campCommentService.save(commentDto);
+        return true;
+    }
+   @PostMapping("/reviews/update") // 수정 - 아이디로 불러와서 수정
+   @ResponseBody
+    public Boolean updateReview(@ModelAttribute CampCommentDto commentDto, HttpServletRequest request) {
+       String loginId = loginCheckService.checkLogin(request);
+       MemberInfoDto memberInfoDto = memberService.findMemberInfo(loginId);
+       Member member = Member.builder()
+               .memberLoginId(memberInfoDto.getMemberLoginId())
+               .nickName(memberInfoDto.getNickName())
+               .id(memberInfoDto.getId())
+               .build();
+       commentDto.setMember(member);
+       campCommentService.update(commentDto);
+       return true;
+   }
+
+    @GetMapping("/reviews/delete") // 삭제        /   @PathVariable    @RequestParam
+    @ResponseBody
+    public Boolean deleteReview(@RequestParam("id") Long id) {
+        campCommentService.deleteById(id);
+        return true;
+    }
+>>>>>>> myBranch
 //
     @GetMapping("/campDetail/{name}") // 리스트 아이디로 불러오기
     public String getReviews(@PathVariable Long Id, Model model) {

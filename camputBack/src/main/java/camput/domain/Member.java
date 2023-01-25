@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.lang.management.LockInfo;
 import java.util.List;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -32,7 +33,7 @@ public class Member {
     private List<Commented> commented;
 
     @Builder
-    public Member(String memberEmail, String memberLoginId, String memberPassword, String nickName, String memberName, String memberPoint, String phoneNumber, String birthday, MemberAddress memberAddress, MemberGender gender, List<Commented> commented) {
+    public Member(String memberEmail, String memberLoginId, String memberPassword, String nickName, String memberName, String memberPoint, String phoneNumber, String birthday, MemberAddress memberAddress, MemberGender gender, List<Commented> commented, Long id) {
         this.memberEmail = memberEmail;
         this.memberLoginId = memberLoginId;
         this.memberPassword = memberPassword;
@@ -44,6 +45,7 @@ public class Member {
         this.memberAddress = memberAddress;
         this.gender = gender;
         this.commented = commented;
+        this.id = id;
     }
 
     public void updateMember(String memberEmail,String nickName, String memberName,String phoneNumber, String birthday, MemberGender gender, MemberAddress save, String memberPassword){

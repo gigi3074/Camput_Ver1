@@ -39,6 +39,7 @@ public class CampCommentImpl implements CampCommentService {
 //                .imageDate(commentDto.getImageDate())
 //                .build();
 //        CommentedImageFile save = commentedImageFileRepository.save(img);
+<<<<<<< HEAD
 
         Commented commented = Commented.builder()
                 .commentedContent(commentDto.getComment())
@@ -54,6 +55,21 @@ public class CampCommentImpl implements CampCommentService {
     public Optional<Commented> findById(Long id) {
         Optional<Commented> commentedList = commentedRepository.findById(id);
         return commentedList;
+=======
+        Camput camput = Camput.builder()
+                .id(commentDto.getCamputId())
+                .build();
+        Commented commented = Commented.builder()
+                .commentedContent(commentDto.getComment())
+                .commentedDate(commentDto.getMakedDate())
+                .stars(commentDto.getStars())
+                .commentedMemberName(commentDto.getMember().getNickName())
+                //.commentedImageFiles(save.getCommented().getCommentedImageFiles())
+                .member(commentDto.getMember())
+                .camput(camput)
+                .build();
+        commentedRepository.save(commented);
+>>>>>>> myBranch
     }
 
 //    @Override
@@ -61,14 +77,39 @@ public class CampCommentImpl implements CampCommentService {
 //        return commentedRepository.getAvgRating();
 //    }
 //
+<<<<<<< HEAD
+=======
+    @Override
+    public List<Commented> findAllByCamput(Camput camput) {
+        return commentedRepository.findAllByCamput(camput);
+    }
+>>>>>>> myBranch
 
 //    @Override
 //    public CampCommentDto findByNickNameAndMakedDate(String nickName, String makedDate) {
 //        return commentedRepository.findByNickNameAndMakedDate(nickName, makedDate);
 //    }
-//    @Override
-//    public void deleteByNickNameAndMakedDate(String nickName, String makedDate) {
-//
-//    }
+    @Override
+    @Transactional
+    public void deleteById(Long id) {
+        commentedRepository.deleteById(id);
+    }
 
+    @Override
+    @Transactional
+    public void update(CampCommentDto commentDto) {
+        Commented commented = commentedRepository.findById(commentDto.getId()).orElseThrow(() ->
+                new IllegalArgumentException("commented 없다"));
+        Camput camput = Camput.builder()
+                .id(commentDto.getCamputId())
+                .build();
+        commented.commentedUpdate(
+                commentDto.getId(),
+                commentDto.getComment(),
+                commentDto.getMember(),
+                camput
+        );
+
+        commentedRepository.save(commented);
+    }
 }

@@ -1,11 +1,11 @@
 package camput.controller;
 
+import camput.Dto.CampCommentDto;
 import camput.Dto.DetailPageDto;
 import camput.Dto.LikeDto;
-import camput.Service.CampCalenderService;
-import camput.Service.CamputService;
-import camput.Service.LikeService;
-import camput.Service.LoginCheckService;
+import camput.Service.*;
+import camput.domain.Camput;
+import camput.domain.Commented;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
@@ -45,6 +45,7 @@ public class CampDetailPageController {
         log.info("like={}",camp.getLike());
         model.addAttribute("localDates",localDates);
         model.addAttribute("camp",camp);
+        model.addAttribute("loginId", loginId);
         return "campDetail";
     }
     /**
