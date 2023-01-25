@@ -22,12 +22,6 @@ public class CampCommentImpl implements CampCommentService {
     private final CommentedRepository commentedRepository;
     private final CommentedImageFileRepository commentedImageFileRepository;
 
-
-    @Override
-    public List<Commented> findByCampName(Camput campName) {
-        return commentedRepository.findAllByCamput(campName);
-    }
-
     // 새글
     @Override
     @Transactional
@@ -39,23 +33,6 @@ public class CampCommentImpl implements CampCommentService {
 //                .imageDate(commentDto.getImageDate())
 //                .build();
 //        CommentedImageFile save = commentedImageFileRepository.save(img);
-<<<<<<< HEAD
-
-        Commented commented = Commented.builder()
-                .commentedContent(commentDto.getComment())
-                .commentedDate(LocalDateTime.now())
-                .commentedMemberName(commentDto.getMemberName())
-                .stars((Integer) commentDto.getStars())
-//                .commentedImageFiles(save.getCommented().getCommentedImageFiles())
-                .build();
-        commentedRepository.save(commented);
-    }
-
-    @Override
-    public Optional<Commented> findById(Long id) {
-        Optional<Commented> commentedList = commentedRepository.findById(id);
-        return commentedList;
-=======
         Camput camput = Camput.builder()
                 .id(commentDto.getCamputId())
                 .build();
@@ -69,7 +46,6 @@ public class CampCommentImpl implements CampCommentService {
                 .camput(camput)
                 .build();
         commentedRepository.save(commented);
->>>>>>> myBranch
     }
 
 //    @Override
@@ -77,13 +53,10 @@ public class CampCommentImpl implements CampCommentService {
 //        return commentedRepository.getAvgRating();
 //    }
 //
-<<<<<<< HEAD
-=======
     @Override
     public List<Commented> findAllByCamput(Camput camput) {
         return commentedRepository.findAllByCamput(camput);
     }
->>>>>>> myBranch
 
 //    @Override
 //    public CampCommentDto findByNickNameAndMakedDate(String nickName, String makedDate) {
