@@ -38,9 +38,16 @@ public class Commented {
         this.commentedContent = commentedContent;
         this.commentedMemberName = commentedMemberName;
         this.stars = stars;
-        this.commentedDate = commentedDate;
+        this.commentedDate = LocalDateTime.now();
         this.member = member;
         this.camput = camput;
         this.commentedImageFiles = commentedImageFiles;
+    }
+
+    public void commentedUpdate(long id, String commentedContent, Member member, Camput camput){
+        this.id = id;
+        this.commentedContent = commentedContent;
+        this.member = member;
+        this.camput = camput;
     }
 }

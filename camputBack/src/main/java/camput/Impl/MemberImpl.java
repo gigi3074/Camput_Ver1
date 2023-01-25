@@ -64,6 +64,8 @@ public class MemberImpl implements MemberService {
                 .memberLoginId(member.getMemberLoginId())
                 .memberBirth(member.getBirthday())
                 .memberPhoneNum(member.getPhoneNumber())
+                .id(member.getId())
+                .nickName(member.getNickName())
                 .build();
 
         return memberInfoDto;

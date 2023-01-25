@@ -2,10 +2,7 @@ package camput.Impl;
 
 import camput.Dto.CampCommentDto;
 import camput.Service.CampCommentService;
-import camput.domain.Commented;
-import camput.domain.CommentedImageFile;
-import camput.domain.Member;
-import camput.domain.MemberAddress;
+import camput.domain.*;
 import camput.repository.CommentedImageFileRepository;
 import camput.repository.CommentedRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,22 +25,26 @@ public class CampCommentImpl implements CampCommentService {
     @Override
     @Transactional
     public void save(CampCommentDto commentDto) {
-        CommentedImageFile img = CommentedImageFile.builder()
-                .saveImageUrl(commentDto.getSaveImageUrl())
-                .imageOriginalUrl(commentDto.getImageOriginalUrl())
-                .imageFilename(commentDto.getImageFilename())
-                .imageDate(commentDto.getImageDate())
+//        CommentedImageFile img = CommentedImageFile.builder()
+//                .saveImageUrl(commentDto.getSaveImageUrl())
+//                .imageOriginalUrl(commentDto.getImageOriginalUrl())
+//                .imageFilename(commentDto.getImageFilename())
+//                .imageDate(commentDto.getImageDate())
+//                .build();
+//        CommentedImageFile save = commentedImageFileRepository.save(img);
+        Camput camput = Camput.builder()
+                .id(commentDto.getCamputId())
                 .build();
-        CommentedImageFile save = commentedImageFileRepository.save(img);
-
         Commented commented = Commented.builder()
                 .commentedContent(commentDto.getComment())
                 .commentedDate(commentDto.getMakedDate())
                 .stars(commentDto.getStars())
-                .commentedMemberName(commentDto.getMemberName())
-                .commentedImageFiles(save.getCommented().getCommentedImageFiles())
+                .commentedMemberName(commentDto.getMember().getNickName())
+                //.commentedImageFiles(save.getCommented().getCommentedImageFiles())
+                .member(commentDto.getMember())
+                .camput(camput)
                 .build();
-        commentedRepository.save(commentDto);
+        commentedRepository.save(commented);
     }
 
 //    @Override
@@ -51,18 +52,36 @@ public class CampCommentImpl implements CampCommentService {
 //        return commentedRepository.getAvgRating();
 //    }
 //
-//    @Override
-//    public List<Commented> findAllByCamput() {
-//        return commentedRepository.findAll();
-//    }
+    @Override
+    public List<Commented> findAllByCamput(Camput camput) {
+        return commentedRepository.findAllByCamput(camput);
+    }
 
 //    @Override
 //    public CampCommentDto findByNickNameAndMakedDate(String nickName, String makedDate) {
 //        return commentedRepository.findByNickNameAndMakedDate(nickName, makedDate);
 //    }
-//    @Override
-//    public void deleteByNickNameAndMakedDate(String nickName, String makedDate) {
-//
-//    }
+    @Override
+    @Transactional
+    public void deleteById(Long id) {
+        commentedRepository.deleteById(id);
+    }
 
+    @Override
+    @Transactional
+    public void update(CampCommentDto commentDto) {
+        Commented commented = commentedRepository.findById(commentDto.getId()).orElseThrow(() ->
+                new IllegalArgumentException("commented 없다"));
+        Camput camput = Camput.builder()
+                .id(commentDto.getCamputId())
+                .build();
+        commented.commentedUpdate(
+                commentDto.getId(),
+                commentDto.getComment(),
+                commentDto.getMember(),
+                camput
+        );
+
+        commentedRepository.save(commented);
+    }
 }

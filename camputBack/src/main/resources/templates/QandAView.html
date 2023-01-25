@@ -76,7 +76,7 @@
             <span th:text="${answer.qAnswer}" th:if="${loginMember != answer.memberLoginId}"></span>
             <span th:text="${answer.reqActDate}"></span>
             <a th:if="${loginMember == answer.memberLoginId}" th:href="@{/QnA/delete/answer/{id}/{qnaId}(id = ${answer.id}, qnaId = ${qna.id})}" id="answerDeleteBtn">삭제</a>
-            <a th:onclick="|javascript:updateAnswer(${answer.id}, ${qna.id})|" id="answerUpdateBtn">수정</a>
+            <a th:if="${loginMember == answer.memberLoginId}" th:onclick="|javascript:updateAnswer(${answer.id}, ${qna.id})|" id="answerUpdateBtn">수정</a>
         </div>
     </div>
 </body>
