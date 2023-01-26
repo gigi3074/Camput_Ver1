@@ -1,4 +1,4 @@
-@import url("/css/reset.css");
+@import url("/../css/reset.css");
 /* 라인 */
 @font-face { font-family: 'LINESeedKR-Bd'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2'); font-weight: 700; font-style: normal; }
 /* 티머니 */
@@ -8,7 +8,7 @@
 
 /* 배경 */
 .wrap{
-    margin: 0 auto; height: 100vmax;
+    margin: 0 auto; height: fit-content;
     overflow-y: scroll;
     background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
 }
@@ -17,14 +17,13 @@ body{
     -ms-overflow-style: none; /* 인터넷 익스플로러 */
     scrollbar-width: none; /* 파이어폭스 */
 }
-::-webkit-scrollbar {
+body::-webkit-scrollbar {
     display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }
 
 /* 메인 */
 .QandA{
-    margin: 15vh auto; 
-    /* margin: 0 auto; */
+    margin: 0 auto 2%;
     width: 60%; height: 70vw;
     background-color: rgba(255, 255, 255, 0.7);
     box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.5);
@@ -75,11 +74,12 @@ body{
     border-radius: 10px; border: 0;
     background-color: rgba(255, 255, 255, 0.8);
     color: #ffa600; font-size: 1vw;
-    padding: 1% 0.5%; width: 15%;
+    padding: 1% 0.5%; width: 90%;
     font-family: 'TmoneyRoundWindExtraBold';
-    transition: box-shadow 0.5s ease-in-out, color 0.5s ease-in-out;
+    transition: box-shadow 0.4s ease-in-out, color 0.5s ease-in-out;
     text-align: center;
 }
+.newWrite a{width:90%; display:block;}
 .newWrite:hover{
     color: rgba(255, 255, 255, 0.8);
     box-shadow: 0 80px 0 0  #ffa600 inset,
@@ -95,7 +95,7 @@ body{
     font-size: 1.3vw;
 }
 .active {font-weight: bold;}
-.search{width: 40%;}
+.search{width: 100%; display: flex; flex-direction: row;justify-content: space-between;}
 .searchKeyword{
     padding: 2%; border-bottom: 2px solid rgba(0, 0, 0, 0.5);
     background-color: rgba(255, 255, 255, 0.2);
@@ -104,10 +104,10 @@ body{
     border-radius: 10px; border: 0;
     background-color: rgba(255, 255, 255, 0.8);
     color: #ffa600; font-size: 1vw;
-    padding: 1%; width: 20%;
+    padding: 1%; width: 50%;
     font-family: 'TmoneyRoundWindExtraBold';
     transition: box-shadow 0.5s ease-in-out, color 0.5s ease-in-out;
-    text-align: center;
+    text-align: center; margin-left: 2%;
 }
 .searchBtn:hover{
     color: rgba(255, 255, 255, 0.8);

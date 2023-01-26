@@ -8,7 +8,7 @@
 
 /* 배경 */
 .wrap{
-    margin: 0 auto; height: 100vmax;
+    margin: 0 auto; height: fit-content;
     overflow-y: scroll;
     background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
 }
@@ -55,7 +55,7 @@ body{
     font-family: 'TmoneyRoundWindExtraBold';
 }
 .memberInfoChange{
-    margin-left: 5vh; width: 10%;
+    margin: 0 auto 2%; width: 10%;
     font-weight: bold; color: #fff;
     background-color: #ffa600;
     border-radius: 10px;
@@ -67,9 +67,8 @@ body{
 .memberInfoChange:hover{background-color: #ffa600;color: rgba(255, 255, 255, 0.8);}
 
 /* 보드 리스트 */
-.myPageMemberInfoRe{
-    /* margin: 15vh auto;  */
-    margin: 0 auto; 
+.myPageMemberInfo{
+    margin: 0 auto 2%;
     width: 60%; height: 70vw;
     background-color: rgba(255, 255, 255, 0.7);
     box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.5);
