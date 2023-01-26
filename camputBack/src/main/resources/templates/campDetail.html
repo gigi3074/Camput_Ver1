@@ -88,14 +88,14 @@
             <!-- 메뉴 -->
             <div class="nav Login">
                 <ul class="menuBtn">
-                    <li class="login"><a href="">마이페이지</a></li>
-                    <li class="join"><a href="">로그아웃</a></li>
+                    <li class="login"><a th:href="@{/camput/myPage/information}">마이페이지</a></li>
+                    <li class="join"><a th:href="@{/camput/logout}">로그아웃</a></li>
                     <li class="menu">
                     <a href="#"><i class="fa-solid fa-bars"></i></a>
                         <ul class="miniMenu" style="display: none;">
-                            <li class="qandA gnb_menu">위시리스트</li>
-                            <li class="qandA gnb_menu">예약리스트</li>
-                            <li class="qandA gnb_menu">Q & A</li>
+                            <li class="qandA gnb_menu"><a th:href="@{/camput/myPage/like}">위시리스트</a></li>
+                            <li class="qandA gnb_menu"><a th:href="@{/camput/myPage/bookInfo}">예약리스트</a></li>
+                            <li class="qandA gnb_menu"><a th:href="@{/camput/QnA/list}">Q & A</a></li>
                         </ul>
                     </li>
                 </ul>
