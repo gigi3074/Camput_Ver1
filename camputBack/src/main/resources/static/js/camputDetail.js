@@ -1,4 +1,5 @@
 
+/*
 <<<<<<< HEAD
 window.scrollTo({ left: 0, top: 0, behavior: "smooth" });
 // 메뉴
@@ -65,6 +66,7 @@ $(".sub_btn").click(function () {
 
 
 =======
+*/
 var checkStartYear="";
 var checkStartMonth="";
 var checkStartDay="";
@@ -230,7 +232,7 @@ function initCalendar1() {
                 clickedYMD = clickedYear + "-" + clickedMonth + "-" + clickedDate;
                 var selected=document.querySelector(".startReservationDay.selected");
                 var start=document.querySelector(".startReservationDay");
-                selected.innerHTML=clickedYMD;
+                selected.innerText=clickedYMD;
                 start.setAttribute('value',clickedYMD);
                 var dayId = "start" + (currentMonth + 1) + "month" + $(_this).data("idx")
                 startColor = dayId;
@@ -398,7 +400,7 @@ function initCalendar2() {
             clickedYMD = clickedYear + "-" + clickedMonth + "-" + clickedDate;
             var selected=document.querySelector(".endReservationDay.selected");
             var end=document.querySelector(".endReservationDay");
-            selected.innerHTML=clickedYMD;
+            selected.innerText=clickedYMD;
             end.setAttribute('value',clickedYMD);
             var dayId="end"+(currentMonth + 1)+"month"+$(_this).data("idx")
             endColor=dayId;
@@ -513,4 +515,4 @@ if(((!checkBox2.checked&&!checkBox1.checked))&&_this.value===checkBox1.value){
     _this.checked =true;
 }
 }
->>>>>>> jeon
+
