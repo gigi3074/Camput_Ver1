@@ -9,39 +9,32 @@
     <meta http-equiv="Expires" content="0">
     <title>CAMPUT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="/css/home.css">
-    <link rel='icon' type='images/png' href='/css/img/TeamProject.png'>
+     <link rel="stylesheet" href="/css/home.css">
+    <link rel='icon' type='images/png' href='../img/logo.png'>
     <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="home">
     <header>
         <div class="Logo"></div>
-        <div class="nav">
+        <div class="nav notLogin">
             <ul class="menuBtn">
                 <li class="login"><a href="login">Login</a></li>
                 <li class="join"><a href="join">Join</a></li>
-                <!--                <li class="menu">-->
-                <!--                    <a href="#"><i class="fa-solid fa-bars"></i></a>-->
-                <!--                    <ul class="miniMenu">-->
-                <!--                        <li class="notice gnb_menu"><a href=""> 공지사항</a></li>-->
-                <!--                        <li class="qandA gnb_menu"><a href=""> Q & A</a></li>-->
-                <!--                    </ul>-->
-                <!--                </li>-->
             </ul>
         </div>
         <!-- 메뉴 -->
-        <div class="menu" style="display: none;">
+        <div class="nav Login" style="display: none;">
             <ul class="menuBtn">
-                <li class="login"><a href="login.html">마이페이지</a></li>
-                <li class="join"><a href="join.html">로그아웃</a></li>
+                <li class="myPageMemberInfo"><a href="login.html">마이페이지</a></li>
+                <li class="logout"><a href="join.html">로그아웃</a></li>
                 <li class="menu">
                     <a href="#"><i class="fa-solid fa-bars"></i></a>
                     <ul class="miniMenu" style="display: none;">
                         <li class="qandA gnb_menu">위시리스트</li>
                         <li class="qandA gnb_menu">예약리스트</li>
                         <li class="notice gnb_menu">공지사항</li>
-                        <li class="qandA gnb_menu">Q & A</li>
+                        <li class="qandA gnb_menu" th:href="@{/QnA/list}">Q & A</li>
                     </ul>
                 </li>
             </ul>
@@ -117,12 +110,9 @@
                                     <button type="button" class="fitterButton bt" onclick="filter()">필터</button>
                                 </div>
                             </form>
-                            <div class="map">
-                                <div class="mapImage" id="map" ></div>
-                            </div>
                             <div class="warring" style="display: none; color: red">찾을 수 없습니다</div>
                             <div class="filterBox" style="display: none;">
-                                <form class="categoryInput" method="get" action="/camput/home/category" style="display: none;">
+                                <form class="categoryInput" method="get" action="/camput/home/category">
                                     <div class="filter">
                                         <div class="filterContent">
                                             <div class="stars categoryContent">
@@ -180,6 +170,9 @@
                                     </div>
                                 </form>
                             </div>
+                            <div class="map">
+                                <div class="mapImage" id="map" ></div>
+                            </div>
                         </div> <!--findCampsUseInfo-->
                     </div> <!--test-->
                 </div> <!--mapWrap-->
@@ -188,13 +181,13 @@
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e3cb72ae1e875c47e83a78a91d17b8dd&libraries=clusterer"></script>
+<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=e3cb72ae1e875c47e83a78a91d17b8dd&libraries=clusterer"></script>
 <script th:inline='javascript'>
     var campMap= [[${campList}]];
     var loginCheck=[[${member}]];
     console.log(loginCheck);
 </script>
-<script type="text/javascript" src="/js/home.js"></script>
-<script type="text/javascript" src="/js/loginCheck.js"></script>
+    <script type="text/javascript" src="/js/home.js"></script>
+    <script type="text/javascript" src="/js/loginCheck.js"></script>
 </body>
 </html>

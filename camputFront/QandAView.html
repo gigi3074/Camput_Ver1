@@ -11,7 +11,7 @@
     <!-- 아이콘 -->
     <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
     <!-- css -->
-    <link rel="stylesheet" href="/done/css/QandAView.css">
+    <link rel="stylesheet" href="/camputFront/css/QandAView.css">
     <title>게시글 상세 페이지</title>
 
     <script>
@@ -58,31 +58,6 @@
     </script>
 </head>
 <body>
-<<<<<<< HEAD
-    <h1 th:text="${qna.qnaTitle}"></h1>
-    <p th:text="${qna.qnaContent}"></p>
-
-    <a th:if="${loginMember == qna.memberLoginId}" th:href="@{/QnA/delete(id=${qna.id})}">글삭제</a>
-    <a th:if="${loginMember == qna.memberLoginId}" th:href="@{/QnA/modify/{id}(id = ${qna.id})}">수정</a>
-
-    <!-- 댓글 작성부분 -->
-    <div id="comment-write">
-        <input type="text" id="commentWriter" th:value="${loginMember}" readonly>
-        <input type="text" id="commentContents" placeholder="내용을 입력하세요">
-        <input type="hidden" id="qnaId" th:value="${qna.id}">
-        <input type="button" id="comment-write-btn" value="댓글작성">
-    </div>
-
-
-    <div id="comment-list">
-        <div th:each="answer, i : ${qnaAnswerList}">
-            <span th:text="${answer.memberLoginId}"></span>
-            <input th:value="${answer.qAnswer}" th:if="${loginMember == answer.memberLoginId}" th:name="${answer.id}">
-            <span th:text="${answer.qAnswer}" th:if="${loginMember != answer.memberLoginId}"></span>
-            <span th:text="${answer.reqActDate}"></span>
-            <a th:if="${loginMember == answer.memberLoginId}" th:href="@{/QnA/delete/answer/{id}/{qnaId}(id = ${answer.id}, qnaId = ${qna.id})}" id="answerDeleteBtn">삭제</a>
-            <a th:if="${loginMember == answer.memberLoginId}" th:onclick="|javascript:updateAnswer(${answer.id}, ${qna.id})|" id="answerUpdateBtn">수정</a>
-=======
     <div class="wrap">
         <div class="QandAView">
             <div class="section">
@@ -112,9 +87,8 @@
                     </div>
                 </div>
             </div>
->>>>>>> gigi
         </div>
-    </div><!-- wrap -->
+    </div>
 </body>
 </html>
 

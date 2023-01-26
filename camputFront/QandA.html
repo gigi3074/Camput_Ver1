@@ -12,7 +12,7 @@
     <!-- 아이콘 -->
     <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
     <!-- css -->
-    <link rel="stylesheet" href="/done/css/QandA.css">
+    <link rel="stylesheet" href="/camputFront/css/QandA.css">
     <title>Q&A</title>
 </head>
 <script>
@@ -46,17 +46,17 @@
                                 <th>조회수</th>
                             </tr>
                             <tr class="conLine" th:each="qna, i : ${qnalist}">
-                                <td th:text="${qnalist.getTotalElements() - i.index}"></td>
+                                <td th:text="${qnalist.getTotalElements() - i.index}">1</td>
                                 <td>
-                                    <a th:text="${qna.qnaTitle}" th:href="@{/QnA/view(id=${qna.id})}"></a>
+                                    <a th:text="${qna.qnaTitle}" th:href="@{/QnA/view(id=${qna.id})}">ddd</a>
                                 </td>
-                                <td th:text="${qna.memberLoginId}" }></td>
-                                <td th:text="${qna.qnaUpdateDate}"></td>
-                                <td th:text="${qna.viewCount}"></td>
+                                <td th:text="${qna.memberLoginId}"}></td>
+                                <td th:text="${qna.qnaUpdateDate}">2023-01-25 13:40:57</td>
+                                <td th:text="${qna.viewCount}">	1</td>
                             </tr>
                         </table>
                         <div class="qnaPagination">
-                            <div class="newWrite"><a th:if="${loginMember}" class="newWrite" th:href="@{/QnA/write}">글쓰기</a></div>
+                            <a th:if="${loginMember}" class="newWrite" th:href="@{/QnA/write}">글쓰기</a>
                             <ul class="pagination" th:with="start=${(T(java.lang.Math).floor(qnalist.getNumber()/10)*10) + 1},
                                 last=(${start + 9 < qnalist.totalPages ? start + 9 : qnalist.totalPages})">
                                 <li>

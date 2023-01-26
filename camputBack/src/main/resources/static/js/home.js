@@ -64,15 +64,14 @@ function checkVisible1( element, check = 'above' ) {
 
 }
 let func1 = function () {
-    if (checkVisible1('.campIcon') ) {
-        // document.querySelector('.campIcon').classList.add('animate__animated','animate__slideInUp');
-        // document.querySelector('.campIcon').style.setProperty('--animate-duration', '2s');
-        document.querySelector('.toparea').classList.add('animate__animated','animate__slideInUp');
-        document.querySelector('.toparea').style.setProperty('--animate-duration', '2s');
-        // document.querySelector('.campTopSeven').classList.add('animate__animated','animate__slideInUp');
-        // document.querySelector('.campTopSeven').style.setProperty('--animate-duration', '2s');
+    if (checkVisible1('.campTopSevenContent') ) {
+        document.querySelector('.campTopSevenContent').classList.add('animate__animated','animate__slideInUp');
+        document.querySelector('.campTopSevenContent').style.setProperty('--animate-duration', '3s');
     }
 }
+// window.addEventListener ('scroll',function(){
+//     $(".campTopSevenContent").fadeIn(1000).animate({top:"100"},500);
+// });
 window.addEventListener('scroll', func1);
 function checkVisible2( element, check = 'above' ) {
     let viewportHeight = $(window).height();
@@ -89,14 +88,12 @@ function checkVisible2( element, check = 'above' ) {
 
 let func2 = function () {
     if (checkVisible2('.map') ) {
-        document.querySelector('.top').classList.remove('animate__animated','animate__fadeInDown');
-        document.querySelector('.top').classList.remove('.fixed');
-        document.querySelector('.top').classList.add('animate__animated','animate__fadeOutUp');
-
+        document.querySelector('header').classList.add('animate__animated','animate__fadeOutUp');
+        document.querySelector('header').classList.remove('.fixed');
     }else{
-        document.querySelector('.top').classList.remove('animate__animated','animate__fadeOutUp');
-        document.querySelector('.top').classList.add('animate__animated','animate__fadeInDown');
-        document.querySelector('.top').classList.add('.fixed');
+        document.querySelector('header').classList.remove('animate__animated','animate__fadeOutUp');
+        document.querySelector('header').classList.add('animate__animated','animate__fadeInDown');
+        document.querySelector('header').classList.add('.fixed');
     }
 }
 

@@ -1,5 +1,5 @@
 @import url(../css/reset.css);
-.footer{ text-align: center; padding: 30px 50px;}
+.footer{width: 100%; text-align: center; padding: 30px 50px;}
 .footer .foot_top{width: 100%; display: flex;justify-content: center;align-items: center;}
 .footer .foot_top ul{width: 30%;}
 .footer .foot_top li{display:inline-block; font-size: 2rem; margin: 0 5%;} 

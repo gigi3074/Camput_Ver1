@@ -51,7 +51,7 @@ public class MemberController {
         if (isValid) {  // 참이면
             HttpSession session = request.getSession();
             session.setAttribute(MemberSession.LOGIN_MEMBER, loginsession);  // 아이디 담아서
-            return "redirect:/camput/main"; // 보냄
+            return "redirect:/camput/home"; // 보냄
         } else {
             return "login";
         }
