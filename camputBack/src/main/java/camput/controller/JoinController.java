@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -22,7 +23,7 @@ public class JoinController {
     }
 
     @PostMapping("/member/join")
-    public String join(@ModelAttribute MemberJoinDto memberJoinDto){
+    public String join(@Validated @ModelAttribute MemberJoinDto memberJoinDto){
         joinService.join(memberJoinDto);
         return "redirect:/camput/login";
     }
