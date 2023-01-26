@@ -19,10 +19,10 @@ body{
 ::-webkit-scrollbar {
     display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }
-/* 헤더 */
+/*!* 헤더 *!
 header{
-    /* position: fixed;
-    top: 0;left: 0;right: 0;z-index: 6; */
+    !* position: fixed;
+    top: 0;left: 0;right: 0;z-index: 6; *!
     height: 10%;
     background-color: rgba( 255, 255, 255, 0.1);
     font-weight: bold;
@@ -37,7 +37,7 @@ header{
     background-size:contain ;
     background-repeat: no-repeat;
 }
-/* 메뉴 */
+!* 메뉴 *!
 .nav{
     width: 20%;
     margin-right: 5%;
@@ -54,7 +54,7 @@ header{
 .menuBtn .menu{position: relative;}
 .menu li{position: absolute; width:100%; height: 100%; right: 80%;}
 .menu .qandA{top: 200%;}
-/* 사이드 메뉴 */
+!* 사이드 메뉴 *!
 .miniMenu{display: none;}
 .miniMenu li{text-align: right;}
 
@@ -69,9 +69,9 @@ header{
     flex-direction: row;flex-wrap: wrap; align-content: flex-start;
     box-sizing: border-box; overflow: hidden;
 }
-/* 내부해더 */
+!* 내부해더 *!
 .miniHeader{
-    /* background-color: #f6d365; */
+    !* background-color: #f6d365; *!
     width: 100%; height: 20%;
     display: flex; align-items: baseline;
 }
@@ -84,9 +84,9 @@ header{
 }
 .memberImage i{font-size: 7.5vw; color: #ffa600;}
 .memberNickName{font-size: 3vw;}
-/* 내부사이드 */
+!* 내부사이드 *!
 .incon{width: 100%; height: 70%; display: flex;}
-/* 사이드바 */
+!* 사이드바 *!
 .aside{
     width: 30%; height: 100%;
     border-right: 3px solid rgba(0, 0, 0, 0.2);
@@ -108,7 +108,7 @@ header{
     opacity: 0;
     background-color: #ffa600;
 }
-.to-right-underline:hover:after{width: 100%;opacity: 1;}
+.to-right-underline:hover:after{width: 100%;opacity: 1;}*/
 /* 내부메인 */
 .section{
     width: 70%; height: 100%; overflow:scroll;

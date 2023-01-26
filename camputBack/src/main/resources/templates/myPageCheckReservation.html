@@ -1,27 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>myPageCheckReservation </title>
+<html xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/allLayout}">
+<title>myPageCheckReservation </title>
+<th:block layout:fragment="css">
     <link rel="stylesheet" href="/css/myPageCheckReservation.css">
-    <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
-</head>
-<body>
-<div class="myPageCheckReservation">
-    <div class="top">
-        <div class="topContent-wrap">
-            <div class="Logo" ></div>
-            <div class="right-bar">
-                <ul>
-                    <li class="topContent myPage">마이페이지</li>
-                    <li class="topContent QnA">QnA</li>
-                    <li class="topContent notice">공지사항</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+</th:block>
+<div class="myPageCheckReservation" layout:fragment="content">
     <div class="middle-warp">
         <div class="middle">
             <div class="middleT">
@@ -98,5 +83,7 @@
         </div>
     </div>
 </div>
-</body>
+<th:block layout:fragment="script">
+    <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
+</th:block>
 </html>

@@ -1,51 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>위시리스트</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-    <script src="/js/myPageLike.js"></script>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/allLayout}">
+
+<th:block layout:fragment="css">
     <link rel="stylesheet" href="/css/myPageLike.css">
-    <!-- 아이콘 -->
-    <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
-</head>
-<body>
-    <div class="wrap">
-        <header>
-            <div class="Logo"></div>
-            <div class="nav">
-                <ul class="menuBtn">
-                    <li class="nologin"><a href="login.html">Login</a></li>
-                    <li class="join"><a href="join.html">Join</a></li>
-                    <li class="menu">
-                    <a href="#"><i class="fa-solid fa-bars"></i></a>
-                        <ul class="miniMenu">
-                            <li class="notice gnb_menu"><a href=""> 공지사항</a></li>
-                            <li class="qandA gnb_menu"><a href=""> Q & A</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <!-- 메뉴 -->
-            <div class="menu" style="display: none;">
-                <ul class="menuBtn">
-                    <li class="login"><a href="login.html">마이페이지</a></li>
-                    <li class="join"><a href="join.html">로그아웃</a></li>
-                    <li class="menu">
-                    <a href="#"><i class="fa-solid fa-bars"></i></a>
-                        <ul class="miniMenu" style="display: none;">
-                            <li class="qandA gnb_menu">위시리스트</li>
-                            <li class="qandA gnb_menu">예약리스트</li>
-                            <li class="notice gnb_menu">공지사항</li>
-                            <li class="qandA gnb_menu">Q & A</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </header>
+</th:block>
+    <div class="wrap" layout:fragment="content">
         <div class="myPageLike">
             <div class="miniHeader">
                 <div class="memberImage"><i class="fa-solid fa-user"></i></div>
@@ -73,30 +34,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="likeCampInfo" th:each="likecamp:${likeCamps}">
-                            <div class="likeCampDetailInfo" th:object="${likecamp}">
-                                <div class="likeCampImage" th:style="'background-image:url('+${likecamp.getMyPageCampImageUrl()}+');'"></div>
-                                <ul class="likeCampList">
-                                    <li class="title">캠핑장 이름</li>
-                                    <li class="content likeCampName" th:text="${likecamp.getMyPageCampName()}">캠핑장 이름</li>
-                                    <li class="title">캠핑장 주소</li>
-                                    <li class="content likeCampName" th:text="${likecamp.getMyPageCampAddress()}">캠핑장 주소</li>
-                                    <li class="detailPageButton"><button class="detailPage" onclick="location.href='/camput/detail/{campName}';" th:value="${likecamp.getMyPageCampName()}">예약하기</button></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="likeCampInfo" th:each="likecamp:${likeCamps}">
-                            <div class="likeCampDetailInfo" th:object="${likecamp}">
-                                <div class="likeCampImage" th:style="'background-image:url('+${likecamp.getMyPageCampImageUrl()}+');'"></div>
-                                <ul class="likeCampList">
-                                    <li class="title">캠핑장 이름</li>
-                                    <li class="content likeCampName" th:text="${likecamp.getMyPageCampName()}">캠핑장 이름</li>
-                                    <li class="title">캠핑장 주소</li>
-                                    <li class="content likeCampName" th:text="${likecamp.getMyPageCampAddress()}">캠핑장 주소</li>
-                                    <li class="detailPageButton"><button class="detailPage" onclick="location.href='/camput/detail/{campName}';" th:value="${likecamp.getMyPageCampName()}">예약하기</button></li>
-                                </ul>
-                            </div>
-                        </div>
+
                         <div class="reservationPages">
                                 <ul class="pagination"
                                     th:with="start=${(T(java.lang.Math).floor(likeCamps.getNumber()/5)*5) + 1},
@@ -130,7 +68,11 @@
                 </div>
             </div>
         </div>
-        <div class="middleBottom"></div>
     </div>
-</body>
+<th:block layout:fragment="script">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="/js/myPageLike.js"></script>
+    <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
+</th:block>
 </html>

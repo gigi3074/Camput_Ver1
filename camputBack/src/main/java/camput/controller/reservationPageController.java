@@ -42,6 +42,7 @@ public class reservationPageController {
             model.addAttribute("noPoint","cant");
         }
         model.addAttribute("memberInfo",point);
+        model.addAttribute("member",loginId);
         model.addAttribute("finalReservationInfo",reserInfo);
         return "reservation";
     }
