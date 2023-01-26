@@ -6,8 +6,8 @@
 *{font-family:'TmoneyRoundWindExtraBold'; -webkit-text-size-adjust: auto;}
 /* 화면 구성 */
 .wrap-top{
-    width: 100%;
-    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+    /*width: 100%;*/
+    /*background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);*/
 }
 /* 스크롤제거 */
 body{

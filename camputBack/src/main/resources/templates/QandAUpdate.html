@@ -10,7 +10,10 @@
 
   <div class="wrap" layout:fragment="content">
     <div class="Update">
-        <div class="section">
+      <div class="boardTitle">
+        <a href=""> Q & A </a>
+      </div>
+      <div class="section">
           <div class="layout">
             <form th:action="@{/QnA/update/{id}(id = ${qna.id})}" method="post">
               <input name="qnaTitle" type="text" th:value="${qna.qnaTitle}" placeholder="제목을 입력해주세요.">

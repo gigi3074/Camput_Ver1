@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/newone?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC
-    username: team
-    password: 1234
+    url: jdbc:mysql://localhost:3306/camput?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: gigi
+    password: camp1234
     driver-class-name: com.mysql.cj.jdbc.Driver
 #  datasource:
 #    url: jdbc:h2:tcp://localhost/~/practice3
@@ -33,7 +33,7 @@ logging.level:
 # org.hibernate.type: trace
 
 server:
-  port: 8081
+  port: 8082
   http:
     encoding:
       charset: UTF-8

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/myPageLike.css">
 </th:block>
     <div class="wrap" layout:fragment="content">
+        <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
         <div class="myPageLike">
             <div class="miniHeader">
                 <div class="memberImage"><i class="fa-solid fa-user"></i></div>
@@ -34,36 +35,35 @@
                                 </ul>
                             </div>
                         </div>
-
                         <div class="reservationPages">
-                                <ul class="pagination"
-                                    th:with="start=${(T(java.lang.Math).floor(likeCamps.getNumber()/5)*5) + 1},
+                            <ul class="pagination"
+                                th:with="start=${(T(java.lang.Math).floor(likeCamps.getNumber()/5)*5) + 1},
                                 last=(${start + 4 < likeCamps.totalPages ? start + 4 : likeCamps.totalPages})">
-                                    <li>
-                                        <a th:href="@{/camput/myPage/like(page=1)}" aria-label="First">
-                                            <span aria-hidden="true"><i class="fa-solid fa-angles-left"></i></span>
-                                        </a>
-                                    </li>
-                                    <li th:class="${likeCamps.first} ? 'disabled'">
-                                        <a th:href="${likeCamps.first} ? '#' : @{/camput/myPage/like(page=${likeCamps.number})}" aria-label="Previous">
-                                            <span aria-hidden="true"><i class="fa-solid fa-angle-left"></i></span>
-                                        </a>
-                                    </li>
-                                    <li th:each="page: ${#numbers.sequence(start,last)}" th:class="${page == likeCamps.number +1} ? 'active'">
-                                        <a th:text="${page}" th:href="@{/camput/myPage/like(page=${page})}"></a>
-                                    </li>
-                                    <li th:class="${likeCamps.last} ? 'disabled'">
-                                        <a th:href="${likeCamps.last} ? '#' : @{/camput/myPage/like(page=${likeCamps.number + 2})}" aria-label="Next">
-                                            <span aria-hidden="true"><i class="fa-solid fa-angle-right"></i></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a th:href="@{/camput/myPage/like(page=${totalPage})}" aria-label="Last">
-                                            <span aria-hidden="true"><i class="fa-solid fa-angles-right"></i></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                                <li>
+                                    <a th:href="@{/camput/myPage/like(page=1)}" aria-label="First">
+                                        <span aria-hidden="true"><i class="fa-solid fa-angles-left"></i></span>
+                                    </a>
+                                </li>
+                                <li th:class="${likeCamps.first} ? 'disabled'">
+                                    <a th:href="${likeCamps.first} ? '#' : @{/camput/myPage/like(page=${likeCamps.number})}" aria-label="Previous">
+                                        <span aria-hidden="true"><i class="fa-solid fa-angle-left"></i></span>
+                                    </a>
+                                </li>
+                                <li th:each="page: ${#numbers.sequence(start,last)}" th:class="${page == likeCamps.number +1} ? 'active'">
+                                    <a th:text="${page}" th:href="@{/camput/myPage/like(page=${page})}"></a>
+                                </li>
+                                <li th:class="${likeCamps.last} ? 'disabled'">
+                                    <a th:href="${likeCamps.last} ? '#' : @{/camput/myPage/like(page=${likeCamps.number + 2})}" aria-label="Next">
+                                        <span aria-hidden="true"><i class="fa-solid fa-angle-right"></i></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/camput/myPage/like(page=${totalPage})}" aria-label="Last">
+                                        <span aria-hidden="true"><i class="fa-solid fa-angles-right"></i></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div><!--reservationPages-->
                     </div> 
                 </div>
             </div>

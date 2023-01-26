@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/allLayout}">
-    <div class="wrap-top fixed" th:fragment="headerFragment">
+    <div class="wrap" th:fragment="headerFragment">
+        <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
         <header>
         <!-- header01 -->
             <div class="Logo" onclick="location.href='/camput/home'" ></div>
@@ -22,11 +23,11 @@
                         <ul class="miniMenu" style="display: none;">
                             <li class="qandA gnb_menu"><a th:href="@{/camput/myPage/like}">위시리스트</a></li>
                             <li class="qandA gnb_menu"><a th:href="@{/camput/myPage/bookInfo}">예약리스트</a></li>
-                            <li class="qandA gnb_menu"><a th:href="@{/camput/QnA/list}">Q & A</a></li>
+                            <li class="qandA gnb_menu"><a th:href="@{/QnA/list}">Q & A</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
         </header>
-    </div>
+
 </html>

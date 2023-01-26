@@ -7,7 +7,7 @@
 
 /* 배경 */
 .wrap{
-    margin: 0 auto; height: fit-content; padding: 10% 0;
+    height: fit-content;
     overflow-y: scroll;
     background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
 }
@@ -21,7 +21,7 @@ body{
 }
 
 .myPageCheckReservation{
-    margin: 0 auto; padding: 1%;
+    margin: 0% auto 2%; padding: 1%;
     width: 70%; height: 80vw;
     background-color: rgba(255, 255, 255, 0.7);
     box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.5);
@@ -68,7 +68,7 @@ body{
     opacity: 0;
     background-color: #ffa600;
 }
-.to-right-underline:hover:after{width: 100%;opacity: 1;}*/
+.to-right-underline:hover:after{width: 100%;opacity: 1;}
 /* 내부메인 */
 .section{
     width: 70%; height: 100%; overflow:scroll;
@@ -104,3 +104,4 @@ body{
 /* 페이징 */
 .bookedPages{width: 100%;}
 .pagination{display: flex;justify-content: center;font-size: 2vw;}
+.pagination li{margin: 0 2%}

@@ -24,7 +24,7 @@ body{
 /* 메인 */
 .QandAView{
     /* margin: 15vh auto;  */
-    margin: 0 auto; 
+    margin: 0 auto; padding: 5%;
     width: 60%; height: 70vw;
     background-color: rgba(255, 255, 255, 0.7);
     box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.5);
@@ -39,6 +39,10 @@ body{
     width: 100%; height: 100%;
     padding: 5% 10%; margin: 0 auto;
 }
+.boardTitle{
+    width: fit-content; height: 5%; font-size: 2vw;
+    border-bottom: 3px solid #000;
+}
 .qnadetailTop{width: 100%;height: 40%;}
 .qnadetailTop h1{text-align: center; font-size: 2vw; border-bottom: 3px solid #ffa600;}
 .qnadetailTop p{padding: 5%;}
@@ -46,7 +50,7 @@ body{
 .qnadetailBotton a{font-size: 1vw; margin: 0 1%;}
 /* 댓글 */
 #comment-write{
-    width: 100%; height: 20%;
+    width: 100%; height: 24%;
     background-color: #ffa60065;
     border-radius: 10px;
     display: flex; flex-direction: column;

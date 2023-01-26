@@ -1,4 +1,4 @@
-@import url("reset.css");
+@import url("/../css/reset.css");
 /* 라인 */
 @font-face { font-family: 'LINESeedKR-Bd'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2'); font-weight: 700; font-style: normal; }
 /* 티머니 */
@@ -7,7 +7,7 @@
 /* *{font-family:'LINESeedKR-Bd';} */
 /* 배경 */
 .wrap{
-    margin: 0 auto; height: 100vmax;
+    height: fit-content;
     overflow-y: scroll;
     background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
 }
@@ -19,48 +19,9 @@ body{
 ::-webkit-scrollbar {
     display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }
-/* 헤더 */
-/*header{
-    !* position: fixed;
-    top: 0;left: 0;right: 0;z-index: 6; *!
-    height: 10%;
-    background-color: rgba( 255, 255, 255, 0.1);
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.Logo{
-    margin-left: 5%;
-    width: 10%; padding-bottom: 7%;
-    background-image: url("/img/logo01_2.png");
-    background-size:contain ;
-    background-repeat: no-repeat;
-}
-!* 메뉴 *!
-.nav{
-    width: 20%;
-    margin-right: 5%;
-    display: flex;
-    justify-content: flex-end;
-    margin: 5%;
-    font-size: 4vw;
-}
-.menuBtn{
-    width: 100%;
-    display: inline-flex;
-}
-.menuBtn li{width: 100%; font-size: 50%;}
-.menuBtn .menu{position: relative;}
-.menu li{position: absolute; width:100%; height: 100%; right: 80%;}
-.menu .qandA{top: 200%;}
-!* 사이드 메뉴 *!
-.miniMenu{display: none;}
-.miniMenu li{text-align: right;}
-
 
 .myPageLike{
-    margin: 0 auto; padding: 1%; 
+    margin: 0 auto 2%; padding: 1%;
     width: 70%; height: 80vw;
     background-color: rgba(255, 255, 255, 0.7);
     box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.5);
@@ -68,7 +29,7 @@ body{
     display: flex;
     flex-direction: row;flex-wrap: wrap; align-content: flex-start;
     box-sizing: border-box; overflow: hidden;
-}*/
+}
 /* 내부해더 */
 .miniHeader{
     /* background-color: #f6d365; */
@@ -130,7 +91,7 @@ body{
 .content{text-align: right; font-size: 1.3vw;}
 .detailPageButton button{
     float: right; color: #ffa600;
-    padding: 4%; margin: 5% 0 5% 0%; width: 70%;
+    padding: 3%; margin: 4% 4% 4% 0%; width: 60%;
     font-family: 'TmoneyRoundWindExtraBold'; font-size: 1.5vw;
     box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.4);
     border-radius: 20px;
@@ -143,6 +104,7 @@ body{
     justify-content: center;
     font-size: 2vw;
 }
-.pagination{
-    display: flex
-}
+/* 페이징 */
+.bookedPages{width: 100%;}
+.pagination{display: flex;justify-content: center;font-size: 2vw;}
+.pagination li{margin: 0 2%}
