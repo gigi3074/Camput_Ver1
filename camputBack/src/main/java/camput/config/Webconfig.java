@@ -9,17 +9,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class Webconfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-      /*  registry.addInterceptor(new LoginCheckInterceptor())
+     registry.addInterceptor(new LoginCheckInterceptor())
                 .order(1)
                 .addPathPatterns("/**")
                 .excludePathPatterns(
                         "/camput/home/**"
 
                         ,"/camput/member/join","/camput/login","/camput/findId","/camput/findId/modal","/camput/findPw/id","/camput/findPw","/camput/logout"
-                        ,"/camput/login/api-login","/camput/main","/member/join2",
+                        ,"/camput/login/api-login","/camput/main","/member/join2"
                         ,"/camput/detail/{name}","/camput/detail/**"
                         ,"/camput/Qna/**"
                         ,"/js/**","/css/**","/*.png","/img/**","/error","/ico/**","/*.jpg","/*.tmp"
-                        ,"/fragments/**","/layout/**");*/
+                        ,"/fragments/**","/layout/**");
     }
 }

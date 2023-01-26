@@ -1,32 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script th:inline="javascript" src="../js/QandA.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
-        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-    <!-- 아이콘 -->
-    <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
-    <!-- css -->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/allLayout}">
+<th:block layout:fragment="css">
     <link rel="stylesheet" href="../css/QandA.css">
-    <title>Q&A</title>
-</head>
-<script>
-    $(document).ready(function () {
-        $("#searchButton").click(function () {
-            location.href = "/QnA/list?searchKeyword=" + $("#searchKeyword").val(); // 값 넘기기
-
-            $("#searchKeyword").val(""); // 값 초기화
-        });
-    });
-</script>
-
-<body>
-    <div class="wrap">
+</th:block>
+    <div class="wrap" layout:fragment="content">
         <div class="QandA">
             <div class="section">
                 <!-- Q & A 페이지-->
@@ -96,5 +75,22 @@
             </div>
         </div>
     </div>
-</body>
+    <th:block layout:fragment="script">
+        <script th:inline="javascript" src="../js/QandA.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+                integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
+
+
+        <script>
+            $(document).ready(function () {
+                $("#searchButton").click(function () {
+                    location.href = "/QnA/list?searchKeyword=" + $("#searchKeyword").val(); // 값 넘기기
+
+                    $("#searchKeyword").val(""); // 값 초기화
+                });
+            });
+        </script>
+    </th:block>
 </html>

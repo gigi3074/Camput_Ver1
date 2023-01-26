@@ -36,6 +36,7 @@
         var fullBookedDays= [[${localDates}]];
         var campName=[[${camp.getCampName}]];
         var likeCheck=[[${camp.getLike}]];
+        var loginCheck=[[${member}]]
         function updateReviews (id) {
             $.ajax({
                 type: 'post',
@@ -69,22 +70,23 @@
         }
     </script>
     <script type="text/javascript" src="/../js/camputDetail.js"></script>
-    <script type="text/javascript" src="/../js/loginCheck.js"></script>
+    <script type="text/javascript" src="/js/forHomeAndDetail.js"></script>
 </head>
 <body>
 
     <div class="wrap" th:object="${camp}">
         <!-- header01 -->
         <header>
-            <div class="Logo"></div>
-            <div class="nav">
+
+            <div class="Logo" onclick="location.href='/camput/home'" ></div>
+            <div class="nav notLogin">
                 <ul class="menuBtn">
                     <li class="nologin"><a th:href="@{/camput/login}">Login</a></li>
                     <li class="join"><a th:href="@{/camput/member/join}">Join</a></li>
                 </ul>
             </div>
             <!-- 메뉴 -->
-            <div class="nav">
+            <div class="nav Login">
                 <ul class="menuBtn">
                     <li class="login"><a href="">마이페이지</a></li>
                     <li class="join"><a href="">로그아웃</a></li>
@@ -170,7 +172,7 @@
                                         </div>
                                     </div>
                                     <input type="hidden" class="startReservationDay" name="startReservationDay">
-                                    <div class="startReservationDay" name="startReservationDay selected" value=""></div>
+                                    <div class="startReservationDay selected" name="startReservationDay" value=""></div>
                                     <div class="sec_cal">
                                         <div class="cal_nav">
                                             <a href="javascript:;" class="nav-btn go-prevend" id="prev2">prev</a>
@@ -193,7 +195,7 @@
                                         </div>
                                     </div>
                                     <input type="hidden" class="endReservationDay" name="endReservationDay">
-                                    <div class="endReservationDay" name="endReservationDay selected" value=""></div>
+                                    <div class="endReservationDay selected" name="endReservationDay" value=""></div>
                                 </div>
                                     <!--</div>-->
                                     <div class="btnBox">

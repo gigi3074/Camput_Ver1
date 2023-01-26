@@ -34,7 +34,7 @@ header{
 .Logo{
     margin-left: 5%;
     width: 10%; padding-bottom: 7%;
-    background-image: url("/camputFront/img/logo01_2.png");
+    background-image: url("/img/logo01_2.png");
     background-size:contain ;
     background-repeat: no-repeat;
 }
