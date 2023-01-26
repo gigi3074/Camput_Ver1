@@ -20,46 +20,6 @@ body{
 ::-webkit-scrollbar {
     display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }
-/* 헤더 */
-header{
-    /* position: fixed;
-    top: 0;left: 0;right: 0;z-index: 6; */
-    height: 10%;
-    background-color: rgba( 255, 255, 255, 0.1);
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.Logo{
-    margin-left: 5%;
-    width: 10%; padding-bottom: 7%;
-    background-image: url("/img/logo01_2.png");
-    background-size:contain ;
-    background-repeat: no-repeat;
-}
-/* 메뉴 */
-.nav{
-    width: 20%;
-    margin-right: 5%;
-    display: flex;
-    justify-content: flex-end;
-    margin: 5%;
-    font-size: 1.4vmax;
-}
-.menuBtn{
-    width: 100%;
-    display: inline-flex;
-}
-.menuBtn li{width: 100%; font-size: 1.5vw;}
-.menuBtn .menu{position: relative;}
-.menu li{position: absolute; width:100%; height: 100%; right: 80%;}
-.menu .qandA{top: 200%;}
-/* 사이드 메뉴 */
-.miniMenu{display: none;}
-.miniMenu li{text-align: right;}
-
-
 /* 모달창 */
 .modal{
     position: fixed; left:0;top:0;
@@ -107,7 +67,7 @@ header{
 .memberInfoChange:hover{background-color: #ffa600;color: rgba(255, 255, 255, 0.8);}
 
 /* 보드 리스트 */
-.myPageMemberInfo{
+.myPageMemberInfoRe{
     /* margin: 15vh auto;  */
     margin: 0 auto; 
     width: 60%; height: 70vw;

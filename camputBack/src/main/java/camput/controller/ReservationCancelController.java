@@ -26,6 +26,7 @@ public class ReservationCancelController {
         String loginId = loginCheckService.checkLogin(request);
         CancelShowInfoDto info = cancelService.showCancelInfo(campName, loginId, bookedDay);
         model.addAttribute("info",info);
+        model.addAttribute("member",loginId);
         return "cancel";
     }
 

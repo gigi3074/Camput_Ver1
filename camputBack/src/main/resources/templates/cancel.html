@@ -1,38 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script th:inline="javascript">
-        var bookedDay = [[${info.bookedDay}]];
-        var startReservationDay = [[${info.startReservationDay}]];
-        var endReservationDay = [[${info.endReservationDay}]];
-        var campName = [[${info.campName}]];
-        var price = [[${info.price}]];
-    </script>
-    <script type="text/javascript" src="/js/cancel.js"></script>
-    <!-- css -->
-    <link rel="stylesheet" href="/done/css/cancel.css">
-    <title>Cancel</title>
-</head>
-<body>
-    <div class="wrap">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/allLayout}">
+
+<th:block layout:fragment="css">
+    <link rel="stylesheet" href="/css/cancel.css">
+</th:block>
+
+    <div class="wrap" layout:fragment="content">
         <!-- 예약 페이지 & 결제 페이지 -->
         <!-- 예약하기 페이지 자체가 로그인 해야지만 갈 수 있게 설정해야된다. -->
         <header>
             <!-- header01.html or hearder01.html -->
         </header>
         <div class="innercon" >
-            <div class="cancelBox">
+            <div class="cancelBox" >
                 <div class="cancel_title">
                     <div class="title_txt">
                         <i class="fa-regular fa-calendar-check"></i>
                         예약자 정보
                     </div>
-                    <div class="member_info" th:object="${memberInfo}">
+                    <div class="member_info" th:object="${info}">
                         <p class="info_txt">투숙객 이름</p>
                         <div class="name info" th:text="*{memberName}">kk</div>
                         <p class="info_txt">핸드폰 번호</p>
@@ -79,15 +67,15 @@
                                 <table th:object="${info}" >
                                     <tr>
                                         <td class="title">구매총액</td>
-                                        <th class="content" th:text="*{price}}+'P'"></th>
+                                        <th class="content" th:text="${info.price}+'P'"></th>
                                     </tr>
                                     <tr>
                                         <td class="title">현재보유포인트</td>
-                                        <th class="content" th:text="*{point}}+'P'"></th>
+                                        <th class="content" th:text="${info.point}+'P'"></th>
                                     </tr>
                                     <tr>
                                         <td class="title">환불 후 포인트</td>
-                                        <th class="content" th:text="*{afterMemberPoint}" style="color: green"><input type="hidden" name="afterPoint" th:value="*{afterMemberPoint}}+'P'"></th>
+                                        <th class="content" th:text="*{afterMemberPoint}" style="color: green"><input type="hidden" name="afterPoint" th:value="${info.afterMemberPoint}+'P'"></th>
                                     </tr>
                                 </table>
                                 <div class="cash"><button type="button" onclick="cancel()"><i class="fa-solid fa-money-check-dollar"></i> 예약 취소하기</button></div>
@@ -105,6 +93,17 @@
                 </div>
             </div>
         </div> <!-- innercon -->
-
     </div> <!-- wrap -->
+<th:block layout:fragment="script">
+    <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script th:inline="javascript">
+        var bookedDay = [[${info.bookedDay}]];
+        var startReservationDay = [[${info.startReservationDay}]];
+        var endReservationDay = [[${info.endReservationDay}]];
+        var campName = [[${info.campName}]];
+        var price = [[${info.price}]];
+    </script>
+    <script type="text/javascript" src="/js/cancel.js"></script>
+</th:block>
 </html>
