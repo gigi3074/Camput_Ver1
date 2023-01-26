@@ -1,4 +1,4 @@
-@import url("/css/reset.css");
+@import url("/../css/reset.css");
 /* 라인 */
 @font-face { font-family: 'LINESeedKR-Bd'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2'); font-weight: 700; font-style: normal; }
 /* 티머니 */
@@ -8,7 +8,7 @@
 /* 화면 구성 */
 .home{
     height: 100%; width: 100%;
-    overflow-y: scroll;
+    z-index: 99;
     -ms-overflow-style: none; /* 인터넷 익스플로러 */
     scrollbar-width: none; /* 파이어폭스 */
     background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
@@ -16,11 +16,23 @@
 .home::-webkit-scrollbar {
     display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }
+#loading{
+    opacity: 0.8;
+    background: white;
+    z-index: 10;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#loding>img{
+    z-index: 100; width: 100%;
+}
 /* 메뉴바 */
 header{
     position: fixed;
     top: 0;left: 0;right: 0;z-index: 100;
-    height: 13%;
+    height: 13%; width: 100%; padding: 2% 0;
     background-color: rgba( 255, 255, 255, 0.1);
     font-weight: bold;
     display: flex;
@@ -28,17 +40,16 @@ header{
     align-items: center;
 }
 .Logo{
-    justify-content: flex-start;
-    width: 60px;
-    height: 60px;
+    margin-left: 5%;
+    width: 10%; padding-bottom: 7%;
     background-image: url("../img/logo.png");
     background-size:contain ;
     background-repeat: no-repeat;
 }
 /* 메뉴 */
 .nav{
-    width: 30%;
-    margin-right: 10%; font-size: 1.8vw;
+    width: 20%;
+    margin-right: 5%; font-size: 1.5vw;
     display: flex; justify-content: flex-end;
 }
 .menuBtn{
@@ -46,7 +57,8 @@ header{
     display: inline-flex;
     justify-content: space-evenly;
 }
-.menuBtn li{width: 100%;}
+.menuBtn li{width: fit-content; margin: 0 5%;}
+.menuBtn li a{width: fit-content;}
 .menuBtn .menu{position: relative;}
 
 /* 사이드 메뉴 */
@@ -60,6 +72,9 @@ header{
 .middle{
     z-index: 2; width: 100%;
     height: 100%;
+}
+.scroll-area {
+    scroll-snap-align: start;
 }
 /*캠프 상단 글자*/
 .campTopSevenContent{
@@ -210,7 +225,7 @@ input{
 
 /*필터*/
 .filterBox{
-    width: 90%; height: 100%;
+    width: 90%; height:fit-content;
     position: absolute;
     left: 5%; top: 12%;
     display: flex; flex-direction: column;
@@ -221,11 +236,12 @@ input{
 .filter{
     display: flex;
     flex-direction: column;
-    width: 80%;height: 60%; margin: auto;
+    width: 70%; height: fit-content; margin: auto;
     justify-content: flex-start;
     border-radius: 20px; padding: 1%;
     background-color: rgba(255, 255, 255, 0.6); ;
     box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box; overflow: hidden;
 }
 .filterContent{
     width: 100%;
@@ -249,7 +265,7 @@ input{
     width: 100%;  font-size: 1.5vw;
 }
 .contentTitle{
-    width: 8%;
+    width:8%; font-size: 1.5vw;
 }
 .categoryContent{
     width: 100%;
@@ -283,7 +299,7 @@ input{
 .campKindsSelect{width: 50%;}
 .category{
     text-align: center;
-    width: 100%;
+    width: 95%;
     margin-top: 1%;
     padding: 3%;
 }
@@ -308,9 +324,9 @@ input{
 }
 .mapImage{
     background-color: #403a2d;
-    width: 80%;
+    width: 60%;
     margin: auto;
-    height: 100%;
+    height: 60%;
 }
 .mapImage.zIndex{
     z-index: -1;
