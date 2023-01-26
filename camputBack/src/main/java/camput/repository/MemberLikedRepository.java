@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MemberLikedRepository  extends JpaRepository<MemberLiked,Long> {
 
-    Page<MemberLiked> findByMember_Id(Long memberId, Pageable pageable);
+    Page<MemberLiked> findByMember(Member member, Pageable pageable);
     MemberLiked findByMemberAndLikedCampName(Member member,String campName);
     void deleteById(Long id);
 }

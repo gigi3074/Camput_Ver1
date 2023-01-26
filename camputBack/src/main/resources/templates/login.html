@@ -45,9 +45,9 @@
               <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메시지</p>
               <!-- 아이디, 비밀번호 찾기 & 회원가입 링크 -->
               <div class="loginSub">
-                <a href="findId">아이디 찾기</a>
-                <a href="findPw">비밀번호 찾기</a>
-                <a href="join">회원가입</a>
+                <a href="/camput/findId">아이디 찾기</a>
+                <a href="/camput/findPw">비밀번호 찾기</a>
+                <a href="/camput/member/join">회원가입</a>
               </div>
               <input class="loginBtn" type="submit" value="LOGIN" />
             </form>

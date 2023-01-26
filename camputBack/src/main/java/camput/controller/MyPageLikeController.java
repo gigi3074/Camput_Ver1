@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
-@RequestMapping("camput/")
+@RequestMapping("/camput")
 @RequiredArgsConstructor
 @Slf4j
 public class MyPageLikeController {
@@ -27,11 +27,14 @@ public class MyPageLikeController {
     private final MemberService memberService;
     private final LoginCheckService loginCheckService;
 
-    @GetMapping("myPage/like")
+    @GetMapping("/myPage/like")
     public String myPageLike(Model model, Pageable pageable, HttpServletRequest request){
         String loginId = loginCheckService.checkLogin(request);
         String memberNickName = memberService.findMemberNickName(loginId);
+        log.info("loginId={}",loginId);
+        log.info("memberNickName={}",memberNickName);
         Page<MyPageCampDto> myPageCampDtos = myPageLikeService.likeCamps(loginId,pageable);
+        log.info("myPageCampDtos={}",myPageCampDtos.getTotalElements());
         Page<MyPageCampDto> content = myPageCampDtos;
         int totalPage= myPageCampDtos.getTotalPages()-1;
         model.addAttribute("member",loginId);

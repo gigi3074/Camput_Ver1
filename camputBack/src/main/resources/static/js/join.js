@@ -17,7 +17,7 @@ function idCheck(memberLoginId) {
   $.ajax({
     // 요청방식: post, url(맴핑): "/member/join2", 데이터: 멤버로그인아이디
     type: "post",
-    url: "/member/join2",
+    url: "/camput/member/join2",
     data: {
       memberLoginId: memberLoginId,
     },
