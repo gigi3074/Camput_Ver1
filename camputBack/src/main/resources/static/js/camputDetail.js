@@ -100,7 +100,6 @@ function initCalendar1() {
     var currentMonth = thisMonth.getMonth();
     var currentDate = thisMonth.getDate();
 
-
     renderCalender(thisMonth);
     function renderCalender(thisMonth) {
 
@@ -232,7 +231,7 @@ function initCalendar1() {
                 clickedYMD = clickedYear + "-" + clickedMonth + "-" + clickedDate;
                 var selected=document.querySelector(".startReservationDay.selected");
                 var start=document.querySelector(".startReservationDay");
-                selected.innerText=clickedYMD;
+                selected.innerHTML=clickedYMD;
                 start.setAttribute('value',clickedYMD);
                 var dayId = "start" + (currentMonth + 1) + "month" + $(_this).data("idx")
                 startColor = dayId;
@@ -400,7 +399,7 @@ function initCalendar2() {
             clickedYMD = clickedYear + "-" + clickedMonth + "-" + clickedDate;
             var selected=document.querySelector(".endReservationDay.selected");
             var end=document.querySelector(".endReservationDay");
-            selected.innerText=clickedYMD;
+            selected.innerHTML=clickedYMD;
             end.setAttribute('value',clickedYMD);
             var dayId="end"+(currentMonth + 1)+"month"+$(_this).data("idx")
             endColor=dayId;

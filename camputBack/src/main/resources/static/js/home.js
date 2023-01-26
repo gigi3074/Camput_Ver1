@@ -38,14 +38,6 @@ $(document).ready(function(){
 });
 //Top5 vieweffect//
 function checkVisible1( element, check = 'above' ) {
-
-
-    let hollSesssion= window.sessionStorage
-    console.log(hollSesssion);
-    let session1= window.sessionStorage.getItem('loginMember')
-
-    console.log("session1="+session1)
-
     let viewportHeight = $(window).height();
     let scrolltop = $(window).scrollTop();
     let y = $(element).offset().top;

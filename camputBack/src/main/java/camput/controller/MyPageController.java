@@ -28,7 +28,7 @@ public class MyPageController {
         String nickName=memberInfo.getName();
         model.addAttribute("memberInfo",memberInfo);
         model.addAttribute("nickName",nickName);
-
+        model.addAttribute("member",loginId);
         return "/myPageMemberInfo";
     }
 

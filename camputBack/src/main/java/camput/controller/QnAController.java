@@ -66,6 +66,7 @@ public class QnAController {
         qnaService.updateViewCount(id);
         //4. 답글 조회
         List<QnaAnswerDto> qnaAnswerList = qnaService.selectQnaAnswer(id);
+        model.addAttribute("member",memberId);
         model.addAttribute("qnaAnswerList", qnaAnswerList);
         return "QandAView";
     }

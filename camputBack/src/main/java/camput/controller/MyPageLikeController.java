@@ -34,7 +34,7 @@ public class MyPageLikeController {
         Page<MyPageCampDto> myPageCampDtos = myPageLikeService.likeCamps(loginId,pageable);
         Page<MyPageCampDto> content = myPageCampDtos;
         int totalPage= myPageCampDtos.getTotalPages()-1;
-
+        model.addAttribute("member",loginId);
         model.addAttribute("memberNickName",memberNickName);
         model.addAttribute("likeCamps",content);
         model.addAttribute("totalPage",totalPage);

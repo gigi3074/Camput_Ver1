@@ -42,6 +42,7 @@ public class CampDetailPageController {
         model.addAttribute("localDates",localDates);
         model.addAttribute("camp",camp);
         model.addAttribute("loginId", loginId);
+        model.addAttribute("member",loginId);
         return "campDetail";
     }
     /**

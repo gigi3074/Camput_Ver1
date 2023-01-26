@@ -37,7 +37,7 @@ public class MyPageBookInfoController {
         String memberNickName = memberService.findMemberNickName(loginId);
         Page<MyPageCampDto> bookedCampDtos = myPageBookInfoService.bookedCamp(loginId, pageable);
         int totalPage= bookedCampDtos.getTotalPages()-1;
-
+        model.addAttribute("member",loginId);
         model.addAttribute("memberNickName",memberNickName);
         model.addAttribute("totalPage",totalPage);
         model.addAttribute("bookedCamps",bookedCampDtos);
