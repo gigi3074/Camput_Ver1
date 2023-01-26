@@ -85,6 +85,7 @@ public class CamputImpl implements CamputService {
                 .campTotalAvg(camp.getTotalStarAvg())
                 .totalLike(camp.getMemberLikeTotalCount())
                 .prices(prices)
+                .id(camp.getId().toString())
                 .build();
 
         return campInfo;
@@ -110,7 +111,9 @@ public class CamputImpl implements CamputService {
                         .comment(campComment.getCommentedContent())
                         .makedDate(campComment.getCommentedDate())
                         .stars(campComment.getStars())
-                        .memberName(campComment.getMember().getMemberName())
+                        .memberName(campComment.getMember().getNickName())
+                        .memberLoginId(campComment.getMember().getMemberLoginId())
+                        .id(campComment.getId())
                         .build();
                 campCommentDtos.add(comment);
             }

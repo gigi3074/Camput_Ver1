@@ -22,13 +22,12 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequiredArgsConstructor
 public class myPageMemberUpdateController {
-
     private final MemberUpdateService memberUpdateService;
     private final JoinService joinService;
     private final LoginCheckService loginCheckService;
 
     @GetMapping("/member/update")
-    public String intoPage(Model model, HttpServletRequest request, HttpSession session){
+    public String intoPage(Model model, HttpServletRequest request){
         String loginId = loginCheckService.checkLogin(request);
         MemberJoinDto result = memberUpdateService.view(loginId);
         model.addAttribute("loginMember", result);

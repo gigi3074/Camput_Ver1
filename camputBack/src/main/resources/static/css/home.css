@@ -28,9 +28,10 @@ header{
     align-items: center;
 }
 .Logo{
-    margin-left: 5%;
-    width: 10%; padding-bottom: 7%;
-    background-image: url("/img/logo.png");
+    justify-content: flex-start;
+    width: 60px;
+    height: 60px;
+    background-image: url("../img/logo.png");
     background-size:contain ;
     background-repeat: no-repeat;
 }

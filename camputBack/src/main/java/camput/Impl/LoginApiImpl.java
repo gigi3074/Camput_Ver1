@@ -37,9 +37,6 @@ public class LoginApiImpl implements LoginApiService {
     private String grantType;
     @Value("${social.client.kakao.redirect-uri}")
     private String redirectUri;
-    @Value("${social.client.kakao.admin-key}")
-    private String adminkey;
-
 
     @Override
     public SocialAuthResponse getAccessToken(String code) {

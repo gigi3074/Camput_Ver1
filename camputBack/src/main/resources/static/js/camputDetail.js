@@ -1,16 +1,84 @@
 
+/*
+<<<<<<< HEAD
+window.scrollTo({ left: 0, top: 0, behavior: "smooth" });
+// 메뉴
+$(function(){
+    $(".menuBtn>li").mouseover(function(){
+        $(this).children(".miniMenu").stop().slideDown();
+    });
+    $(".menuBtn>li").mouseout(function(){
+        $(this).children(".miniMenu").stop().slideUp();
+    });
+}) // 메뉴
+
+// 화면 슬라이딩 (예약,리뷰)
+$(function(){
+    // 각각 목록 내려오기
+    $(".slideBtn>a").click(function(){
+        $(this).children(".openBooking").stop().slideDown();
+    });
+    $(".slideBtn>a").click(function(){
+        $(this).children(".openBooking").stop().slideUp();
+    });
+    $("#stars").click(function (event) {
+        document.querySelector(`.star span`).style.width = `${event.target.value * 20}%`;
+    })
+}); // 화면슬라이딩(예약,리뷰)
+
+// 모달 창 나오게 만들기 var.4
+$( document ).ready(function() {
+    $('#open_modal').click(function() {
+        $('#modal').show();
+    });
+    // 모달 창 외의 다른 곳 클릭하면 다시 없어짐.
+    $(window).on('click', function() {
+        if (event.target == $('#modal').get(0)) {
+            $('#modal').hide();
+        }
+    });
+    // x 버튼 클릭하면 삭제됨.
+    $('.modal_close').click(function() {
+        $('#modal').hide();
+    });
+});
+
+$(function(){
+// 리뷰 쓰기 전송 폼
+$(".sub_btn").click(function () {
+    console.log("submit")
+    $.ajax({
+        type: "POST",
+        url: "/camput/reviews/insert",
+        // contentType: "application/json",
+        data: $("#re_postForm").serialize(),
+        success: function(data) {
+            console.log("성공했습니다.");
+            location.reload();
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+});
+})
+
+
+
+=======
+*/
 var checkStartYear="";
 var checkStartMonth="";
 var checkStartDay="";
 var checkEndYear="";
 var checkEndMonth="";
 var checkEndDay="";
+
 var startColor="";
 var endColor="";
+
 var startDayCheck=true;
 var endDayCheck=true;
-
-console.log(fullBookedDays);
 
 $(document).ready(function(){
     initCalendar1();
@@ -18,7 +86,7 @@ $(document).ready(function(){
 });
 
 function initCalendar1() {
-    // 날짜 정보 가져오기
+    // 한국 날짜 정보 가져오기
     var date = new Date();
     var utc = date.getTime() + (date.getTimezoneOffset() * 60 * 1000);
     var kstGap = 9 * 60 * 60 * 1000;
@@ -27,15 +95,15 @@ function initCalendar1() {
     var thisMonth = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     const fixedCurrentMonth=thisMonth.getMonth()+1;
     const fixedCurrentYear=thisMonth.getFullYear();;
+    // 달력에서 표기하는 연,월,일
+    var currentYear = thisMonth.getFullYear();
+    var currentMonth = thisMonth.getMonth();
+    var currentDate = thisMonth.getDate();
 
-    var currentYear = thisMonth.getFullYear(); // 달력에서 표기하는 연
-    var currentMonth = thisMonth.getMonth(); // 달력에서 표기하는 월
-    var currentDate = thisMonth.getDate(); // 달력에서 표기하는 일
 
-    // 캘린더 렌더링
     renderCalender(thisMonth);
     function renderCalender(thisMonth) {
-        // 렌더링을 위한 데이터 정리
+
         currentYear = thisMonth.getFullYear();
         currentMonth = thisMonth.getMonth();
         currentDate = thisMonth.getDate();
@@ -53,7 +121,7 @@ function initCalendar1() {
         calendar = document.querySelector('.one')
         calendar.innerHTML = '';
         // 지난달
-        for (var i = prevDate - prevDay + 1; i <= prevDate; i++) {
+       for (var i = prevDate - prevDay + 1; i <= prevDate; i++) {
             var prevDays = document.createElement('div');
             prevDays.className = "day prev disable";
             prevDays.setAttribute('id', i);
@@ -66,34 +134,35 @@ function initCalendar1() {
             $("#prev1").show();
         }
         // 이번달
-
         for (var idx = 1; idx <= nextDate; idx++) {
             var currentDay = document.createElement('div');
             currentDay.className = 'day current';
             currentDay.setAttribute('id', "start" + (currentMonth + 1) + "month" + idx);
             currentDay.innerHTML = idx;
-            var currentDayButton = document.createElement('div');
             var bookedDate = idx >= 10 ? idx : '0' + idx;
             var bookedMonth = (currentMonth + 1) >= 10 ? (currentMonth + 1) : '0' + (currentMonth + 1);
             var checkFullReservation = currentYear + '-' + bookedMonth + '-' + bookedDate;
             var block=false;
+
+            if((today.getDate() > idx && fixedCurrentMonth === (currentMonth + 1))){
+                currentDay.classList.add("disable");
+            }
+
             if (fullBookedDays !== null) {
                 fullBookedDays.forEach((check) => {
                     if (checkFullReservation === String(check) && (today.getDate() < idx || fixedCurrentMonth < (currentMonth + 1))) {
-                       console.log('start');
+                        console.log('start');
                         block=true;
                     }
                 }) };
                 if (!block&&(today.getDate() < idx || fixedCurrentMonth < (currentMonth + 1))) {
-                    currentDayButton = document.createElement('button');
-                    currentDayButton.setAttribute('type', 'button');
-                    currentDayButton.className = 'startDayButton';
-                    currentDayButton.innerHTML = idx;
-                    currentDayButton.dataset.idx = idx;
+                    currentDay.setAttribute('type', 'button');
+                    currentDay.classList.add('startDayButton');
+                    currentDay.dataset.idx = idx;
                 }
-                currentDay.appendChild(currentDayButton);
                 calendar.appendChild(currentDay);
-        }
+                }
+
             $(".startDayButton").click(function () {
                 var idx = $(this).data("idx");
                 var warring = $('.startWarring')
@@ -161,13 +230,14 @@ function initCalendar1() {
                 clickedDate = clickedDate >= 10 ? clickedDate : '0' + clickedDate;
                 clickedMonth = clickedMonth >= 10 ? clickedMonth : '0' + clickedMonth;
                 clickedYMD = clickedYear + "-" + clickedMonth + "-" + clickedDate;
-                var start = document.querySelector(".startReservationDay");
-                start.innerHTML = clickedYMD;
+                var selected=document.querySelector(".startReservationDay.selected");
+                var start=document.querySelector(".startReservationDay");
+                selected.innerText=clickedYMD;
                 start.setAttribute('value',clickedYMD);
                 var dayId = "start" + (currentMonth + 1) + "month" + $(_this).data("idx")
                 startColor = dayId;
                 var clickEndDay = document.getElementById(dayId);
-                clickEndDay.setAttribute('style', "background-color: rgba(72, 137, 73, 0.562)")
+                clickEndDay.setAttribute('style', "background-color: white")
                 return startDay;
             };
             // 다음달
@@ -179,11 +249,12 @@ function initCalendar1() {
                 calendar.appendChild(nextDays);
             };
             // 오늘 날짜 표기
-            if (today.getMonth() == currentMonth) {
+             if (today.getMonth() == currentMonth) {
                 todayDate = today.getDate();
                 var currentMonthDate = document.querySelectorAll('.dates .current');
+                 currentMonthDate[todayDate - 1].classList.add('disable');
                 currentMonthDate[todayDate - 1].classList.add('today');
-            };
+             };
             }
             $('.go-prev').on('click', function() {
                 thisMonth = new Date(currentYear, currentMonth - 1, 1);
@@ -195,7 +266,9 @@ function initCalendar1() {
                 renderCalender(thisMonth);
             });
 }
-//이전달로 이동
+
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function initCalendar2() {
     // 날짜 정보 가져오기
@@ -208,23 +281,21 @@ function initCalendar2() {
     const fixedCurrentMonth=thisMonth.getMonth()+1;
     const fixedCurrentYear=thisMonth.getFullYear();;
 
-    var currentYear = thisMonth.getFullYear(); // 달력에서 표기하는 연
-    var currentMonth = thisMonth.getMonth(); // 달력에서 표기하는 월
-    var currentDate = thisMonth.getDate(); // 달력에서 표기하는 일
-
-    // 캘린더 렌더링
+    var currentYear = thisMonth.getFullYear();
+    var currentMonth = thisMonth.getMonth();
+    var currentDate = thisMonth.getDate();
     renderCalender(thisMonth);
 
     function renderCalender(thisMonth) {
-        // 렌더링을 위한 데이터 정리
+
         currentYear = thisMonth.getFullYear();
         currentMonth = thisMonth.getMonth();
         currentDate = thisMonth.getDate();
-        // 이전 달의 마지막 날 날짜와 요일 구하기
+
         var startDay = new Date(currentYear, currentMonth, 0);
         var prevDate = startDay.getDate();
         var prevDay = startDay.getDay();
-        // 이번 달의 마지막날 날짜와 요일 구하기
+
         var endDay = new Date(currentYear, currentMonth + 1, 0);
         var nextDate = endDay.getDate();
         var nextDay = endDay.getDay();
@@ -234,12 +305,13 @@ function initCalendar2() {
         calendar = document.querySelector('.two')
 
         calendar.innerHTML = '';
+
         // 지난달
         for (var i = prevDate - prevDay + 1; i <= prevDate; i++) {
-            var prevDays= document.createElement('div');
-            prevDays.className="day prev disable";
-            prevDays.setAttribute('id',i);
-            prevDays.innerHTML=i;
+            var prevDays = document.createElement('div');
+            prevDays.className = "day prev disable";
+            prevDays.setAttribute('id', i);
+            prevDays.innerHTML = i;
             calendar.appendChild(prevDays);
         }
 
@@ -248,6 +320,7 @@ function initCalendar2() {
         }else{
             $("#prev2").show();
         }
+
         for (var idx = 1; idx <= nextDate; idx++) {
             var currentDay= document.createElement('div');
             currentDay.className='day current';
@@ -258,6 +331,11 @@ function initCalendar2() {
             var bookedMonth = (currentMonth + 1) >= 10 ? (currentMonth + 1) : '0' + (currentMonth + 1);
             var checkFullReservation = currentYear + '-' + bookedMonth + '-' + bookedDate;
             var block=false;
+
+            if((today.getDate() > idx && fixedCurrentMonth === (currentMonth + 1))){
+                currentDay.classList.add("disable");
+            }
+
             if (fullBookedDays !== null) {
                 fullBookedDays.forEach((check) => {
                     if (checkFullReservation === String(check) && (today.getDate() < idx || fixedCurrentMonth < (currentMonth + 1))) {
@@ -266,16 +344,12 @@ function initCalendar2() {
                     }
                 }) };
             if (!block&&(today.getDate() < idx || fixedCurrentMonth < (currentMonth + 1))) {
-                currentDayButton = document.createElement('button');
-                currentDayButton.setAttribute('type', 'button');
-                currentDayButton.className = 'endDayButton';
-                currentDayButton.innerHTML = idx;
-                currentDayButton.dataset.idx = idx;
+                currentDay.setAttribute('type', 'button');
+                currentDay.classList.add('endDayButton');
+                currentDay.dataset.idx = idx;
             }
-            currentDay.appendChild(currentDayButton);
             calendar.appendChild(currentDay);
         }
-
 
         $(".endDayButton").click(function(){
             var warring= $('.endWarring')
@@ -298,13 +372,6 @@ function initCalendar2() {
                 endReservationDay(this);
                 startDayCheck=false;
             }else if(checkStartYear!=""&&(checkStartYear<currentYear || checkStartMonth<(currentMonth+1))){
-                console.log("시작정하고 마지막날 달 바뀜")
-                console.log(checkStartYear);
-                console.log(":"+today.getFullYear());
-                console.log(checkStartMonth);
-                console.log(":"+(currentMonth+1));
-                console.log(checkStartDay);
-                console.log(":"+idx);
                 var end=document.querySelector(".endReservationDay");
                 end.innerHTML=clickedYMD;
                 end.setAttribute('value',clickedYMD)
@@ -331,29 +398,32 @@ function initCalendar2() {
             clickedDate = clickedDate >= 10 ? clickedDate : '0' + clickedDate;
             clickedMonth = clickedMonth >= 10 ? clickedMonth : '0' + clickedMonth;
             clickedYMD = clickedYear + "-" + clickedMonth + "-" + clickedDate;
-            var v=document.querySelector(".endReservationDay");
-            v.innerHTML=clickedYMD;
-            v.setAttribute('value',clickedYMD);
+            var selected=document.querySelector(".endReservationDay.selected");
+            var end=document.querySelector(".endReservationDay");
+            selected.innerText=clickedYMD;
+            end.setAttribute('value',clickedYMD);
             var dayId="end"+(currentMonth + 1)+"month"+$(_this).data("idx")
             endColor=dayId;
-            document.getElementById(dayId).setAttribute('style',"background-color: rgba(6, 120, 6, 0.562)")
+            document.getElementById(dayId).setAttribute('style',"background-color:white")
             return startDay;
         };
         // 다음달
         for (var i = 1; i <= (7 - nextDay == 7 ? 0 : 7 - nextDay); i++) {
-            var nextDays= document.createElement('div');
-            nextDays.className="day next disable";
-            nextDays.setAttribute("id",i);
-            nextDays.innerHTML=i;
+            var nextDays = document.createElement('div');
+            nextDays.className = "day next disable";
+            nextDays.setAttribute("id", i);
+            nextDays.innerHTML = i;
             calendar.appendChild(nextDays);
-        }
+        };
         // 오늘 날짜 표기
         if (today.getMonth() == currentMonth) {
             todayDate = today.getDate();
             var currentMonthDate = document.querySelectorAll('.dates .current');
-            currentMonthDate[todayDate -1].classList.add('today');
-        }
+            currentMonthDate[todayDate - 1].classList.add('disable');
+            currentMonthDate[todayDate - 1].classList.add('today');
+        };
     }
+
     // 이전달로 이동
     $('.go-prevend').on('click', function() {
         thisMonth = new Date(currentYear, currentMonth - 1, 1);
@@ -361,11 +431,9 @@ function initCalendar2() {
     });
     // 다음달로 이동
     $('.go-nextend').on('click', function() {
-
         thisMonth = new Date(currentYear, currentMonth + 1, 1);
         renderCalender(thisMonth);
     });
-
 }
 function reset(){
     console.log("reset")
@@ -384,6 +452,13 @@ function reset(){
         endDeldete.setAttribute('style',"background-color: white")
     }
 }
+$(document).ready(function (){
+    if(loginCheck===null){
+        $('.likeAction').hide()
+    }else{
+        ('.likeAction').show()
+    }
+})
 async function like(){
     var likeCheck=document.querySelector('.likeButton')
     var totalLikes =document.querySelector('.totalLike')
@@ -403,7 +478,6 @@ async function like(){
     }
 }
 $(document).ready(function (){
-
     console.log(likeCheck);
     var check = document.querySelector('.likeButton');
     if(likeCheck==1){
@@ -414,50 +488,31 @@ $(document).ready(function (){
 function nullCheck(){
     if( $('.price').val()===""|| $('.startReservationDay').val()===""||$('.endReservationDay').val()===""){
         console.log( $('.price').val())
-
         console.log( $('.startReservationDay').val())
         console.log( $('.endReservationDay').val())
-
-        console.log("ehlsrjdla")
         $('.warring').show();
         return;
     }
-    reserInfo.submit();
+    main_title.submit();
 }
 function checkOnlyOne(_this){
 var checkBox=document.getElementsByName('price');
-
 var checkBox1=document.querySelector('.price50000');
 var checkBox2=document.querySelector('.price100000');
-    console.log(_this.value);
-    console.log(checkBox1.value);
-    console.log(checkBox2.value);
-    console.log("33333333333333333");
-    console.log(checkBox1.checked);
-    console.log(checkBox2.checked);
 
 if(((!checkBox2.checked&&!checkBox1.checked))&&_this.value===checkBox1.value){
-    console.log(1);
-
-    console.log(_this.value);
-    console.log(checkBox1.value);
     checkBox.forEach((a)=>{
         a.checked = false;
     })
 } else if(((!checkBox2.checked&&!checkBox1.checked))&&_this.value===checkBox2.value){
-    console.log(2);
-
-    console.log(_this.value);
-    console.log(checkBox2.value);
         checkBox.forEach((a)=>{
         a.checked = false;
     })
 }else{
     checkBox.forEach((a)=>{
-        console.log("3");
-
         a.checked = false;
     });
     _this.checked =true;
 }
 }
+

@@ -2,6 +2,7 @@ package camput.controller;
 
 import camput.Dto.QnADto;
 import camput.Dto.QnaAnswerDto;
+import camput.Service.LoginCheckService;
 import camput.Service.QnAService;
 import camput.domain.Qna;
 import camput.domain.QnaAnswer;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -23,6 +25,7 @@ import java.util.List;
 public class QnAController {
 
     private final QnAService qnaService;
+    private final LoginCheckService loginCheckService;
 
     @GetMapping("/QnA/write")
     public String intoBoardWrite() {
@@ -30,32 +33,35 @@ public class QnAController {
     }
 
     @PostMapping("/QnA/writepro") // 작성글 저장
-    public String qnaWritePro(@ModelAttribute QnADto qnaDto, HttpSession session){ // 내용 받아오기
-        String writer = (String) session.getAttribute("loginMember");
-        qnaDto.setMemberLoginId(writer);
+    public String qnaWritePro(@ModelAttribute QnADto qnaDto, HttpServletRequest request){ // 내용 받아오기
+        //String writer = (String) session.getAttribute("loginMember");
+        String memberId = loginCheckService.checkLogin(request);
+        qnaDto.setMemberLoginId(memberId);
         qnaService.save(qnaDto);
         return "redirect:/QnA/list";
     }
 
     @GetMapping("/QnA/list") // 게시판 리스트
-    public String qnaUpdate(Model model, HttpSession session, Pageable pageable, @ModelAttribute QnADto qnaDto){
+    public String qnaUpdate(Model model, HttpServletRequest request, Pageable pageable, @ModelAttribute QnADto qnaDto){
         Page<QnADto> result = qnaService.qnaListWithPaging(pageable, qnaDto);
         model.addAttribute("qnalist", result); // list라는 이름으로 viewQnAList()를 html로 보낸다.
         model.addAttribute("totalPage", result.getTotalPages() - 1);
 
-        String loginMember = (String) session.getAttribute("loginMember");
-        model.addAttribute("loginMember", loginMember);
+        String memberId = loginCheckService.checkLogin(request);
+        //String loginMember = (String) session.getAttribute("loginMember");
+        model.addAttribute("loginMember", memberId);
         return "QandA";
     }
 
     @GetMapping("/QnA/view") // 게시판 상세페이지
-    public String qnaview(Model model, Long id, HttpSession session){
+    public String qnaview(Model model, Long id, HttpServletRequest request){
         Qna result = qnaService.qnaView(id);
         model.addAttribute("qna", result);
         //1. 세션 정보 가져오기
-        String loginMember = (String) session.getAttribute("loginMember");
+        String memberId = loginCheckService.checkLogin(request);
+        //String loginMember = (String) session.getAttribute("loginMember");
         //2. 세션 넘겨주기
-        model.addAttribute("loginMember", loginMember);
+        model.addAttribute("loginMember", memberId);
         //3. 조회수 증가
         qnaService.updateViewCount(id);
         //4. 답글 조회
@@ -78,17 +84,20 @@ public class QnAController {
     }
 
     @PostMapping("/QnA/update/{id}")
-    public String qnaUpdate(@PathVariable("id")Long id,@ModelAttribute QnADto qnaDto){
+    public String qnaUpdate(@PathVariable("id") Long id,@ModelAttribute QnADto qnaDto, HttpServletRequest request){
         System.out.println(qnaDto);
+        String memberId = loginCheckService.checkLogin(request);
+        qnaDto.setMemberLoginId(memberId);
         String result = qnaService.qnaUpdate(qnaDto);
 
         return "redirect:/QnA/list";
     }
 
     @PostMapping("/QnA/insert/answer")
-    public String insertQnaAnswer(@ModelAttribute QnADto qnaDto, HttpSession session) {
-        String loginMember = (String) session.getAttribute("loginMember");
-        qnaDto.setMemberLoginId(loginMember);
+    public String insertQnaAnswer(@ModelAttribute QnADto qnaDto, HttpServletRequest request) {
+        //String loginMember = (String) session.getAttribute("loginMember");
+        String memberId = loginCheckService.checkLogin(request);
+        qnaDto.setMemberLoginId(memberId);
         qnaService.insertQnaAnswer(qnaDto);
         return "redirect:/QnA/view?id=" + qnaDto.getId();
     }

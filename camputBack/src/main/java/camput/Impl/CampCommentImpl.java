@@ -22,12 +22,6 @@ public class CampCommentImpl implements CampCommentService {
     private final CommentedRepository commentedRepository;
     private final CommentedImageFileRepository commentedImageFileRepository;
 
-
-    @Override
-    public List<Commented> findByCampName(Camput campName) {
-        return commentedRepository.findAllByCamput(campName);
-    }
-
     // 새글
     @Override
     @Transactional
@@ -39,21 +33,19 @@ public class CampCommentImpl implements CampCommentService {
 //                .imageDate(commentDto.getImageDate())
 //                .build();
 //        CommentedImageFile save = commentedImageFileRepository.save(img);
-
+        Camput camput = Camput.builder()
+                .id(commentDto.getCamputId())
+                .build();
         Commented commented = Commented.builder()
                 .commentedContent(commentDto.getComment())
-                .commentedDate(LocalDateTime.now())
-                .commentedMemberName(commentDto.getMemberName())
-                .stars((Integer) commentDto.getStars())
-//                .commentedImageFiles(save.getCommented().getCommentedImageFiles())
+                .commentedDate(commentDto.getMakedDate())
+                .stars(commentDto.getStars())
+                .commentedMemberName(commentDto.getMember().getNickName())
+                //.commentedImageFiles(save.getCommented().getCommentedImageFiles())
+                .member(commentDto.getMember())
+                .camput(camput)
                 .build();
         commentedRepository.save(commented);
-    }
-
-    @Override
-    public Optional<Commented> findById(Long id) {
-        Optional<Commented> commentedList = commentedRepository.findById(id);
-        return commentedList;
     }
 
 //    @Override
@@ -61,14 +53,36 @@ public class CampCommentImpl implements CampCommentService {
 //        return commentedRepository.getAvgRating();
 //    }
 //
+    @Override
+    public List<Commented> findAllByCamput(Camput camput) {
+        return commentedRepository.findAllByCamput(camput);
+    }
 
 //    @Override
 //    public CampCommentDto findByNickNameAndMakedDate(String nickName, String makedDate) {
 //        return commentedRepository.findByNickNameAndMakedDate(nickName, makedDate);
 //    }
-//    @Override
-//    public void deleteByNickNameAndMakedDate(String nickName, String makedDate) {
-//
-//    }
+    @Override
+    @Transactional
+    public void deleteById(Long id) {
+        commentedRepository.deleteById(id);
+    }
 
+    @Override
+    @Transactional
+    public void update(CampCommentDto commentDto) {
+        Commented commented = commentedRepository.findById(commentDto.getId()).orElseThrow(() ->
+                new IllegalArgumentException("commented 없다"));
+        Camput camput = Camput.builder()
+                .id(commentDto.getCamputId())
+                .build();
+        commented.commentedUpdate(
+                commentDto.getId(),
+                commentDto.getComment(),
+                commentDto.getMember(),
+                camput
+        );
+
+        commentedRepository.save(commented);
+    }
 }

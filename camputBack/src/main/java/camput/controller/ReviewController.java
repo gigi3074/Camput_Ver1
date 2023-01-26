@@ -1,12 +1,13 @@
 package camput.controller;
 
 import camput.Dto.CampCommentDto;
+import camput.Dto.MemberInfoDto;
+import camput.Dto.MemberJoinDto;
 import camput.Service.CampCommentService;
-import camput.Service.CamputService;
 import camput.Service.LoginCheckService;
+import camput.Service.MemberService;
 import camput.Service.MyPageBookInfoService;
 import camput.domain.Camput;
-import camput.domain.Commented;
 import camput.domain.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,11 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import java.util.List;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Slf4j
 @Controller
@@ -27,45 +24,50 @@ import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 @RequestMapping("/camput")
 public class ReviewController {
     private final CampCommentService campCommentService;
-    private final CamputService camputService;
     private final LoginCheckService loginCheckService;
+    private final MemberService memberService;
 
-    @GetMapping("/reviews")
-    public String getReviewsByCamput(@PathVariable Camput campName, Model model) {
-        model.addAttribute("reviews", campCommentService.findByCampName(campName));
-        model.addAttribute("product", camputService.findByCampName(String.valueOf(campName)));
-        return "redirect:/camput/campDetail";
-    }
-    @PostMapping("/reviews/new")
-    public void saveReview(@ModelAttribute CampCommentDto commentDto, HttpServletRequest request) {
-        System.out.println(commentDto.getComment());
-        System.out.println(commentDto.getStars());
-        System.out.println(commentDto.getCampName());
-
+    @PostMapping("/reviews/insert") // 새글
+    @ResponseBody
+    public Boolean createReview(@ModelAttribute CampCommentDto commentDto, HttpServletRequest request) {
         String loginId = loginCheckService.checkLogin(request);
-        String memberName = String.valueOf(Member.builder().memberName(loginId));
-        commentDto.setMemberName(memberName);
+        MemberInfoDto memberInfoDto = memberService.findMemberInfo(loginId);
+        Member member = Member.builder()
+                .memberLoginId(memberInfoDto.getMemberLoginId())
+                .nickName(memberInfoDto.getNickName())
+                .id(memberInfoDto.getId())
+                .build();
+        commentDto.setMember(member);
         campCommentService.save(commentDto);
+        return true;
     }
+   @PostMapping("/reviews/update") // 수정 - 아이디로 불러와서 수정
+   @ResponseBody
+    public Boolean updateReview(@ModelAttribute CampCommentDto commentDto, HttpServletRequest request) {
+       String loginId = loginCheckService.checkLogin(request);
+       MemberInfoDto memberInfoDto = memberService.findMemberInfo(loginId);
+       Member member = Member.builder()
+               .memberLoginId(memberInfoDto.getMemberLoginId())
+               .nickName(memberInfoDto.getNickName())
+               .id(memberInfoDto.getId())
+               .build();
+       commentDto.setMember(member);
+       campCommentService.update(commentDto);
+       return true;
+   }
 
-//    @PutMapping("/reviews/id") // 수정 - 아이디로 불러와서 수정
-//    public String updateReview(@PathVariable Long id, @ModelAttribute CampCommentDto commentDto) {
-//        commentDto.setId(id);
-//        campCommentService.save(commentDto);
-//        return "redirect:/reviews";
-//    }
-//
-//    @DeleteMapping("/reviews/id") // 삭제 - 닉네임, 날짜로
-//    public String deleteReview(@PathVariable String nickName, String makedDate) {
-//        campCommentService.deleteByNickNameAndMakedDate(nickName, makedDate);
-//        return "redirect:/reviews";
-//    }
-//
-    @GetMapping("/campDetail/{name}") // 리스트 아이디로 불러오기
-    public String getReviews(@PathVariable Long Id, Model model) {
-        model.addAttribute("Commented");
-        return "reviews";
+    @GetMapping("/reviews/delete") // 삭제        /   @PathVariable    @RequestParam
+    @ResponseBody
+    public Boolean deleteReview(@RequestParam("id") Long id) {
+        campCommentService.deleteById(id);
+        return true;
     }
+//
+//    @GetMapping("/campDetail/{name}") // 리스트 아이디로 불러오기
+//    public String getReviews(@PathVariable Long Id, Model model) {
+//        model.addAttribute("Commented");
+//        return "reviews";
+//    }
 //    @GetMapping("/reviews")
 //    public String getReviews(Model model) {
 //        model.addAttribute("reviews", campCommentService.findAllByCamput());
