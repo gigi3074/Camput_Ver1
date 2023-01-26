@@ -15,11 +15,9 @@ public class Webconfig implements WebMvcConfigurer {
                 .excludePathPatterns(
                         "/camput/home/**"
                         ,"/camput/join","/camput/login","/camput/findId","/camput/findId/modal","/camput/findPw/id","/camput/findPw","/camput/logout"
-                        ,"/camput/login/api-login"
-                        ,"/camput/member/update"
+                        ,"/camput/login/api-login","/api"
                         ,"/camput/detail/{name}","/camput/detail/**"
-                        ,"/camput/myPage/**"
-                        ,"/camput/Qna/**","/camput/reservation/**","/camput/reservationPage/**"
+                        ,"/camput/Qna/**"
                         ,"/js/**","/css/**","/*.png","/img/**","/error","/ico/**","/*.jpg","/*.tmp"
                         ,"/fragments/**","/layout/**");
     }

@@ -416,7 +416,6 @@ function initCalendar2() {
             currentMonthDate[todayDate - 1].classList.add('today');
         };
     }
-
     // 이전달로 이동
     $('.go-prevend').on('click', function() {
         thisMonth = new Date(currentYear, currentMonth - 1, 1);

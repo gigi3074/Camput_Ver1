@@ -36,7 +36,8 @@ public class MemberController {
 
     @PostMapping("/login")
     public String login(@Valid @ModelAttribute("LoginDto") LoginDto loginDto, BindingResult bindingResult, HttpServletRequest request
-    ) {
+    , @RequestParam(defaultValue = "/")String redirectURL ) {
+        HttpSession session;
         if (bindingResult.hasErrors()) { // 빈값이면..!
             log.info("errors={}", bindingResult);
             return "login";
@@ -49,12 +50,16 @@ public class MemberController {
                 .loginCode("empty")
                 .build();
         if (isValid) {  // 참이면
-            HttpSession session = request.getSession();
+            session = request.getSession();
             session.setAttribute(MemberSession.LOGIN_MEMBER, loginsession);  // 아이디 담아서
             return "redirect:/camput/home"; // 보냄
-        } else {
+        }/* else if(!isValid){
             return "login";
-        }
+        }*/
+        session = request.getSession();
+        session.setAttribute(MemberSession.LOGIN_MEMBER, loginsession);  // 아이디 담아서
+        return "redirect:"+ redirectURL;
+
     }
 
     // 로그아웃
