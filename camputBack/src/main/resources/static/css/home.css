@@ -8,7 +8,7 @@
 /* 화면 구성 */
 .home{
     height: 100%; width: 100%;
-    z-index: 99;
+    overflow-y:scroll;
     -ms-overflow-style: none; /* 인터넷 익스플로러 */
     scrollbar-width: none; /* 파이어폭스 */
     background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
@@ -16,18 +16,7 @@
 .home::-webkit-scrollbar {
     display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }
-#loading{
-    opacity: 0.8;
-    background: white;
-    z-index: 10;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-#loding>img{
-    z-index: 100; width: 100%;
-}
+
 /* 메뉴바 */
 header{
     position: fixed;
@@ -55,15 +44,18 @@ header{
 .menuBtn{
     width: 100%;
     display: inline-flex;
-    justify-content: space-evenly;
 }
-.menuBtn li{width: fit-content; margin: 0 5%;}
-.menuBtn li a{width: fit-content;}
-.menuBtn .menu{position: relative;}
+.menuBtn li{width: 100%; margin: 0 3%;}
+.menu{position: relative;}
+.menu ul{
+    position: absolute; right: 80%;
+    width:max-content; font-size: 1vw;
+}
 
 /* 사이드 메뉴 */
-.miniMenu{position: absolute; right: 80%; width: 100%; display: none;}
-.miniMenu li{text-align: right;}
+.miniMenu{display: none;}
+.miniMenu li{font-size: 1.5vw; width: 100%; text-align: right;}
+
 
 .middle-wrap{
     width: 100%;
@@ -73,9 +65,7 @@ header{
     z-index: 2; width: 100%;
     height: 100%;
 }
-.scroll-area {
-    scroll-snap-align: start;
-}
+
 /*캠프 상단 글자*/
 .campTopSevenContent{
     width: 60%;

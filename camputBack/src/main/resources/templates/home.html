@@ -15,11 +15,6 @@
             integrity="sha256-00Fh8tkPAe+EmVaHFpD+HovxWk7b97qwqVi7nLvjdgs="
             crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
-    <script>
-        $(window).on('load', function () {
-            $("#loading").hide();
-        });
-    </script>
 </head>
 <body>
 <div class="home">
@@ -34,8 +29,8 @@
         <!-- 메뉴 -->
         <div class="nav Login" style="display: none;">
             <ul class="menuBtn">
-                <li class="myPageMemberInfo"><a th:href="@{/camput/myPage/information}">마이페이지</a></li>
-                <li class="logout"><a th:href="@{/camput/logout}">로그아웃</a></li>
+                <li class="myPageMemberInfo"><a th:href="@{/camput/myPage/information}">Mypage</a></li>
+                <li class="logout"><a th:href="@{/camput/logout}">Logout</a></li>
                 <li class="menu">
                     <a href="#"><i class="fa-solid fa-bars"></i></a>
                     <ul class="miniMenu" style="display: none;">
@@ -47,9 +42,6 @@
             </ul>
         </div>
     </header>
-    <div id="loading">
-        <img src="/../img/loading.gif" alt="loading">
-    </div>
     <div class="middle-wrap">
         <div class="middle">
             <div class="campTopSevenContent">

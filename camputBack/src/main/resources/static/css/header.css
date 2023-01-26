@@ -33,11 +33,12 @@ header{
 }
 /* 메뉴 */
 .nav{
-    width: 40%;
+    width: 30%;
     margin-right: 5%;
     display: flex;
     justify-content: flex-end;
-    font-size: 1.8vw;
+    margin: 5%;
+    font-size: 1.5vw;
 }
 .menuBtn{
     width: 100%;

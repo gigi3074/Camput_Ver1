@@ -67,7 +67,7 @@ body{
 .memberInfoChange:hover{background-color: #ffa600;color: rgba(255, 255, 255, 0.8);}
 
 /* 보드 리스트 */
-.myPageMemberInfo{
+.myPageMemberInfoRe{
     margin: 0 auto 2%;
     width: 60%; height: 70vw;
     background-color: rgba(255, 255, 255, 0.7);
