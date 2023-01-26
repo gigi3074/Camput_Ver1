@@ -1,4 +1,4 @@
-@import url("/camputFront/css/reset.css");
+@import url("/camputFront/done/css/reset.css");
 /* 라인 */
 @font-face { font-family: 'LINESeedKR-Bd'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2'); font-weight: 700; font-style: normal; }
 /* 티머니 */
@@ -31,7 +31,7 @@ body{
 }
 /* 로고 */
 .logo{
-    background-image: url(/camputFront/img/logo01_2.png);
+    background-image: url(/camputFront/img/logo_02.png);
     background-repeat: no-repeat; background-size: contain;
     width: 40%; padding-bottom: 40%;
     margin-top: 0%;

@@ -1,6 +1,4 @@
 
-/*
-<<<<<<< HEAD
 window.scrollTo({ left: 0, top: 0, behavior: "smooth" });
 // 메뉴
 $(function(){
@@ -63,10 +61,6 @@ $(".sub_btn").click(function () {
 });
 })
 
-
-
-=======
-*/
 var checkStartYear="";
 var checkStartMonth="";
 var checkStartDay="";
@@ -459,7 +453,7 @@ $(document).ready(function (){
     }
 })
 async function like(){
-    var likeCheck=document.querySelector('.likeButton')
+    var likeCheck=document.querySelector('.likeButton>i')
     var totalLikes =document.querySelector('.totalLike')
     var result=await fetch("/camput/detail/like",{
         method:'POST',
@@ -469,18 +463,18 @@ async function like(){
     }).then(re=>re.json()).catch(err=>console.log('err'));
 
    if(result.like==0){
-       likeCheck.setAttribute("style","background: white");
+       likeCheck.setAttribute("style","color: white");
        totalLikes.innerHTML = result.totalLike;
     }else if(result.like==1){
-       likeCheck.setAttribute("style","background: red");
+       likeCheck.setAttribute("style","color: red");
        totalLikes.innerHTML =result.totalLike;
     }
 }
 $(document).ready(function (){
     console.log(likeCheck);
-    var check = document.querySelector('.likeButton');
+    var check = document.querySelector('.likeButton>i');
     if(likeCheck==1){
-        check.setAttribute("style","background: red");
+        check.setAttribute("style","color: red");
     }
 })
 

@@ -23,7 +23,7 @@ $(function(){
 
 
 // 별점
-const stars = (target) => {
+const drawStar = (target) => {
     document.querySelector(`.star span`).style.width = `${target.value * 20}%`;
 }// 별점
 

@@ -279,17 +279,14 @@ header{
     margin: 25vh auto;
 }
 .camp_main{
-    display: flex;
-    margin: 1% 0;
+    display: flex; height: 50%;
+    width: 100%; margin: 1% 0;
 }
-.camp_main .cmap_img{width: 50%;}
-.camp_main .cmap_img .main_img{
-    width: 80%; margin: 10%;
-    box-sizing: border-box; overflow: hidden;
-}
-.main_img img{
-    width: 100%; height: 100%;
-    object-fit:contain;
+.camp_main .camp_ing{
+    height: 50%; width: 100%; margin: 5%;
+    background-image: url(/camputFront/img/main01.png);
+    background-repeat: no-repeat; background-size: contain;
+    background-position: 0 20%;
 }
 .camp_main .camp_txt{
     width: 50%; font-size: 1.3vw;
@@ -343,12 +340,11 @@ header{
     font-size: 2vw;
     background-color: #fff;
 }
-.slideBtn{
-    border: 0;
-    background-color: unset;
-    font-size: 2vw;
-    padding-left: 5%;
-    font-family:'TmoneyRoundWindExtraBold';
+.acc_info{width: 100%;}
+#slideBtn{
+    width: 100%; margin-top: 10%;
+    background-color: rgba(255, 255, 255, 0.6 );
+    border-radius: 10px;
 }
 .openBooking{
     /* display: none;           */
@@ -359,6 +355,7 @@ header{
     margin-bottom: 1vh;
     background-color: rgba(255, 255, 255, 0.6 );
     box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
 }
 
 /* 달력 */
@@ -367,7 +364,6 @@ header{
 }
 
 /* 리뷰 */
-.review{}
 .newReBtn button{
     padding: 1%; margin: 2% auto; width: 20%; font-size: 2vw; font-family: 'TmoneyRoundWindExtraBold';
     box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.4);

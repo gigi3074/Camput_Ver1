@@ -7,7 +7,7 @@
 /* *{font-family:'LINESeedKR-Bd';} */
 /* 배경 */
 .wrap{
-    width: 100%; height: 100%;
+    width: 100%; height: 100vmax;
 }
 /* 스크롤제거 */
 body{
@@ -57,9 +57,9 @@ body{
 .homeBtn:hover{
     /* background-color: #ffa600; */
     box-shadow: 0 80px 0 0  #ffa600 inset,
-    0 -80px 0 0 #ffa600 inset;
+                0 -80px 0 0 #ffa600 inset;
 }
-.homeBtn a{color: #fff; font-size: 2.5vw;}
+.homeBtn a{width: 100%; color: #fff; font-size: 2.5vw;}
 .homeBtn i{color: #fff; font-size: 2vw; margin-left: 20px;}
 
 /* 로그아웃, 마이페이지 */
