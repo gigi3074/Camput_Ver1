@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 아이콘 -->
+    <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/camputFront/css/QandAWrite.css">
+    <!--스크립트 -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
+    <script th:inline="javascript" src="/js/QandAWrite.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <title>QandAWrite</title>
+</head>
+<style>
+
+</style>
+<body>
+    <div class="wrap">
+        <div class="QandAWrite">
+            <div class="section">
+                <div class="layout">
+                    <form action="/QnA/writepro" method="post">
+                        <input name="qnaTitle" type="text" placeholder="제목을 입력해주세요.">
+                        <textarea name="qnaContent" placeholder="내용을 입력해주세요."></textarea>
+                        <button type="submit">완료</button>
+                    </form>
+                </div>
+            </div><!--section-->
+        </div>
+    </div><!--wrap-->
+</body>
+</html>

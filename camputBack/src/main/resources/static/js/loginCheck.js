@@ -9,3 +9,11 @@ $(document).ready(function (){
         $('.Login').hide();
     }
 });
+$(function(){
+    $(".menuBtn>li").mouseover(function(){
+        $(this).children(".miniMenu").stop().slideDown();
+    });
+    $(".menuBtn>li").mouseout(function(){
+        $(this).children(".miniMenu").stop().slideUp();
+    });
+}) // last
