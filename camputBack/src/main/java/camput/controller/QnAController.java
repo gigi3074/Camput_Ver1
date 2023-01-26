@@ -28,7 +28,9 @@ public class QnAController {
     private final LoginCheckService loginCheckService;
 
     @GetMapping("/QnA/write")
-    public String intoBoardWrite() {
+    public String intoBoardWrite(HttpServletRequest request,Model model) {
+        String memberId = loginCheckService.checkLogin(request);
+        model.addAttribute("member",memberId);
         return "QandAWrite";
     }
 
@@ -46,8 +48,8 @@ public class QnAController {
         Page<QnADto> result = qnaService.qnaListWithPaging(pageable, qnaDto);
         model.addAttribute("qnalist", result); // list라는 이름으로 viewQnAList()를 html로 보낸다.
         model.addAttribute("totalPage", result.getTotalPages() - 1);
-
         String memberId = loginCheckService.checkLogin(request);
+        model.addAttribute("member",memberId);
         //String loginMember = (String) session.getAttribute("loginMember");
         model.addAttribute("loginMember", memberId);
         return "QandA";
@@ -62,6 +64,7 @@ public class QnAController {
         //String loginMember = (String) session.getAttribute("loginMember");
         //2. 세션 넘겨주기
         model.addAttribute("loginMember", memberId);
+        model.addAttribute("member", memberId);
         //3. 조회수 증가
         qnaService.updateViewCount(id);
         //4. 답글 조회

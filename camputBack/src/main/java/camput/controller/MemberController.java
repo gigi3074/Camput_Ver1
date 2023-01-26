@@ -42,7 +42,6 @@ public class MemberController {
             log.info("errors={}", bindingResult);
             return "login";
         }
-
         boolean isValid = memberService.loginIsValid(loginDto.getMemberLoginId(), loginDto.getMemberPassword());
             String loginMember = loginDto.getMemberLoginId();
       //추가
@@ -50,17 +49,12 @@ public class MemberController {
                 .loginId(loginMember)
                 .loginCode("empty")
                 .build();
-        if (isValid) {  // 참이면
-            session = request.getSession();
-            session.setAttribute(MemberSession.LOGIN_MEMBER, loginsession);  // 아이디 담아서
-            return "redirect:/camput/home"; // 보냄
-        }/* else if(!isValid){
+        if (!isValid) {  // 참이면
             return "login";
-        }*/
+        }
         session = request.getSession();
         session.setAttribute(MemberSession.LOGIN_MEMBER, loginsession);  // 아이디 담아서
-        return "redirect:"+ redirectURL;
-
+        return "redirect:/camput/home";
     }
 
     // 로그아웃

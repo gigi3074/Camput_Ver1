@@ -25,7 +25,7 @@ body{
 .miniMenu{display: none;}
 .miniMenu li{text-align: right;}
 
-.innercon{
+.innerconREinnerconRE{
     margin: 0 auto; padding: 1%; 
     width: 70%; height: 70vw;
     background-color: rgba(255, 255, 255, 0.7);

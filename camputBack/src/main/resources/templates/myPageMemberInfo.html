@@ -6,6 +6,7 @@
 <th:block layout:fragment="css">
     <link rel="stylesheet" href="/css/myPageMemberInfo.css" />
 </th:block>
+<th:block layout:fragment="content">
         <!-- 모달 -->
         <div class="modal">
             <div class="checkMember-wrap" >
@@ -24,7 +25,7 @@
             </div>
         </div>
         <!-- 메인 -->
-        <div class="myPageMemberInfo">
+        <div class="myPageMemberInfoRe">
             <div class="miniHeader">
                 <div class="memberImage"><i class="fa-solid fa-user"></i></div>
                 <div class="memberNickName" th:text="${nickName}">닉네임</div>
@@ -68,9 +69,9 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="/js/myPage.js"></script>
+    <script src="../js/myPage.js"></script>
     <!-- 아이콘 -->
     <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
-
+</th:block>
 </th:block>
 </html>
