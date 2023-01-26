@@ -1,65 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script th:inline="javascript" src="/js/QandAView.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-    <!-- 아이콘 -->
-    <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/allLayout}">
+<title>게시글 상세 페이지</title>
+<th:block layout:fragment="css">
     <!-- css -->
-    <link rel="stylesheet" href="/done/css/QandAView.css">
-    <title>게시글 상세 페이지</title>
+    <link rel="stylesheet" href="/css/QandAView.css">
+</th:block>
 
-    <script>
-        $(document).ready(function () {
-            $('#comment-write-btn').click(function () {
-                $.ajax({
-                    type: 'post',
-                    url: '/QnA/insert/answer',
-                    data: {
-                        id: $('#qnaId').val(),
-                        qnaAnswer: $('#commentContents').val()
-                    },
-                    success: function (response) {
-                        console.log('success')
-                        location.reload();
-                    },
-                    error: function (error) {
-                        console.log('error', error)
-                    }
-                })
-            })
 
-        })
 
-        function updateAnswer (id, qnaId) {
-            console.log($('input[name=" + id + "]').val());
-             $.ajax({
-                type: 'post',
-                url: '/QnA/update/answer',
-                data: {
-                    id: id,
-                    qAnswer: $('input[name=' + id + ']').val(),
-                    qnaId: qnaId
-                },
-                success: function (response) {
-                    console.log('success')
-                    location.reload();
-                },
-                error: function (error) {
-                    console.log('error', error)
-              }
-            })
-        }
-    </script>
-</head>
-<body>
 
-    <div class="wrap">
+    <div class="wrap" layout:fragment="content"ß>
         <div class="QandAView">
             <div class="section">
                 <div class="qnadetailTop">
@@ -90,7 +42,59 @@
             </div>
         </div>
     </div><!-- wrap -->
-</body>
+
+    <th:block layout:fragment="script">
+        <!-- 아이콘 -->
+        <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
+        <!--스크립트 -->
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+        <script th:inline="javascript" src="/js/QandAWrite.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function () {
+                $('#comment-write-btn').click(function () {
+                    $.ajax({
+                        type: 'post',
+                        url: '/QnA/insert/answer',
+                        data: {
+                            id: $('#qnaId').val(),
+                            qnaAnswer: $('#commentContents').val()
+                        },
+                        success: function (response) {
+                            console.log('success')
+                            location.reload();
+                        },
+                        error: function (error) {
+                            console.log('error', error)
+                        }
+                    })
+                })
+
+            })
+
+            function updateAnswer (id, qnaId) {
+                console.log($('input[name=" + id + "]').val());
+                $.ajax({
+                    type: 'post',
+                    url: '/QnA/update/answer',
+                    data: {
+                        id: id,
+                        qAnswer: $('input[name=' + id + ']').val(),
+                        qnaId: qnaId
+                    },
+                    success: function (response) {
+                        console.log('success')
+                        location.reload();
+                    },
+                    error: function (error) {
+                        console.log('error', error)
+                    }
+                })
+            }
+        </script>
+    </th:block>
 </html>
 
 

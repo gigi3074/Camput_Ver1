@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class Webconfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        /*registry.addInterceptor(new LoginCheckInterceptor())
+        registry.addInterceptor(new LoginCheckInterceptor())
                 .order(1)
                 .addPathPatterns("/**")
                 .excludePathPatterns(
@@ -21,6 +21,6 @@ public class Webconfig implements WebMvcConfigurer {
                         ,"/camput/myPage/**"
                         ,"/camput/Qna/**","/camput/reservation/**","/camput/reservationPage/**"
                         ,"/js/**","/css/**","/*.png","/img/**","/error","/ico/**","/*.jpg","/*.tmp"
-                        ,"/fragments/**","/layout/**");*/
+                        ,"/fragments/**","/layout/**");
     }
 }
