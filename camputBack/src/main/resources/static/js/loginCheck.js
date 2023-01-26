@@ -1,12 +1,12 @@
 $(document).ready(function (){
     if(loginCheck!=null){
         console.log("login");
-        $('.notLogin').hide();
-        $('.Login').show();
+        $('.nav.notLogin').hide();
+        $('.menu.Login').show();
     }else{
         console.log("notLogin");
-        $('.notLogin').show();
-        $('.Login').hide();
+        $('.nav.notLogin').show();
+        $('.menu.Login').hide();
     }
 });
 $(function(){

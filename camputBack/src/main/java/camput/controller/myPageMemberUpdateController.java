@@ -31,6 +31,7 @@ public class myPageMemberUpdateController {
         String loginId = loginCheckService.checkLogin(request);
         MemberJoinDto result = memberUpdateService.view(loginId);
         model.addAttribute("loginMember", result);
+        model.addAttribute("member",loginId);
         return "myPageMemberUpdate";
     }
 
