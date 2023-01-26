@@ -41,6 +41,7 @@ public class MemberController {
             log.info("errors={}", bindingResult);
             return "login";
         }
+
         boolean isValid = memberService.loginIsValid(loginDto.getMemberLoginId(), loginDto.getMemberPassword());
             String loginMember = loginDto.getMemberLoginId();
       //추가

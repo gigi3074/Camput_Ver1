@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +7,8 @@
     <title>위시리스트</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-    <script src="/camputFront/js/myPageLike.js"></script>
-    <link rel="stylesheet" href="/camputFront/css/myPageLike.css">
+    <script src="/js/myPageLike.js"></script>
+    <link rel="stylesheet" href="/css/myPageLike.css">
     <!-- 아이콘 -->
     <script src="https://kit.fontawesome.com/946fabfe17.js" crossorigin="anonymous"></script>
 </head>
@@ -49,7 +49,7 @@
         <div class="myPageLike">
             <div class="miniHeader">
                 <div class="memberImage"><i class="fa-solid fa-user"></i></div>
-                <div class="memberNickName" th:text="${nickName}">닉네임</div>
+                <div class="memberNickName" th:text="${memberNickName}">닉네임</div>
             </div>
             <div class="incon">
                 <div class="aside">
@@ -98,11 +98,34 @@
                             </div>
                         </div>
                         <div class="reservationPages">
-                                <th:block th:each="page:${#numbers.sequence(startPage, endPage)}">
-                                <a class="pages" th:if="${page != nowPage}" th:href="@{/camput/myPage/bookInfo(page=${page}-1)}" th:text="${page}">1</a>
-                                <strong th:if="${page==nowPage}" th:text="${page}" ></strong>
-                                </th:block>
-                        </div>
+                                <ul class="pagination"
+                                    th:with="start=${(T(java.lang.Math).floor(likeCamps.getNumber()/5)*5) + 1},
+                                last=(${start + 4 < likeCamps.totalPages ? start + 4 : likeCamps.totalPages})">
+                                    <li>
+                                        <a th:href="@{/camput/myPage/like(page=1)}" aria-label="First">
+                                            <span aria-hidden="true"><i class="fa-solid fa-angles-left"></i></span>
+                                        </a>
+                                    </li>
+                                    <li th:class="${likeCamps.first} ? 'disabled'">
+                                        <a th:href="${likeCamps.first} ? '#' : @{/camput/myPage/like(page=${likeCamps.number})}" aria-label="Previous">
+                                            <span aria-hidden="true"><i class="fa-solid fa-angle-left"></i></span>
+                                        </a>
+                                    </li>
+                                    <li th:each="page: ${#numbers.sequence(start,last)}" th:class="${page == likeCamps.number +1} ? 'active'">
+                                        <a th:text="${page}" th:href="@{/camput/myPage/like(page=${page})}"></a>
+                                    </li>
+                                    <li th:class="${likeCamps.last} ? 'disabled'">
+                                        <a th:href="${likeCamps.last} ? '#' : @{/camput/myPage/like(page=${likeCamps.number + 2})}" aria-label="Next">
+                                            <span aria-hidden="true"><i class="fa-solid fa-angle-right"></i></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/camput/myPage/like(page=${totalPage})}" aria-label="Last">
+                                            <span aria-hidden="true"><i class="fa-solid fa-angles-right"></i></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                     </div> 
                 </div>
             </div>

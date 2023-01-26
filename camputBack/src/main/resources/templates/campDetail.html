@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -76,25 +76,24 @@
     <div class="wrap" th:object="${camp}">
         <!-- header01 -->
         <header>
-            <div class="Logo"></div>
-            <div class="nav" style="display: none;">
+            <div class="Logo" onclick="location.href='/camput/home'" ></div>
+            <div class="nav">
                 <ul class="menuBtn">
-                    <li class="nologin"><a href="login.html">Login</a></li>
-                    <li class="join"><a href="join.html">Join</a></li>
+                    <li class="nologin"><a th:href="@{/camput/login}">Login</a></li>
+                    <li class="join"><a th:href="@{/camput/member/join}">Join</a></li>
                 </ul>
             </div>
             <!-- 메뉴 -->
             <div class="nav">
                 <ul class="menuBtn">
-                    <li class="login"><a href="login.html">마이페이지</a></li>
-                    <li class="join"><a href="join.html">로그아웃</a></li>
+                    <li class="myPageMemberInfo"><a th:href="@{/camput/myPage/information}">마이페이지</a></li>
+                    <li class="logout"><a th:href="@{/camput/logout}">로그아웃</a></li>
                     <li class="menu">
                     <a href="#"><i class="fa-solid fa-bars"></i></a>
                         <ul class="miniMenu" style="display: none;">
-                            <li class="qandA gnb_menu">위시리스트</li>
-                            <li class="qandA gnb_menu">예약리스트</li>
-                            <li class="notice gnb_menu">공지사항</li>
-                            <li class="qandA gnb_menu">Q & A</li>
+                            <li class="qandA gnb_menu"><a th:href="@{/camput/myPage/like}">위시리스트</a></li>
+                            <li class="qandA gnb_menu"><a th:href="@{/camput/myPage/bookInfo}">예약리스트</a></li>
+                            <li class="qandA gnb_menu"><a th:href="@{/QnA/list}">Q & A</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -227,7 +226,7 @@
                                     <input type="hidden" id="camputId" name="camputId" th:value="${camp.id}">
                                     <div class="star_line">
                                         <p>캠핑장 평가해주세요.</p>
-                                        <span class="stars">
+                                        <span class="star">
                                                 ★★★★★
                                                 <span>★★★★★</span>
                                                 <input type="range" id="stars" name="stars" value="1" step="1" min="0" max="5">
