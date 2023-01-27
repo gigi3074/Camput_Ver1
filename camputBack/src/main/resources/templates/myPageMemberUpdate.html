@@ -9,7 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <title>회원정보 수정</title>
-    <link rel="stylesheet" href="/camputFront/css/myPageMemberUpdate.css">
+    <link rel="stylesheet" href="/css/myPageMemberUpdate.css">
 </head>
 <body>
 <!-- 아이콘 -->
@@ -28,7 +28,7 @@
         type: "post",
         url: "/member/view",
         data: {
-            memberLoginId: '${loginMember}';
+            memberLoginId: '${loginMember}'
         },
         success: function (response) {
             //console.log('success', response)

@@ -31,7 +31,7 @@
                                     <li class="content likeCampName" th:text="${likecamp.getMyPageCampName()}">캠핑장 이름</li>
                                     <li class="title">캠핑장 주소</li>
                                     <li class="content likeCampName" th:text="${likecamp.getMyPageCampAddress()}">캠핑장 주소</li>
-                                    <li class="detailPageButton"><button class="detailPage" onclick="location.href='/camput/detail/{campName}';" th:value="${likecamp.getMyPageCampName()}">예약하기</button></li>
+                                    <li class="detailPageButton"><button class="detailPage" th:onclick="|location.href='@{/camput/detail/{campName} (campName=${likecamp.getMyPageCampName()})}'|" th:value="${likecamp.getMyPageCampName()}" name="campName">예약하기</button></li>
                                 </ul>
                             </div>
                         </div>
