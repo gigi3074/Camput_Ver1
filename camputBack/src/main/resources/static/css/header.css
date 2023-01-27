@@ -32,7 +32,7 @@ header{
     background-repeat: no-repeat;
 }
 /* 메뉴 */
-.nav{
+.nav1{
     width: 30%;
     margin-right: 5%;
     display: flex;
@@ -40,7 +40,19 @@ header{
     margin: 5%;
     font-size: 1.5vw;
 }
-.menuBtn{
+.nav2{
+    width: 30%;
+    margin-right: 5%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 5%;
+    font-size: 1.5vw;
+}
+.nav1 .menuBtn{
+    width: 100%;
+    display: inline-flex;
+}
+.nav2 .menuBtn{
     width: 100%;
     display: inline-flex;
 }

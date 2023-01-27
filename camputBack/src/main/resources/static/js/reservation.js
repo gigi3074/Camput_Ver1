@@ -1,5 +1,4 @@
 
-console.log(noPoint)
 
 $(document).ready(function (){
     console.log('start!')

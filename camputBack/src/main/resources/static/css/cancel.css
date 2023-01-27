@@ -124,3 +124,27 @@ header{
     box-shadow: 0 80px 0 0  #ffa600 inset, 
                 0 -80px 0 0 #ffa600 inset;
 }
+
+/*캔슬 경고 문구*/
+.cancelReservation{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+}
+.successTitle{
+    font-size: 10vw;
+}
+.goToHome button{
+    color: #ffa600;
+    padding: 4%; margin: 5% 0 2% 0%; width: 70%;
+    font-family: 'TmoneyRoundWindExtraBold'; font-size: 1.5vw;
+    box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.6);
+    transition: color 0.5s ease-in-out,box-shadow  0.5s ease-in-out;
+}
+.goToHome button:hover{
+    color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 80px 0 0  #ffa600 inset,
+    0 -80px 0 0 #ffa600 inset;
+}
