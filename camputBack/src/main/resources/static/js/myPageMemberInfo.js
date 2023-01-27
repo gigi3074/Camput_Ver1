@@ -6,7 +6,7 @@ async function checkMember(){
     if(result===""){
         $('.warring').show();
     }else{
-        window.location.href='/camput/myPage/information/change';
+        window.location.href='/member/update';
     }
 }
 function openWindow(){
